@@ -1,0 +1,172 @@
+SELECT * FROM MEMBER;
+commit;
+--멤버 로그인
+SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
+--id 중복체크
+SELECT * FROM MEMBER WHERE mID ='aaa';
+--이메일 중복 체크
+SELECT * FROM MEMBER WHERE mEMAIL ='bunny@naver.com';
+--id로 dto가져오기
+SELECT * FROM MEMBER WHERE mID ='aaa';
+
+--관리자 로그인 
+SELECT * FROM ADMIN WHERE aID ='admin1' AND aPW ='111';
+--관리자 id로 dto가져오기
+SELECT * FROM ADMIN WHERE aID ='admin1';
+--회원 수
+SELECT COUNT(*) CNT FROM MEMBER;
+--회원 등급 변경
+UPDATE MEMBER SET mGRADE='2'
+                WHERE mID='aaa';
+
+--회원가입
+INSERT INTO MEMBER (mID, mPW, mNAME, mBIRTH, mGENDER, mEMAIL, mPHONE,  mADDRESS, mADDRESS2)
+    VALUES ('aaa', '111', '이토끼', '95/01/01', 'M','bunny@naver.com', '010-0000-1111', '서울시 강남구', '어쩌구로'); 
+    --정보수정
+    UPDATE MEMBER SET mPW='111',
+                mNAME='박짹짹',
+                mEMAIL='bird085@naver.com',
+                mBIRTH='95/12/25',
+                mGENDER='M',
+                mPHONE='010-0101-0101',
+                mADDRESS='짹로 짹구',
+                mADDRESS2='425-4'
+                WHERE mID='ddd';
+
+--등급별 회원 리스트 (아니면 등급 역순, 가입일 순)
+SELECT * FROM MEMBER ORDER BY mGRADE DESC, mRDATE ;
+SELECT * FROM (SELECT ROWNUM RN, M.* FROM (SELECT MID, MNAME, MBIRTH, MEMAIL, MPHONE, MGRADE, MRDATE FROM MEMBER)M)
+    WHERE RN BETWEEN 1 AND 10
+    ORDER BY mGRADE DESC, mRDATE;
+SELECT ROWNUM RN, M.* FROM (SELECT * FROM MEMBER)M;
+
+
+
+SELECT * FROM (SELECT ROWNUM RN, M.* FROM (SELECT * FROM MEMBER ORDER BY mGRADE DESC, mRDATE)M)
+    WHERE RN BETWEEN 1 AND 10;
+
+--회원 탈퇴
+DELETE FROM MEMBER WHERE MID = '7';
+--탈퇴용 글삭제
+
+
+---공지사항 
+
+--공지사항 게시판 리스트
+SELECT * FROM (SELECT ROWNUM RN, B.* FROM (SELECT N.* FROM NOTICE N, ADMIN A WHERE N.AID = A.AID)B)
+    WHERE RN BETWEEN 1 AND 30;
+    
+SELECT ROWNUM RN, B.* FROM (SELECT N.* FROM NOTICE N, ADMIN A WHERE N.AID = A.AID)B;
+SELECT N.* FROM NOTICE N, ADMIN A WHERE N.AID = A.AID;
+--공지사항 게시판 글쓰기
+INSERT INTO NOTICE (nNUM, aID, aSUBJECT, aCONTENT, aFILENAME, aIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'zzz', '글1', '글1입니다', 'noImg.png', '127.10.26');
+
+--공지사항 게시판 수정
+UPDATE NOTICE SET nSUBJECT ='글1(수정)',
+                nCONTENT='글1(수정)입니다',
+                nFILENAME='noImg.png'
+                WHERE nNUM ='1';
+--공지사항 조회수 올리기
+UPDATE NOTICE SET nHIT = nHIT+1
+                WHERE nNUM='1';
+                
+--공지사항 글 지우기
+DELETE FROM NOTICE WHERE nNUM='1';
+
+
+
+
+--증상 검색
+SELECT * FROM SYBOARD WHERE sCATEGORYID='1';
+
+SELECT * FROM SYBOARD;
+--증상 목록
+SELECT sCATEGORYNAME FROM SCATEGORY;
+--증상 글 등록(ADMIN)
+
+SELECT sCATEGORYNAME FROM SCATEGORY WHERE sCATEGORYID='1';
+
+INSERT INTO SYBOARD (sNUM, sCATEGORYID,  sSUBJECT, sCONTENT)
+    VALUES (SYB_SEQ.NEXTVAL, 1,'눈꺼풀이 벌겋게 붓는다','눈꺼풀에 이상이 있다');
+    
+  --sNUM NUMBER(6)PRIMARY KEY, --
+  --  sCATEGORYID NUMBER(3) REFERENCES SCATEGORY(sCATEGORYID),
+  --  aID VARCHAR2(50) REFERENCES ADMIN(aID),--
+ --   sSUBJECT VARCHAR2(100) NOT NULL, --
+ --   sCONTENT VARCHAR2(4000) NOT NULL --
+
+--증상 글 삭제(ADMIN)
+DELETE FROM SYBOARD  WHERE sNUM ='1';
+
+--증상 글 수정 (ADMIN)
+UPDATE SYBOARD SET sCATEGORYID = 2,
+                sSUBJECT ='콧물을 많이 흘린다',
+                sCONTENT='코에 문제가 있다'
+                WHERE sNUM = '1';
+
+--게시판 리스트
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+    FROM(SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.mID=M.mID ORDER BY fGROUP DESC, FSTEP)A)
+    WHERE RN BETWEEN 1 AND 30 ;
+
+
+--답변글전, 
+
+UPDATE FILEBOARD SET fSTEP =fSTEP +1 WHERE fGROUP = 1 AND fSTEP > 0;
+--답변글(로그인 한 사람만)
+INSERT INTO FILEBOARD (fNUM, MID,  fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFILENAME3, fGROUP, fSTEP, fINDENT, fIP)
+    VALUES(FILEBOARD_SEQ.NEXTVAL, 'aaa', '글1', '-', 'noImg.png', NULL, NULL, 1, 1, 1, '127.10.26');
+SELECT * FROM FILEBOARD;
+--글쓰기 ( 로그인)
+
+INSERT INTO FILEBOARD (fNUM, MID, fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFILENAME3, fGROUP, fSTEP, fINDENT, fIP)
+    VALUES(FILEBOARD_SEQ.NEXTVAL, 'aaa', '글1', '-', 'noImg.png', NULL, NULL, FREPLY_SEQ.CURRVAL, 0, 0, '127.10.26');
+--글 수정 (내 글만
+UPDATE FILEBOARD SET fSUBJECT='글1(수정)',
+                FCONTENT='수정된 글입니다',
+                FIP='127.11.16',
+                FFILENAME ='noImg.png',
+                fFILENAME2 = NULL, 
+                fFILENAME3 = NULL,
+                fRDATE = SYSDATE
+                WHERE fNUM='1';
+--글 삭제(내 글만
+DELETE FROM FILEBOARD WHERE mID='aaa';
+
+--글 삭제(관리자)
+COMMIT;
+
+SELECT COUNT(*) FROM fileboard;
+--FNUM로 DTO보기 (글 상세보기  + 조회수 높이기 용)
+SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.MID = M.MID AND fNUM='1';
+
+--답변, 수정 상세보기 용 DTO보기
+SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.MID = M.MID AND fNUM='1';
+--글 강제 삭제
+DELETE FROM FILEBOARD F WHERE MID = 'AAA';
+--조회수
+UPDATE FILEBOARD SET fHIT = fHIT+1 WHERE fNUM='1';
+COMMIT;
+SELECT FNUM FROM FILEBOARD;
+--자유게시판 댓글
+--글에 댓글 수
+SELECT COUNT(*)CNT FROM FREPLY WHERE FNUM='1';
+--댓글 출력
+SELECT FRNUM, FNUM, NVL2(MID,MID,AID),FRCONTENT,FRDATE, FRIP FROM FREPLY WHERE FNUM='16';
+SELECT ROWNUM RN, F.* FROM (SELECT FRNUM, FNUM, NVL2(MID,MID,AID),FRCONTENT,FRDATE, FRIP FROM FREPLY WHERE FNUM='16')F;
+
+SELECT * FROM (SELECT ROWNUM RN, F.* FROM (SELECT FRNUM, FNUM, NVL2(mname,mname,aid),FRCONTENT,FRDATE, FRIP FROM FREPLY r, member m WHERE r.mid=m.mid and FNUM='16' order by frnum)F)
+    WHERE RN BETWEEN 1 AND 10; 
+--댓글 입력
+INSERT INTO FREPLY(fRNUM, fNUM, mID,fRCONTENT, FRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa', '댓글 확인',SYSDATE, '127.10.25' );
+--댓글 수정
+UPDATE FREPLY SET fRCONTENT= '댓글확인수정' WHERE fRNUM=1;
+--댓글 삭제
+DELETE FROM FREPLY WHERE fRNUM='2'; 
+--회원 리스트(관리자)
+SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT mPHOTO, mID, mNAME FROM MVC_MEMBER ORDER BY mRDATE DESC)A)
+    WHERE RN BETWEEN 1 AND 11;
+--글 삭제(관리자)
+DELETE FROM FILEBOARD WHERE FNUM='2';
