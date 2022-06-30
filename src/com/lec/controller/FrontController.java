@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.service.CommentAppendService;
 import com.lec.service.FreeBoardContentService;
 import com.lec.service.FreeBoardDeleteService;
 import com.lec.service.FreeBoardListService;
@@ -23,7 +24,11 @@ import com.lec.service.MLoginService;
 import com.lec.service.MLogoutService;
 import com.lec.service.MyModifyService;
 import com.lec.service.Service;
-import com.lec.service.fBaordCommentWriteService;
+import com.lec.service.fBoardCommentDeleteService;
+import com.lec.service.fBoardCommentListService;
+import com.lec.service.fBoardCommentModifyService;
+import com.lec.service.fBoardCommentModifyViewService;
+import com.lec.service.fBoardCommentWriteService;
 
 /**
  * Servlet implementation class FrontController
@@ -124,11 +129,40 @@ public class FrontController extends HttpServlet {
 			service = new FreeBoardReplyService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		}else if(comm.equals("/fBaordCommentWrite.do")) {
-			service = new fBaordCommentWriteService();
+		}else if(comm.equals("/fbCommentWrite.do")) {
+			service = new fBoardCommentWriteService();
+			service.execute(request, response);
+			viewPage = "freeBoardContent.do";
+		}else if(comm.equals("/commentAppend.do")) {
+			service = new CommentAppendService();
+			service.execute(request, response);
+			viewPage = "freeBoard/fbreplyappend.jsp";
+		}else if(comm.equals("/fbCommentModifyView.do")) {//
+			service = new fBoardCommentModifyViewService();
+			service.execute(request, response);
+			viewPage = "freeBoard/replyInput.jsp";
+		}else if(comm.equals("/fbCommentModify.do")) {//
+			service = new fBoardCommentModifyService();
+			service.execute(request, response);
+			viewPage = "freeBoardContent.do";
+		}else if(comm.equals("/fbCommentDelete.do")) {//
+			service = new fBoardCommentDeleteService();
+			service.execute(request, response);
+			viewPage = "freeBoardContent.do";
+		}else if(comm.equals("/fbCommentDelete.do")) {//병원 글쓰기
+			service = new fBoardCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
 		}
+		
+		
+		
+		
+		/*
+			 * else if(comm.equals("/fbCommentModifyView.do")) { service = new
+			 * fBaordCommentModifyViewService(); ; service.execute(request, response);
+			 * viewPage = "freeBoardContent.do"; }
+			 */
 		
 		
 		

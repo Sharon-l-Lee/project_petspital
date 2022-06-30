@@ -78,7 +78,42 @@ textarea{
 .rply_area{
 	margin-top: 20px;
 	height: auto;
+}	
+.list_t{
+	margin-bottom: 20px;
 	
-	
+}	
+
+.list_name{
+	border-top:3px solid #F2F0F0;
+	padding: 20px;
+	border-bottom:1px solid #F2F0F0;
+}	
+.list_content{
+	padding: 20px;
+	border-bottom:1px solid #F2F0F0;
+	height: auto;
+}	
+
+.list_date{
+	padding: 10px;
+	text-align: right;
+	border-bottom:1px solid #F2F0F0;
+}
+.list_button{
+	padding: 10px;
+	text-align: right;
+}
+.rlist_btn {
+	outline:none;
+	border: 0;
+	background-color:#ffffff;
 }
 
+."append_btn"{
+	text-align: center;
+	outline:none;
+	border: 0;
+	backgroud-color:F2F0F0;
+	font-size: 1.3em;
+}

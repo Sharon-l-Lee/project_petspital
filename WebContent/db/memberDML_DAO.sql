@@ -1,39 +1,39 @@
 SELECT * FROM MEMBER;
 commit;
---ë©¤ë²„ ë¡œê·¸ì¸
+--¸â¹ö ·Î±×ÀÎ
 SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
---id ì¤‘ë³µì²´í¬
+--id Áßº¹Ã¼Å©
 SELECT * FROM MEMBER WHERE mID ='aaa';
---ì´ë©”ì¼ ì¤‘ë³µ ì²´í¬
+--ÀÌ¸ÞÀÏ Áßº¹ Ã¼Å©
 SELECT * FROM MEMBER WHERE mEMAIL ='bunny@naver.com';
---idë¡œ dtoê°€ì ¸ì˜¤ê¸°
+--id·Î dto°¡Á®¿À±â
 SELECT * FROM MEMBER WHERE mID ='aaa';
 
---ê´€ë¦¬ìž ë¡œê·¸ì¸ 
+--°ü¸®ÀÚ ·Î±×ÀÎ 
 SELECT * FROM ADMIN WHERE aID ='admin1' AND aPW ='111';
---ê´€ë¦¬ìž idë¡œ dtoê°€ì ¸ì˜¤ê¸°
+--°ü¸®ÀÚ id·Î dto°¡Á®¿À±â
 SELECT * FROM ADMIN WHERE aID ='admin1';
---íšŒì› ìˆ˜
+--È¸¿ø ¼ö
 SELECT COUNT(*) CNT FROM MEMBER;
---íšŒì› ë“±ê¸‰ ë³€ê²½
+--È¸¿ø µî±Þ º¯°æ
 UPDATE MEMBER SET mGRADE='2'
                 WHERE mID='aaa';
 
---íšŒì›ê°€ìž…
+--È¸¿ø°¡ÀÔ
 INSERT INTO MEMBER (mID, mPW, mNAME, mBIRTH, mGENDER, mEMAIL, mPHONE,  mADDRESS, mADDRESS2)
-    VALUES ('aaa', '111', 'ì´í† ë¼', '95/01/01', 'M','bunny@naver.com', '010-0000-1111', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬', 'ì–´ì©Œêµ¬ë¡œ'); 
-    --ì •ë³´ìˆ˜ì •
+    VALUES ('aaa', '111', 'ÀÌÅä³¢', '95/01/01', 'M','bunny@naver.com', '010-0000-1111', '¼­¿ï½Ã °­³²±¸', '¾îÂ¼±¸·Î'); 
+    --Á¤º¸¼öÁ¤
     UPDATE MEMBER SET mPW='111',
-                mNAME='ë°•ì§¹ì§¹',
+                mNAME='¹ÚÂ±Â±',
                 mEMAIL='bird085@naver.com',
                 mBIRTH='95/12/25',
                 mGENDER='M',
                 mPHONE='010-0101-0101',
-                mADDRESS='ì§¹ë¡œ ì§¹êµ¬',
+                mADDRESS='Â±·Î Â±±¸',
                 mADDRESS2='425-4'
                 WHERE mID='ddd';
 
---ë“±ê¸‰ë³„ íšŒì› ë¦¬ìŠ¤íŠ¸ (ì•„ë‹ˆë©´ ë“±ê¸‰ ì—­ìˆœ, ê°€ìž…ì¼ ìˆœ)
+--µî±Þº° È¸¿ø ¸®½ºÆ® (¾Æ´Ï¸é µî±Þ ¿ª¼ø, °¡ÀÔÀÏ ¼ø)
 SELECT * FROM MEMBER ORDER BY mGRADE DESC, mRDATE ;
 SELECT * FROM (SELECT ROWNUM RN, M.* FROM (SELECT MID, MNAME, MBIRTH, MEMAIL, MPHONE, MGRADE, MRDATE FROM MEMBER)M)
     WHERE RN BETWEEN 1 AND 10
@@ -45,50 +45,50 @@ SELECT ROWNUM RN, M.* FROM (SELECT * FROM MEMBER)M;
 SELECT * FROM (SELECT ROWNUM RN, M.* FROM (SELECT * FROM MEMBER ORDER BY mGRADE DESC, mRDATE)M)
     WHERE RN BETWEEN 1 AND 10;
 
---íšŒì› íƒˆí‡´
+--È¸¿ø Å»Åð
 DELETE FROM MEMBER WHERE MID = '7';
---íƒˆí‡´ìš© ê¸€ì‚­ì œ
+--Å»Åð¿ë ±Û»èÁ¦
 
 
----ê³µì§€ì‚¬í•­ 
+---°øÁö»çÇ× 
 
---ê³µì§€ì‚¬í•­ ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸
+--°øÁö»çÇ× °Ô½ÃÆÇ ¸®½ºÆ®
 SELECT * FROM (SELECT ROWNUM RN, B.* FROM (SELECT N.* FROM NOTICE N, ADMIN A WHERE N.AID = A.AID)B)
     WHERE RN BETWEEN 1 AND 30;
     
 SELECT ROWNUM RN, B.* FROM (SELECT N.* FROM NOTICE N, ADMIN A WHERE N.AID = A.AID)B;
 SELECT N.* FROM NOTICE N, ADMIN A WHERE N.AID = A.AID;
---ê³µì§€ì‚¬í•­ ê²Œì‹œíŒ ê¸€ì“°ê¸°
+--°øÁö»çÇ× °Ô½ÃÆÇ ±Û¾²±â
 INSERT INTO NOTICE (nNUM, aID, aSUBJECT, aCONTENT, aFILENAME, aIP)
-    VALUES(NOTICE_SEQ.NEXTVAL, 'zzz', 'ê¸€1', 'ê¸€1ìž…ë‹ˆë‹¤', 'noImg.png', '127.10.26');
+    VALUES(NOTICE_SEQ.NEXTVAL, 'zzz', '±Û1', '±Û1ÀÔ´Ï´Ù', 'noImg.png', '127.10.26');
 
---ê³µì§€ì‚¬í•­ ê²Œì‹œíŒ ìˆ˜ì •
-UPDATE NOTICE SET nSUBJECT ='ê¸€1(ìˆ˜ì •)',
-                nCONTENT='ê¸€1(ìˆ˜ì •)ìž…ë‹ˆë‹¤',
+--°øÁö»çÇ× °Ô½ÃÆÇ ¼öÁ¤
+UPDATE NOTICE SET nSUBJECT ='±Û1(¼öÁ¤)',
+                nCONTENT='±Û1(¼öÁ¤)ÀÔ´Ï´Ù',
                 nFILENAME='noImg.png'
                 WHERE nNUM ='1';
---ê³µì§€ì‚¬í•­ ì¡°íšŒìˆ˜ ì˜¬ë¦¬ê¸°
+--°øÁö»çÇ× Á¶È¸¼ö ¿Ã¸®±â
 UPDATE NOTICE SET nHIT = nHIT+1
                 WHERE nNUM='1';
                 
---ê³µì§€ì‚¬í•­ ê¸€ ì§€ìš°ê¸°
+--°øÁö»çÇ× ±Û Áö¿ì±â
 DELETE FROM NOTICE WHERE nNUM='1';
 
 
 
 
---ì¦ìƒ ê²€ìƒ‰
+--Áõ»ó °Ë»ö
 SELECT * FROM SYBOARD WHERE sCATEGORYID='1';
 
 SELECT * FROM SYBOARD;
---ì¦ìƒ ëª©ë¡
+--Áõ»ó ¸ñ·Ï
 SELECT sCATEGORYNAME FROM SCATEGORY;
---ì¦ìƒ ê¸€ ë“±ë¡(ADMIN)
+--Áõ»ó ±Û µî·Ï(ADMIN)
 
 SELECT sCATEGORYNAME FROM SCATEGORY WHERE sCATEGORYID='1';
 
 INSERT INTO SYBOARD (sNUM, sCATEGORYID,  sSUBJECT, sCONTENT)
-    VALUES (SYB_SEQ.NEXTVAL, 1,'ëˆˆêº¼í’€ì´ ë²Œê²‹ê²Œ ë¶“ëŠ”ë‹¤','ëˆˆêº¼í’€ì— ì´ìƒì´ ìžˆë‹¤');
+    VALUES (SYB_SEQ.NEXTVAL, 1,'´«²¨Ç®ÀÌ ¹ú°Ó°Ô º×´Â´Ù','´«²¨Ç®¿¡ ÀÌ»óÀÌ ÀÖ´Ù');
     
   --sNUM NUMBER(6)PRIMARY KEY, --
   --  sCATEGORYID NUMBER(3) REFERENCES SCATEGORY(sCATEGORYID),
@@ -96,77 +96,85 @@ INSERT INTO SYBOARD (sNUM, sCATEGORYID,  sSUBJECT, sCONTENT)
  --   sSUBJECT VARCHAR2(100) NOT NULL, --
  --   sCONTENT VARCHAR2(4000) NOT NULL --
 
---ì¦ìƒ ê¸€ ì‚­ì œ(ADMIN)
+--Áõ»ó ±Û »èÁ¦(ADMIN)
 DELETE FROM SYBOARD  WHERE sNUM ='1';
 
---ì¦ìƒ ê¸€ ìˆ˜ì • (ADMIN)
+--Áõ»ó ±Û ¼öÁ¤ (ADMIN)
 UPDATE SYBOARD SET sCATEGORYID = 2,
-                sSUBJECT ='ì½§ë¬¼ì„ ë§Žì´ í˜ë¦°ë‹¤',
-                sCONTENT='ì½”ì— ë¬¸ì œê°€ ìžˆë‹¤'
+                sSUBJECT ='Äà¹°À» ¸¹ÀÌ Èê¸°´Ù',
+                sCONTENT='ÄÚ¿¡ ¹®Á¦°¡ ÀÖ´Ù'
                 WHERE sNUM = '1';
 
---ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸
+--°Ô½ÃÆÇ ¸®½ºÆ®
 SELECT * FROM
     (SELECT ROWNUM RN, A.*
     FROM(SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.mID=M.mID ORDER BY fGROUP DESC, FSTEP)A)
     WHERE RN BETWEEN 1 AND 30 ;
 
 
---ë‹µë³€ê¸€ì „, 
+--´äº¯±ÛÀü, 
 
 UPDATE FILEBOARD SET fSTEP =fSTEP +1 WHERE fGROUP = 1 AND fSTEP > 0;
---ë‹µë³€ê¸€(ë¡œê·¸ì¸ í•œ ì‚¬ëžŒë§Œ)
+--´äº¯±Û(·Î±×ÀÎ ÇÑ »ç¶÷¸¸)
 INSERT INTO FILEBOARD (fNUM, MID,  fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFILENAME3, fGROUP, fSTEP, fINDENT, fIP)
-    VALUES(FILEBOARD_SEQ.NEXTVAL, 'aaa', 'ê¸€1', '-', 'noImg.png', NULL, NULL, 1, 1, 1, '127.10.26');
+    VALUES(FILEBOARD_SEQ.NEXTVAL, 'aaa', '±Û1', '-', 'noImg.png', NULL, NULL, 1, 1, 1, '127.10.26');
 SELECT * FROM FILEBOARD;
---ê¸€ì“°ê¸° ( ë¡œê·¸ì¸)
+--±Û¾²±â ( ·Î±×ÀÎ)
 
 INSERT INTO FILEBOARD (fNUM, MID, fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFILENAME3, fGROUP, fSTEP, fINDENT, fIP)
-    VALUES(FILEBOARD_SEQ.NEXTVAL, 'aaa', 'ê¸€1', '-', 'noImg.png', NULL, NULL, FREPLY_SEQ.CURRVAL, 0, 0, '127.10.26');
---ê¸€ ìˆ˜ì • (ë‚´ ê¸€ë§Œ
-UPDATE FILEBOARD SET fSUBJECT='ê¸€1(ìˆ˜ì •)',
-                FCONTENT='ìˆ˜ì •ëœ ê¸€ìž…ë‹ˆë‹¤',
+    VALUES(FILEBOARD_SEQ.NEXTVAL, 'aaa', '±Û1', '-', 'noImg.png', NULL, NULL, FREPLY_SEQ.CURRVAL, 0, 0, '127.10.26');
+--±Û ¼öÁ¤ (³» ±Û¸¸
+UPDATE FILEBOARD SET fSUBJECT='±Û1(¼öÁ¤)',
+                FCONTENT='¼öÁ¤µÈ ±ÛÀÔ´Ï´Ù',
                 FIP='127.11.16',
                 FFILENAME ='noImg.png',
                 fFILENAME2 = NULL, 
                 fFILENAME3 = NULL,
                 fRDATE = SYSDATE
                 WHERE fNUM='1';
---ê¸€ ì‚­ì œ(ë‚´ ê¸€ë§Œ
+--±Û »èÁ¦(³» ±Û¸¸
 DELETE FROM FILEBOARD WHERE mID='aaa';
 
---ê¸€ ì‚­ì œ(ê´€ë¦¬ìž)
+--±Û »èÁ¦(°ü¸®ÀÚ)
 COMMIT;
 
 SELECT COUNT(*) FROM fileboard;
---FNUMë¡œ DTOë³´ê¸° (ê¸€ ìƒì„¸ë³´ê¸°  + ì¡°íšŒìˆ˜ ë†’ì´ê¸° ìš©)
+--FNUM·Î DTOº¸±â (±Û »ó¼¼º¸±â  + Á¶È¸¼ö ³ôÀÌ±â ¿ë)
 SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.MID = M.MID AND fNUM='1';
 
---ë‹µë³€, ìˆ˜ì • ìƒì„¸ë³´ê¸° ìš© DTOë³´ê¸°
+--´äº¯, ¼öÁ¤ »ó¼¼º¸±â ¿ë DTOº¸±â
 SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.MID = M.MID AND fNUM='1';
---ê¸€ ê°•ì œ ì‚­ì œ
+--±Û °­Á¦ »èÁ¦
 DELETE FROM FILEBOARD F WHERE MID = 'AAA';
---ì¡°íšŒìˆ˜
+--Á¶È¸¼ö
 UPDATE FILEBOARD SET fHIT = fHIT+1 WHERE fNUM='1';
 COMMIT;
 SELECT FNUM FROM FILEBOARD;
---ìžìœ ê²Œì‹œíŒ ëŒ“ê¸€
---ê¸€ì— ëŒ“ê¸€ ìˆ˜
+--ÀÚÀ¯°Ô½ÃÆÇ ´ñ±Û
+--±Û¿¡ ´ñ±Û ¼ö
 SELECT COUNT(*)CNT FROM FREPLY WHERE FNUM='1';
---ëŒ“ê¸€ ì¶œë ¥
+--´ñ±Û Ãâ·Â
 SELECT FRNUM, FNUM, NVL2(MID,MID,AID),FRCONTENT,FRDATE, FRIP FROM FREPLY WHERE FNUM='16';
 SELECT ROWNUM RN, F.* FROM (SELECT FRNUM, FNUM, NVL2(MID,MID,AID),FRCONTENT,FRDATE, FRIP FROM FREPLY WHERE FNUM='16')F;
-
-SELECT * FROM (SELECT ROWNUM RN, F.* FROM (SELECT FRNUM, FNUM, NVL2(mname,mname,aid),FRCONTENT,FRDATE, FRIP FROM FREPLY r, member m WHERE r.mid=m.mid and FNUM='16' order by frnum)F)
-    WHERE RN BETWEEN 1 AND 10; 
---ëŒ“ê¸€ ìž…ë ¥
-INSERT INTO FREPLY(fRNUM, fNUM, mID,fRCONTENT, FRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa', 'ëŒ“ê¸€ í™•ì¸',SYSDATE, '127.10.25' );
---ëŒ“ê¸€ ìˆ˜ì •
-UPDATE FREPLY SET fRCONTENT= 'ëŒ“ê¸€í™•ì¸ìˆ˜ì •' WHERE fRNUM=1;
---ëŒ“ê¸€ ì‚­ì œ
+   
+SELECT FRNUM, FNUM, MID, nvl((select mname from member where mid=f.mid),'°ü¸®ÀÚ') mname,FRCONTENT,FRRDATE, FRIP FROM FREPLY F where fnum=16 order by frnum desc;
+SELECT * 
+    FROM(SELECT ROWNUM RN, A.* 
+        FROM (SELECT FRNUM, FNUM, MID, nvl((select mname from member where mid=f.mid),'°ü¸®ÀÚ') mname,FRCONTENT,FRRDATE, FRIP FROM FREPLY F where fnum=16 order by frnum desc)A)
+				WHERE rn between 1 and 10;
+--´ñ±Û ÀÔ·Â
+INSERT INTO FREPLY(fRNUM, fNUM, mID, aId, fRCONTENT, FRRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa',null, '´ñ±Û È®ÀÎ',SYSDATE, '127.10.25' );
+--´ñ±Û ¼öÁ¤
+UPDATE FREPLY SET fRCONTENT= '´ñ±ÛÈ®ÀÎ¼öÁ¤' WHERE fRNUM=1;
+--´ñ±Û »èÁ¦
 DELETE FROM FREPLY WHERE fRNUM='2'; 
---íšŒì› ë¦¬ìŠ¤íŠ¸(ê´€ë¦¬ìž)
+--´ñ±Û dto
+SELECT FRNUM, FNUM, M.MID, MNAME, FRCONTENT, FRRDATE, FRIP FROM FREPLY F, MEMBER M WHERE F.MID=M.MID AND FNUM=16;
+--È¸¿ø ¸®½ºÆ®(°ü¸®ÀÚ)
 SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT mPHOTO, mID, mNAME FROM MVC_MEMBER ORDER BY mRDATE DESC)A)
     WHERE RN BETWEEN 1 AND 11;
---ê¸€ ì‚­ì œ(ê´€ë¦¬ìž)
+--±Û »èÁ¦(°ü¸®ÀÚ)
 DELETE FROM FILEBOARD WHERE FNUM='2';
+
+
+select * from freply where fnum=16;
