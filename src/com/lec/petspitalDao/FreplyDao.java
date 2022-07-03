@@ -41,8 +41,10 @@ public class FreplyDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM(SELECT ROWNUM RN, A.* FROM (SELECT FRNUM, FNUM, MNAME, AID, FRCONTENT,FRDATE, FRIP FROM FREPLY F, MEMBER M WHERE F.MID =M.MID AND FNUM=?)A)" + 
-				"    WHERE rn between ? and ?";
+		String sql = "SELECT * " + 
+				"    FROM(SELECT ROWNUM RN, A.* " + 
+				"        FROM (SELECT FRNUM, FNUM, MID, nvl((select mname from member where mid=f.mid),'관리자') mname,FRCONTENT,FRRDATE, FRIP FROM FREPLY F where fnum=? order by frnum desc)A)" + 
+				"				WHERE RN between ? and ?";
 
 		try {
 			conn = ds.getConnection();
@@ -53,13 +55,14 @@ public class FreplyDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				 int frnum = rs.getInt("frnum");
+				 String mid = rs.getString("mid");
 				 String mname = rs.getString("mname");
-				 String aid = rs.getString("aid");
 				 String frcontent = rs.getString("frcontent");
-				 Date frdate = rs.getDate("frdate");
+				 Date frrdate = rs.getDate("frrdate");
 				 String frip = rs.getString("frip");
 				
-				dtos.add(new FreplyDto(frnum, fnum, mname, aid, frcontent, frdate, frip));
+				dtos.add(new FreplyDto(frnum, fnum, mid, mname, frcontent, frrdate, frip));
+				
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -83,9 +86,190 @@ public class FreplyDao {
 	
 //	--댓글 입력
 //	INSERT INTO FREPLY(fRNUM, fNUM, mID,fRCONTENT, FRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa', '댓글 확인',SYSDATE, '127.10.25' );
-//	--댓글 수정
+	public int writeComment(int fnum, String mid, String aid, String frcontent, String frip ) {
+		int result = FAIL;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO FREPLY(fRNUM, fNUM, mID, aId, fRCONTENT, FRRDATE, FRIP ) "
+				+ "			VALUES(FREPLY_SEQ.NEXTVAL, ?, ?, ?, ?,SYSDATE, ? )";
+		
+		try { 
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, fnum);
+			pstmt.setString(2, mid);
+			pstmt.setString(3, aid);
+			pstmt.setString(4, frcontent);
+			pstmt.setString(5, frip);
+			result = pstmt.executeUpdate();
+			System.out.println(result==SUCCESS ? "댓글 쓰기 성공" : "댓글쓰기실패");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage()+"댓글쓰기실패");
+		} finally {
+			
+				try {
+					if(pstmt!=null)
+					pstmt.close();
+					if(conn!=null)
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				
+				}
+		}
+		return result;
+	}
+
+	
+	
+	//	--댓글 수정
 //	UPDATE FREPLY SET fRCONTENT= '댓글확인수정' WHERE fRNUM=1;
+	public int modifyComment(String frcontent, int frnum){
+		int result = FAIL;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE FREPLY SET fRCONTENT= ? WHERE fRNUM=? ";
+		
+		try { 
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, frcontent);
+			pstmt.setInt(2, frnum);
+			result = pstmt.executeUpdate();
+			System.out.println(result ==SUCCESS ? "댓글 수정 성공" : "댓글 수정실패");
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+		} finally {
+			
+				try {
+					if(pstmt!=null)
+					pstmt.close();
+					if(conn!=null)
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				
+				}
+		}
+		return result;
+		
+	
+	}
 //	--댓글 삭제
-//	DELETE FROM FREPLY WHERE fRNUM='2'; 
+//	DELETE FROM FREPLY WHERE fRNUM='2';
+	
+	public int deleteComment(int frnum){
+		int result = FAIL;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM FREPLY WHERE fRNUM=?";
+		
+		try { 
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, frnum);
+			result = pstmt.executeUpdate();
+			System.out.println("댓글 삭제 성공");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage()+"댓글 삭제실패");
+		} finally {
+			
+				try {
+					if(pstmt!=null)
+					pstmt.close();
+					if(conn!=null)
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				
+				}
+		}
+		return result;
+		
+	}
+
 //	--댓글 수
+	//SELECT COUNT(*)CNT FROM FREPLY;
+	
+	public int countComment() {
+		int cnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql =  "SELECT COUNT(*) FROM FREPLY";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return cnt;
+	}
+	
+	
+	//댓글 전체 가져오기
+	
+	public FreplyDto getComment(int frnum){
+		FreplyDto dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql =  "SELECT FRNUM, FNUM, M.MID, MNAME, FRCONTENT, FRRDATE, FRIP FROM FREPLY F, MEMBER M WHERE F.MID=M.MID AND FNUM=?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, frnum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int fnum = rs.getInt("fnum");
+				 String mid = rs.getString("mid");
+				 String mname = rs.getString("mname");
+				 String frcontent = rs.getString("frcontent");
+				 Date frrdate = rs.getDate("frrdate");
+				 String frip = rs.getString("frip");
+				dto = new FreplyDto(frnum, fnum, mid, mname, frcontent, frrdate, frip);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return dto;
+		
+	}
+	
 }

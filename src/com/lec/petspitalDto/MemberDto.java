@@ -34,6 +34,16 @@ public class MemberDto {
 		this.mgrade = mgrade;
 		this.mrdate = mrdate;
 	}
+	public MemberDto(String mid,  String mname, Date mbirth,  String memail, String mphone,
+			 int mgrade, Date mrdate) {
+		this.mid = mid;
+		this.mname = mname;
+		this.mbirth = mbirth;
+		this.memail = memail;
+		this.mphone = mphone;
+		this.mgrade = mgrade;
+		this.mrdate = mrdate;
+	}
 
 	//toString
 	

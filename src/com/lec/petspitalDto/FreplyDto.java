@@ -9,7 +9,7 @@ public class FreplyDto {
 	private String mname;
 	private String aid;
 	private String frcontent;
-	private Date frdate;
+	private Date frrdate;
 	private String frip;
 	
 	
@@ -20,14 +20,14 @@ public class FreplyDto {
 
 	//MID
 	
-	public FreplyDto(int frnum, int fnum, String mname, String aid, String frcontent, Date frdate, String frip) {
+	public FreplyDto(int frnum, int fnum, String mid, String mname, String frcontent, Date frrdate, String frip) {
 		super();
 		this.frnum = frnum;
 		this.fnum = fnum;
+		this.mid = mid;
 		this.mname = mname;
-		this.aid = aid;
 		this.frcontent = frcontent;
-		this.frdate = frdate;
+		this.frrdate = frrdate;
 		this.frip = frip;
 	}
 
@@ -35,7 +35,7 @@ public class FreplyDto {
 	
 	
 
-	public FreplyDto(int frnum, int fnum, String mid, String mname, String aid, String frcontent, Date frdate,
+	public FreplyDto(int frnum, int fnum, String mid, String mname, String aid, String frcontent, Date frrdate,
 			String frip) {
 		super();
 		this.frnum = frnum;
@@ -44,14 +44,14 @@ public class FreplyDto {
 		this.mname = mname;
 		this.aid = aid;
 		this.frcontent = frcontent;
-		this.frdate = frdate;
+		this.frrdate = frrdate;
 		this.frip = frip;
 	}
 
 	@Override
 	public String toString() {
 		return "FreplyDto [frnum=" + frnum + ", fnum=" + fnum + ", mid=" + mid + ", mname=" + mname + ", aid=" + aid
-				+ ", frcontent=" + frcontent + ", frdate=" + frdate + ", frip=" + frip + "]";
+				+ ", frcontent=" + frcontent + ", frrdate=" + frrdate + ", frip=" + frip + "]";
 	}
 
 	public int getFrnum() {
@@ -104,12 +104,12 @@ public class FreplyDto {
 		this.frcontent = frcontent;
 	}
 
-	public Date getFrdate() {
-		return frdate;
+	public Date getFrrdate() {
+		return frrdate;
 	}
 
 	public void setFrdate(Date frdate) {
-		this.frdate = frdate;
+		this.frrdate = frdate;
 	}
 
 	public String getFrip() {

@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.lec.petspitalDto.MemberDto;
+import com.lec.petspitalDto.RhospitalDto;
 
 public class MemberDao {
 	public static final int SUCCESS = 1;
@@ -433,6 +434,7 @@ public class MemberDao {
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
 			System.out.println(result == SUCCESS ? "등급 업 성공" : "등급 업 실패");
 		} catch (SQLException e) {
@@ -452,6 +454,83 @@ public class MemberDao {
 		return result;
 	}
     
+	//등급 다운
+	public int gradeDown(String mid) {
+		int result = FAIL;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE MEMBER SET mGRADE='1' WHERE mID=?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			result = pstmt.executeUpdate();
+			System.out.println(result == SUCCESS ? "등급 다운 성공" : "등급 다운 실패");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+		return result;
+	}
+    
+
+	//멤버 출력
 	
+	public ArrayList<MemberDto> memberList(int startRow, int endRow) {
+		ArrayList<MemberDto> dtos = new ArrayList<MemberDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM" + 
+				"    (SELECT ROWNUM RN, M.* FROM" + 
+				"        (SELECT MID, MNAME, MBIRTH, MEMAIL, MPHONE, MGRADE, MRDATE FROM MEMBER ORDER BY mRDATE DESC)M)" + 
+				"             WHERE RN BETWEEN ? AND ?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String mid = rs.getString("mid");
+				String mname = rs.getString("mname");
+				Date mbirth = rs.getDate("mbirth");
+				String memail = rs.getString("memail");
+				String mphone = rs.getString("mphone");
+				int mgrade = rs.getInt("mgrade");
+				Date mrdate = rs.getDate("mrdate");
+				dtos.add(new MemberDto(mid, mname, mbirth,  memail, mphone,mgrade, mrdate));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return dtos;
+
+	}
 
 }

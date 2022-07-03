@@ -12,7 +12,6 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
-	<!-- https://www.nirs.go.kr/ncia_MJS/board/dev/board/board.jsp?id=data_101 -->
 	<div id="wrap">
 		<div id="sub_content">
 			<div class="bonmun">

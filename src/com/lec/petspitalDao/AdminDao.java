@@ -46,8 +46,10 @@ public class AdminDao {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, aid);
+			System.out.println(1);
 			pstmt.setString(2, apw);
 			rs = pstmt.executeQuery();
+			System.out.println(2);
 			if (rs.next()) {
 				result = SUCCESS;
 			} else {
@@ -55,6 +57,7 @@ public class AdminDao {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			System.out.println("¿Ö¾ÈµÅ");
 		} finally {
 
 			try {
@@ -78,17 +81,16 @@ public class AdminDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM ADMIN WHERE aID = ? ";
+		String sql = "SELECT * FROM ADMIN WHERE aID = ?";
 
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, aid);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-
+			if (rs.next()) {
 				 String apw = rs.getString("apw");
-				 String aname = rs.getString("apw");
+				 String aname = rs.getString("aname");
 				
 				dto = new AdminDto(aid, apw, aname);
 

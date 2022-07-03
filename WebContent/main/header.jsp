@@ -16,18 +16,30 @@
 <body>
 	<header>
 		<div id="top">
-			<c:if test="${empty member }">
+		<!-- 비로그인 헤더 -->
+			<c:if test="${empty member && empty admin }">
 				<ul>
 					<li><a href='${conPath }/main.do'>HOME</a></li>
 					<li><a href='${conPath }/loginView.do'>로그인</a></li>
 					<li><a href='${conPath }/joinView.do'>회원가입</a></li>
 				</ul>
 			</c:if>
+			<!-- 사용자 로그인 헤더 -->
 			<c:if test="${not empty member }">
 				<ul>
 					<li><a href='${conPath }/main.do'>HOME</a></li>
 					<li><a href='${conPath }/logout.do'>로그아웃</a></li>
 					<li><a href='${conPath }/myView.do'>마이페이지</a></li>
+					<li><a href='#'>${member.mname }님</a></li>
+				</ul>
+			</c:if>
+			<!-- 관리자 로그인 헤더 -->
+			<c:if test="${not empty admin }">
+				<ul>
+					<li><a href='${conPath }/main.do'>HOME</a></li>
+					<li><a href='${conPath }/logout.do'>로그아웃</a></li>
+					<li><a href='${conPath }/adminView.let'>관리자 페이지</a></li>
+					<li><a href='#'>관리자님</a></li>
 				</ul>
 			</c:if>
 		</div>
@@ -45,10 +57,10 @@
 						</ul></li>
 					<li><a href=''>동물병원 검색</a>
 						<ul class="sub_nav">
-							<li><a href=''>메뉴 3-1</a></li>
-							<li><a href=''>메뉴 3-2</a></li>
+							<li><a href='${conPath }/hsearchBoard/mapboard.jsp'>지도로 검색</a></li>
+							<li><a href='${conPath }/hBoardList.do'>동물로 검색</a></li>
 						</ul></li>
-					<li><a href=''>증상검색</a>
+					<li><a href='${conPath }/sBoardList.let'>증상검색</a>
 						<ul class="sub_nav">
 							<li><a href=''>메뉴 2-1</a></li>
 							<li><a href=''>메뉴 2-2</a></li>

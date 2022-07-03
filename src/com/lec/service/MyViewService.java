@@ -14,3 +14,4 @@ public class MyViewService implements Service {
 		request.setAttribute("member", mDao.idDto(mid)); //세션에 넣은 것과 다른 이름으로 할 것
 
 }
+}

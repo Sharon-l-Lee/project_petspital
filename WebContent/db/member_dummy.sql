@@ -16,8 +16,9 @@ INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin2', '111', '관리자');
 INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin3', '111', '관리자');
 INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin4', '111', '관리자');
 INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin5', '111', '관리자');
-
-
+SELECT * FROM ADMIN WHERE aID = 'admin1';
+SELECT * FROM ADMIN;
+commit;
 --공지사항
 
 
@@ -63,7 +64,7 @@ INSERT INTO FILEBOARD (fNUM, MID, fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFI
    
 --자유게시판 댓글
 commit;
-
+select * from member;
 --QNA
 
 --
