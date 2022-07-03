@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.service.CommentAppendService;
 import com.lec.service.FreeBoardContentService;
 import com.lec.service.FreeBoardDeleteService;
 import com.lec.service.FreeBoardListService;
@@ -23,7 +24,18 @@ import com.lec.service.MLoginService;
 import com.lec.service.MLogoutService;
 import com.lec.service.MyModifyService;
 import com.lec.service.Service;
-import com.lec.service.fBaordCommentWriteService;
+import com.lec.service.fBoardCommentDeleteService;
+import com.lec.service.fBoardCommentListService;
+import com.lec.service.fBoardCommentModifyService;
+import com.lec.service.fBoardCommentModifyViewService;
+import com.lec.service.fBoardCommentWriteService;
+import com.lec.service.hBoardContentService;
+import com.lec.service.hBoardDeleteService;
+import com.lec.service.hBoardListService;
+import com.lec.service.hBoardModifyService;
+import com.lec.service.hBoardModifyViewService;
+import com.lec.service.hBoardWriteService;
+import com.lec.service.hBoardWriteViewService;
 
 /**
  * Servlet implementation class FrontController
@@ -65,7 +77,7 @@ public class FrontController extends HttpServlet {
 		if(comm.equals("/main.do")) {
 			viewPage = "main/main.jsp";
 		}else if(comm.equals("/loginView.do")) {
-			viewPage = "member/login.jsp";
+			viewPage = "member/login2.jsp";
 		}else if(comm.equals("/login.do")) {
 			service = new MLoginService();
 			service.execute(request, response);
@@ -124,11 +136,63 @@ public class FrontController extends HttpServlet {
 			service = new FreeBoardReplyService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		}else if(comm.equals("/fBaordCommentWrite.do")) {
-			service = new fBaordCommentWriteService();
+		}else if(comm.equals("/fbCommentWrite.do")) {
+			service = new fBoardCommentWriteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
+		}else if(comm.equals("/commentAppend.do")) {
+			service = new CommentAppendService();
+			service.execute(request, response);
+			viewPage = "freeBoard/fbreplyappend.jsp";
+		}else if(comm.equals("/fbCommentModifyView.do")) {//
+			service = new fBoardCommentModifyViewService();
+			service.execute(request, response);
+			viewPage = "freeBoard/replyInput.jsp";
+		}else if(comm.equals("/fbCommentModify.do")) {//
+			service = new fBoardCommentModifyService();
+			service.execute(request, response);
+			viewPage = "freeBoardContent.do";
+		}else if(comm.equals("/fbCommentDelete.do")) {//
+			service = new fBoardCommentDeleteService();
+			service.execute(request, response);
+			viewPage = "freeBoardContent.do";
+		}else if(comm.equals("/hBoardWriteView.do")) {//병원 글쓰기
+			service = new hBoardWriteViewService();
+			service.execute(request, response);
+			viewPage = "hsearchBoard/hSearchBoardWrite.jsp";
+		}else if(comm.equals("/hBoardWrite.do")) {//병원 글쓰기
+			service = new hBoardWriteService();
+			service.execute(request, response);
+			viewPage = "hBoardList.do";
+		}else if(comm.equals("/hBoardList.do")) {//병원 리스트
+			service = new hBoardListService();
+			service.execute(request, response);
+			viewPage = "hsearchBoard/hSearchBoardList.jsp";
+		}else if(comm.equals("/hBoardContent.do")) {//병원 세부사항
+			service = new hBoardContentService();
+			service.execute(request, response);
+			viewPage = "hsearchBoard/hSearchBoardContent.jsp";
+		}else if(comm.equals("/hBoardModifyView.do")) {//병원 수정 뷰
+			service = new hBoardModifyViewService();
+			service.execute(request, response);
+			viewPage = "hsearchBoard/hSearchBoardModify.jsp";
+		}else if(comm.equals("/hBoardModify.do")) {//병원 수정
+			service = new hBoardModifyService();
+			service.execute(request, response);
+			viewPage = "hBoardList.do";
+		}else if(comm.equals("/hBoardDelete.do")) {//병원 삭제
+			service = new hBoardDeleteService();
+			service.execute(request, response);
+			viewPage = "hBoardList.do";
 		}
+		
+		
+		
+		/*
+			 * else if(comm.equals("/fbCommentModifyView.do")) { service = new
+			 * fBaordCommentModifyViewService(); ; service.execute(request, response);
+			 * viewPage = "freeBoardContent.do"; }
+			 */
 		
 		
 		

@@ -66,9 +66,9 @@
 			<form action="${conPath }/freeBoardModify.do?fnum=${param.fnum }" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="pageNum" value="${pageNum }"> <input
-					type="hidden" name="fgroup" value="${fboard.fsubject }"> <input
-					type="hidden" name="fstep" value="${fboard.fsubject }"> <input
-					type="hidden" name="findent" value="${fboard.fsubject }"> <input
+					type="hidden" name="fgroup" value="${fboard.fgroup }"> <input
+					type="hidden" name="fstep" value="${fboard.fstep }"> <input
+					type="hidden" name="findent" value="${fboard.findent }"> <input
 					type="hidden" name="mid" value="${member.mid } ">
 					<input type="hidden" name="dbfilename" value="${fboard.ffilename }">
 					<input type="hidden" name="dbfilename2" value="${fboard.ffilename2 }">
