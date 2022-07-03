@@ -21,7 +21,11 @@
 							<li><a href="${conPath }/memberView.let" class="menu"><span>회원 정보 및 등급관리</span></a></li>
 							<li><a href="#" class="menu"><span>관리자 글 관리</span></a>
 								<ul class="subm">
+<<<<<<< HEAD
 									<li><a href="${conPath }/noticeWriteView.let" class="submenu">공지사항</a></li>
+=======
+									<li><a href="#" class="submenu">공지사항</a></li>
+>>>>>>> 23d53bae7ade4f8311f8f0f8c6970d46fb0a8bba
 									<li><a href="${conPath }/sBoardWriteView.let" class="submenu">증상 검색</a></li>
 								</ul></li>
 							<li><a href="#" class="menu"><span>게시글 관리</span></a>

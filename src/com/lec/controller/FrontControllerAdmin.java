@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.service.ALoginService;
 import com.lec.service.AMemberViewService;
+<<<<<<< HEAD
 import com.lec.service.ANoticeListService;
 import com.lec.service.ANoticeWriteService;
+=======
+>>>>>>> 23d53bae7ade4f8311f8f0f8c6970d46fb0a8bba
 import com.lec.service.ASymptomBoardContentService;
 import com.lec.service.ASymptomBoardDeleteService;
 import com.lec.service.ASymptomBoardListService;
@@ -104,6 +107,7 @@ public class FrontControllerAdmin extends HttpServlet {
 			service = new ASymptomBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "sBoardList.let";
+<<<<<<< HEAD
 		}else if(comm.equals("/noticeWriteView.let")) {//공지사항 쓰기 view
 			viewPage = "notice/noticeWrite.jsp";
 		}else if(comm.equals("/noticeWrite.let")) {//공지사항 쓰기
@@ -118,6 +122,11 @@ public class FrontControllerAdmin extends HttpServlet {
 		
 		
 		
+=======
+		}
+		
+		
+>>>>>>> 23d53bae7ade4f8311f8f0f8c6970d46fb0a8bba
 
 		/*
 		 * 
