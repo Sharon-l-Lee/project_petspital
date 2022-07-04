@@ -38,6 +38,7 @@ import com.lec.service.hBoardModifyService;
 import com.lec.service.hBoardModifyViewService;
 import com.lec.service.hBoardWriteService;
 import com.lec.service.hBoardWriteViewService;
+import com.lec.service.hCommentAppendService;
 
 /**
  * Servlet implementation class FrontController
@@ -192,6 +193,10 @@ public class FrontController extends HttpServlet {
 			service = new hBoardCommetnWriteService();
 			service.execute(request, response);
 			viewPage = "hBoardContent.do";
+		}else if(comm.equals("/hCommentAppend.do")) {//병원 댓글 추가
+			service = new hCommentAppendService();
+			service.execute(request, response);
+			viewPage = "hsearchBoard/hreplyappend.jsp";
 		}
 		
 		

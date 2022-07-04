@@ -22,17 +22,16 @@ public class CommentAppendService implements Service {
 		int recurrentPage = Integer.parseInt(repageNum);
 		FreplyDao frDao = FreplyDao.getInstance();
 		int totalComment = frDao.countComment();
-		int pageCnt = (int)Math.ceil((double)totalComment/PAGESIZE);//ÆäÀÌÁö°¹¼ö
-		System.out.println(pageCnt +"ÆäÀÌÁö Áß ÇöÀç "+recurrentPage);
+		int pageCnt = (int)Math.ceil((double)totalComment/PAGESIZE);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(recurrentPage<=pageCnt) {
 			int startRow = (recurrentPage-1) * PAGESIZE +1;
 			int endRow   = startRow + PAGESIZE -1;
 			ArrayList<FreplyDto> freplyList = frDao.listComment(fnum, startRow, endRow);
 			request.setAttribute("freplyList", freplyList);
 			request.setAttribute("fnum", fnum);
-			request.setAttribute("repageNum", recurrentPage);// pageNum ¾øÀ¸¸é param.pageNum
+			request.setAttribute("repageNum", recurrentPage);// pageNum ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ param.pageNum
 		}else {
-			request.setAttribute("error", "´õÀÌ»óÆäÀÌÁö´Â ¾ø¾î");
+			request.setAttribute("error", "ï¿½ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 	}

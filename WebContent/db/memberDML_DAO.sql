@@ -169,6 +169,8 @@ SELECT *
     FROM(SELECT ROWNUM RN, A.* 
         FROM (SELECT FRNUM, FNUM, MID, nvl((select mname from member where mid=f.mid),'관리자') mname,FRCONTENT,FRRDATE, FRIP FROM FREPLY F where fnum=16 order by frnum desc)A)
 				WHERE rn between 1 and 10;
+select f.*, mname from freply f, member m where f.mid=m.mid;
+select * from freply;
 --댓글 입력
 INSERT INTO FREPLY(fRNUM, fNUM, mID, aId, fRCONTENT, FRRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa',null, '댓글 확인',SYSDATE, '127.10.25' );
 --댓글 수정
@@ -231,16 +233,27 @@ SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.MID = M.MID AND rNUM=2;
 DELETE FROM RHOSPITAL WHERE MID =?;
 
 select * from RHOSPITAL;
+select * from HREPLY;
 --병원 글 댓글
 INSERT INTO HREPLY(hNUM, rNUM, mID, aId, hCONTENT , hRDATE , hIP ) VALUES(HREPLY_SEQ.NEXTVAL, 2, 'bbb',null, '댓글 확인',SYSDATE, '127.10.25' );
 --병원 글 댓글 출력
 SELECT * 
     FROM(SELECT ROWNUM RN, A.* 
-        FROM (SELECT hNUM, rNUM, MID, nvl((select mname from member where mid=h.mid),'관리자') mname,hCONTENT,hRDATE, hIP FROM HREPLY H where rNUM=2 order by hNUM desc)A)
+        FROM (SELECT hNUM, rNUM, MID, nvl((select mname from member where mid=h.mid),'관리자') mname,hCONTENT,hRDATE, hIP FROM HREPLY H where rNUM=4 order by hNUM desc)A)
 				WHERE rn between 1 and 10;
 --댓글 갯수
 SELECT COUNT(*) FROM HREPLY;
 
+--글에 댓글 수
+SELECT COUNT(*)CNT FROM HREPLY WHERE rNUM='2';
+
+--병원 댓글 수정
+UPDATE HREPLY SET hCONTENT= '댓글확인수정' WHERE hNUM=1;
+--댓글 삭제
+DELETE FROM HREPLY WHERE hNUM='2'; 
+
+--병원 댓글 dto
+SELECT hNUM, rNUM, MID, nvl((select mname from member where mid=h.mid),'관리자') mname,hCONTENT,hRDATE, hIP FROM HREPLY H where rNUM=2;
 
 --증상 카테고리 출력
 select scategoryid from SCATEGORY;
@@ -250,3 +263,16 @@ select SCATEGORYNAME FROM SCATEGORY WHERE SCATEGORYID = 1;
 --동물
 select rcategoryname from RCATEGORY;
 select rCATEGORYNAME FROM RCATEGORY WHERE RCATEGORYID = 1;
+
+--북마크
+--북마크 넣기
+INSERT INTO BOOKMARK (bNUM, rNUM, mID) VALUES (BMARK_SEQ.NEXTVAL, 4, 'aaa');
+
+--북마크 지우기
+DELETE BOOKMARK WHERE bNUM= 1 AND mID = 'aaa';
+
+--북마크 보기
+SELECT * FROM BOOKMARK WHERE mID='aaa';
+
+--북마크 갯수
+SELECT  COUNT(*) FROM BOOKMARK WHERE rNUM=4 AND mID='aaa';

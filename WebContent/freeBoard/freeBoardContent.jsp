@@ -22,7 +22,6 @@
 		var pageCnt = Number('${pageCnt}');
 		var totCnt = Number('${totCnt}');
 		if(totCnt<=5){
-			alert('PAGESIZE인 5이하 갯수만 있으면 더보기 버튼 안 나옴');
 			$("#append").css('display','none');
 		}
 		pageNum = Number($('.repageNum').last().val());

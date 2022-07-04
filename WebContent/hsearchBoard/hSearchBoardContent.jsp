@@ -12,17 +12,13 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 	var pageNum;
-	var fnum = Number('${param.nnum}');
-	
-	var pageCnt = Number('${pageCnt}');
-	var totCnt = Number('${totCnt}');
+	var rnum = Number('${param.rnum}');
 	
 	
 	$(document).ready(function(){
 		var pageCnt = Number('${pageCnt}');
 		var totCnt = Number('${totCnt}');
 		if(totCnt<=5){
-			alert('PAGESIZE인 5이하 갯수만 있으면 더보기 버튼 안 나옴');
 			$("#append").css('display','none');
 		}
 		pageNum = Number($('.repageNum').last().val());
@@ -36,10 +32,10 @@
 			}
 			
 			$.ajax({
-				url : '${conPath}/commentAppend.do',
+				url : '${conPath}/hCommentAppend.do',
 				type : 'get',
 				dataType : 'html',
-				data : "repageNum="+(pageNum+1)+ "&fnum=" + fnum,
+				data : "repageNum="+(pageNum+1)+ "&rnum=" + rnum,
 				success : function(data){
 					$('#appendDiv').append(data);
 					pageNum = Number($('.repageNum').last().val());
@@ -76,6 +72,27 @@
 			});
 		});
 		
+		//별점
+	/* 	$('input[name=rating]').click(function () {
+		    let i;
+		    i = $('input[name=rating]:checked').val();
+	 	 
+		}); */
+		
+		
+		$('.rating_box label').click(function () {
+			 $(this).parent().children("label").removeClass("on"); 
+			$(this).addClass("on").prevAll("label").addClass("on");
+		
+		});
+		
+		//북마크
+		
+		/* $('#bookmark').click(function () {
+			$(this).addClass("in");
+		
+		});
+		 */
 	});
 	
 
@@ -93,7 +110,17 @@
 				<header>
 
 					<p class="subject">
-						<b>${rhcontent.rsubject }</b>
+						<b>${rhcontent.rsubject }
+						<c:if test="${not empty bookmarking.bnum}">
+						<div class="bookmark">★</div>
+							
+						</c:if>
+						<c:if test="${empty bookmarking.bnum}">
+						<div class="bookmark">☆</div>
+							
+						</c:if>
+						</b>
+			<%-- 			<span id="bookmark"><img src="${conPath }/boardImg/bookmark.png" width=60px height=40px></span> --%>
 					</p>
 				</header>
 			</section>
@@ -153,16 +180,20 @@
 				<form action="${conPath }/hBoardCommentWrite.do" method="get">
 					<input type="hidden" name="pageNum" value="${param.pageNum }">
 					<input type="hidden" name="rnum" value="${param.rnum }">
-					<div class="text_area">
+					<div class="text_area" >
 						<p>
 							<b>댓글 쓰기</b>
 						</p>
 						<div id=rating_wrap>
-							<div id="rating_box">
-								<input type="radio" name="rating" id="rating" value="0.5">
+							<div class="rating_box">
+								<input type="radio" name="hrating" id="rate1.0" value="1"><label for="rate1.0">★</label>
+								<input type="radio" name="hrating" id="rate2.0" value="2"><label for="rate2.0">★</label>
+								<input type="radio" name="hrating" id="rate3.0" value="3"><label for="rate3.0">★</label>
+								<input type="radio" name="hrating" id="rate4.0" value="4"><label for="rate4.0">★</label>
+								<input type="radio" name="hrating" id="rate5.0" value="5"><label for="rate5.0">★</label>
 							</div>
 						</div>
-						<textarea rows="5" cols="15" name="frcontent"
+						<textarea rows="5" cols="15" name="hcontent"
 							placeholder="내용을 입력해 주세요."></textarea>
 						<input type="submit" value="작성"> <input type="button"
 							value="수정">
@@ -176,31 +207,37 @@
 					</p>
 					<div class="rply_list">
 
-						<c:if test="${freplyList.size() == 0 }">
-							댓글 데이터가 없습니다
-						</c:if>
-						<c:if test="${freplyList.size() != 0 }">
-							<c:forEach var="comlist" items="${freplyList }">
+					 	<c:if test="${hreplyList.size() == 0 }">
+							작성된 댓글이 없습니다
+						</c:if> 
+						<c:if test="${hreplyList.size() != 0 }">
+							<c:forEach var="hcomlist" items="${hreplyList }">
 								<div class="com_list">
 
 									<div class="list_name">
 										<%-- <c:if test="${not empty comlist.mid }"> --%>
 										<p>
-											<b>${comlist.mname }</b>
+											<b>${hcomlist.mname }
+												<c:if test="${hcomlist.hrating eq 1}"><span class="ratestar">★</span></c:if>
+												<c:if test="${hcomlist.hrating eq 2}"><span class="ratestar">★★</span></c:if>
+												<c:if test="${hcomlist.hrating eq 3}"><span class="ratestar">★★★</span></c:if>
+												<c:if test="${hcomlist.hrating eq 4}"><span class="ratestar">★★★★</span></c:if>
+												<c:if test="${hcomlist.hrating eq 5}"><span class="ratestar">★★★★★★</span></c:if>
+											</b>
 										</p>
 										<%-- 	</c:if> --%>
 										<%-- <c:if test="${empty comlist.mid }">
 											<p><b>관리자</b></p>
 										</c:if> --%>
 									</div>
-									<div class="list_content">${comlist.frcontent }</div>
-									<div class="list_date">${comlist.frrdate } ${comlist.frnum }</div>
+									<div class="list_content">${hcomlist.hcontent }</div>
+									<div class="list_date">${hcomlist.hrdate } ${hcomlist.hnum } </div>
 									<div class="list_button">
-										<c:if test="${comlist.mid eq member.mid }">
-											<button id="modify" class="rlist_btn" onclick="fun(${comlist.frnum })">수정</button>
+										<c:if test="${hcomlist.mid eq member.mid }">
+											<button id="modify" class="rlist_btn" onclick="fun(${hcomlist.hnum })">수정</button>
 											<button class="rlist_btn">삭제</button>
 										</c:if>
-										<c:if test="${comlist.mid != member.mid }">
+										<c:if test="${hcomlist.mid != member.mid }">
 											<div class="rlist_btn"></div>
 										</c:if>
 										<span id="result"></span>
