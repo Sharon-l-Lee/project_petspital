@@ -22,11 +22,11 @@
 						<div class="info_title">
 							<h2 class="tit">자유게시판</h2>
 						</div>
-						<p class="tcol">자유롭게 의견을 게시하는 공간입니다.</p>
+						<p class="tcol">자유롭게 글을 작성할 수 있습니다</p>
 					</div>
 					<!-- 게시판 -->
 
-					<button class="w_btn" onclick="location.href='${conPath }/freeBoardWriteView.do?pageNum=${pageNum }'">글쓰기</button>
+					<button class="w_btn" onclick="location.href='${conPath }/noticeWriteView.let?pageNum=${pageNum }'">글쓰기</button>
 					<div class="freeboard">
 						<table>
 							<thead>

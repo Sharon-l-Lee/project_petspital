@@ -10,6 +10,76 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/boardcontent.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	var pageNum;
+	var fnum = Number('${param.nnum}');
+	
+	var pageCnt = Number('${pageCnt}');
+	var totCnt = Number('${totCnt}');
+	
+	
+	$(document).ready(function(){
+		var pageCnt = Number('${pageCnt}');
+		var totCnt = Number('${totCnt}');
+		if(totCnt<=5){
+			alert('PAGESIZE인 5이하 갯수만 있으면 더보기 버튼 안 나옴');
+			$("#append").css('display','none');
+		}
+		pageNum = Number($('.repageNum').last().val());
+		if(pageCnt == pageNum){
+			$('#append').css('display','none');
+		}
+		$('#append').click(function(){
+			pageNum = Number($('.repageNum').last().val());
+			if(isNaN(pageNum)){
+				pageNum=1;
+			}
+			
+			$.ajax({
+				url : '${conPath}/commentAppend.do',
+				type : 'get',
+				dataType : 'html',
+				data : "repageNum="+(pageNum+1)+ "&fnum=" + fnum,
+				success : function(data){
+					$('#appendDiv').append(data);
+					pageNum = Number($('.repageNum').last().val());
+					if(pageCnt <= pageNum){
+						alert('마지막 페이지까지 뿌려서 더보기 버튼을 없애');
+						$('#append').css('display','none');
+					}
+				}
+			});//ajax
+		});// 더보기 버튼
+
+		
+			//수정
+		$('#modify').click(function(){
+			var frcontent = ('${frcondto.frcontent}');
+			
+			$.ajax({
+			// url : 요청경로
+			// type : get방식 / post 방식
+			// data : 요청 파라미터와 파라미터값
+			// dataType : html/json/... 요청경로로 실행한 결과의 타입
+			// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+			// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+				url : '${conPath }/fbCommentModifyView.do',
+				type : 'post',
+				data : "frnum="+frnum,
+				dataType : 'html',
+				success : function(data){
+					$('#result').html(data);
+				},
+				error : function(code){
+					alert(code.status);
+				}
+			});
+		});
+		
+	});
+	
+
+</script>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
@@ -77,7 +147,79 @@
 					</p>
 				</div>
 			</section>
-		
+		<!-- 병원 댓글 -->
+		<section id="rply">
+
+				<form action="${conPath }/hBoardCommentWrite.do" method="get">
+					<input type="hidden" name="pageNum" value="${param.pageNum }">
+					<input type="hidden" name="rnum" value="${param.rnum }">
+					<div class="text_area">
+						<p>
+							<b>댓글 쓰기</b>
+						</p>
+						<div id=rating_wrap>
+							<div id="rating_box">
+								<input type="radio" name="rating" id="rating" value="0.5">
+							</div>
+						</div>
+						<textarea rows="5" cols="15" name="frcontent"
+							placeholder="내용을 입력해 주세요."></textarea>
+						<input type="submit" value="작성"> <input type="button"
+							value="수정">
+					</div>
+				</form>
+
+				<!-- 댓글 목록 -->
+				<div class="rply_area">
+					<p class="list_t">
+						<b>댓글목록</b>
+					</p>
+					<div class="rply_list">
+
+						<c:if test="${freplyList.size() == 0 }">
+							댓글 데이터가 없습니다
+						</c:if>
+						<c:if test="${freplyList.size() != 0 }">
+							<c:forEach var="comlist" items="${freplyList }">
+								<div class="com_list">
+
+									<div class="list_name">
+										<%-- <c:if test="${not empty comlist.mid }"> --%>
+										<p>
+											<b>${comlist.mname }</b>
+										</p>
+										<%-- 	</c:if> --%>
+										<%-- <c:if test="${empty comlist.mid }">
+											<p><b>관리자</b></p>
+										</c:if> --%>
+									</div>
+									<div class="list_content">${comlist.frcontent }</div>
+									<div class="list_date">${comlist.frrdate } ${comlist.frnum }</div>
+									<div class="list_button">
+										<c:if test="${comlist.mid eq member.mid }">
+											<button id="modify" class="rlist_btn" onclick="fun(${comlist.frnum })">수정</button>
+											<button class="rlist_btn">삭제</button>
+										</c:if>
+										<c:if test="${comlist.mid != member.mid }">
+											<div class="rlist_btn"></div>
+										</c:if>
+										<span id="result"></span>
+									</div>
+								</div>
+
+							</c:forEach>
+
+							<div id="appendDiv"></div>
+							<button class="append_btn" id="append">더보기</button>
+						
+						</c:if>
+					</div>
+					<!-- 등록된 댓글이 없습니다 -->
+				</div>
+
+				<!-- 댓글 수정 -->
+
+			</section>
 			
 		</article>
 

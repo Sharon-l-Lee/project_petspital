@@ -37,7 +37,7 @@ public class NoticeDao {
 	
 	
 //	
-//	--°øÁö»çÇ× °Ô½ÃÆÇ ¸®½ºÆ®
+//	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 //	SELECT * FROM 
 //	        (SELECT ROWNUM RN, B.* FROM 
 //	            (SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE N.AID = A.AID ORDER BY NRDATE DESC)B)
@@ -92,9 +92,59 @@ public class NoticeDao {
 		return dtos;
 
 	}
-//	--°øÁö»çÇ× °Ô½ÃÆÇ ±Û¾²±â
+	
+	//ë©”ì¸ìš© 1~4ì¤„ ê³µì§€ì‚¬í•­
+	
+	public ArrayList<NoticeDto> mainListnboard() {
+		ArrayList<NoticeDto> dtos = new ArrayList<NoticeDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM " + 
+				"        (SELECT ROWNUM RN, B.* FROM " + 
+				"            (SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE N.AID = A.AID ORDER BY NRDATE DESC)B)" + 
+				"    WHERE RN BETWEEN 1 AND 4";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				
+				 int nnum  = rs.getInt("nnum");
+				 String aid = rs.getString("aid");
+				 String aname = rs.getString("aname");
+				 String nsubject = rs.getString("nsubject");
+				 String ncontent = rs.getString("ncontent");
+				 String nfilename = rs.getString("nfilename");
+				 Date nrdate = rs.getDate("nrdate");
+				 int nhit = rs.getInt("nhit");
+				 String nip = rs.getString("nip");
+		
+				dtos.add(new NoticeDto(nnum, aid, aname, nsubject, ncontent, nfilename, nrdate, nhit, nip));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return dtos;
+
+	}
+//	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½
 //	INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
-//	    VALUES(NOTICE_SEQ.NEXTVAL, 'admin1', '±Û1', '±Û1ÀÔ´Ï´Ù', 'noImg.png', '127.10.26');
+//	    VALUES(NOTICE_SEQ.NEXTVAL, 'admin1', 'ï¿½ï¿½1', 'ï¿½ï¿½1ï¿½Ô´Ï´ï¿½', 'noImg.png', '127.10.26');
 //
 	public int writeNboard(String aid, String nsubject, String ncontent, String nfilename, String nip ) {
 		int result = FAIL;
@@ -104,7 +154,7 @@ public class NoticeDao {
 		String sql = "INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)" + 
 				"    VALUES(NOTICE_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
 		
-		try { //¿ø±Û¾²±â´Â step°ú ·¹º§ ¸ğµÎ 0°íÁ¤
+		try { //ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, aid);
@@ -113,9 +163,9 @@ public class NoticeDao {
 			pstmt.setString(4, nfilename);
 			pstmt.setString(5, nip);
 			result = pstmt.executeUpdate();
-			System.out.println("°øÁö ±Û¾²±â ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"°øÁö ±Û¾²±â½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -131,9 +181,9 @@ public class NoticeDao {
 		return result;
 	}
 	
-//	--°øÁö»çÇ× °Ô½ÃÆÇ ¼öÁ¤
-//	UPDATE NOTICE SET nSUBJECT ='±Û1(¼öÁ¤)',
-//	                nCONTENT='±Û1(¼öÁ¤)ÀÔ´Ï´Ù',
+//	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//	UPDATE NOTICE SET nSUBJECT ='ï¿½ï¿½1(ï¿½ï¿½ï¿½ï¿½)',
+//	                nCONTENT='ï¿½ï¿½1(ï¿½ï¿½ï¿½ï¿½)ï¿½Ô´Ï´ï¿½',
 //	                nFILENAME='noImg.png'
 //	                WHERE nNUM ='1';
 	public int modifyNBoard(String nsubject, String ncontent, String nfilename, int nnum){
@@ -143,7 +193,7 @@ public class NoticeDao {
 		String sql = "UPDATE NOTICE SET nSUBJECT = ?," + 
 				"                nCONTENT= ?," + 
 				"                nFILENAME= ?" + 
-				"                WHERE nNUM ? ";
+				"                WHERE nNUM =? ";
 		
 		try {
 			conn = ds.getConnection();
@@ -153,7 +203,7 @@ public class NoticeDao {
 			pstmt.setString(3, nfilename);
 			pstmt.setInt(4, nnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "°øÁö ¼öÁ¤ ¼º°ø" : "°øÁö ¼öÁ¤½ÇÆĞ");
+			System.out.println(result ==SUCCESS ? "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -174,7 +224,7 @@ public class NoticeDao {
 	
 	}
 	
-//	--°øÁö»çÇ× Á¶È¸¼ö ¿Ã¸®±â
+//	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½
 //	UPDATE NOTICE SET nHIT = nHIT+1
 //	                WHERE nNUM='1';
 	
@@ -206,7 +256,7 @@ public class NoticeDao {
 		}
 	}
 //	                
-//	--°øÁö»çÇ× ±Û Áö¿ì±â
+//	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 //	DELETE FROM NOTICE WHERE nNUM='1';
 //
 	public int deleteNBoard(int nnum){
@@ -220,9 +270,9 @@ public class NoticeDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, nnum);
 			result = pstmt.executeUpdate();
-			System.out.println("°øÁö »èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"°øÁö »èÁ¦½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -239,7 +289,7 @@ public class NoticeDao {
 		
 	}
 	
-	//±Û °¹¼ö
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 
 	public int countNboard() {
@@ -275,7 +325,7 @@ public class NoticeDao {
 		return cnt;
 	}
 	
-//	--±Û ¹øÈ£·Î dto°¡Á®¿À±â (Á¶È¸¼ö up)
+//	--ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ dtoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½È¸ï¿½ï¿½ up)
 //	SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE A.AID = N.AID AND NNUM=1;
 	public NoticeDto getnBoard(int nnum){
 		hitUp(nnum);
@@ -292,15 +342,14 @@ public class NoticeDao {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				 
-				 String aid = rs.getString("aid");
-				 String aname = rs.getString("aname");
+				
 				 String nsubject = rs.getString("nsubject");
 				 String ncontent = rs.getString("ncontent");
 				 String nfilename = rs.getString("nfilename");
 				 Date nrdate = rs.getDate("nrdate");
 				 int nhit = rs.getInt("nhit");
 				 String nip = rs.getString("nip");
-				dto =  new NoticeDto(nnum, aid, aname, nsubject, ncontent, nfilename, nrdate, nhit, nip);
+				dto =  new NoticeDto(nnum, nsubject, ncontent, nfilename, nrdate, nhit, nip);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -322,7 +371,7 @@ public class NoticeDao {
 		
 	}
 	
-//	--±Û ¹øÈ£·Î dto °¡Á®¿À±â (¼öÁ¤¿ë)
+//	--ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ dto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 //	SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE A.AID = N.AID AND NNUM=1;
 	public NoticeDto getnBoardModify(int nnum){
 		NoticeDto dto = null;

@@ -16,7 +16,7 @@
 <body>
 	<header>
 		<div id="top">
-		<!-- 비로그인 헤더 -->
+			<!-- 비로그인 헤더 -->
 			<c:if test="${empty member && empty admin }">
 				<ul>
 					<li><a href='${conPath }/main.do'>HOME</a></li>
@@ -48,7 +48,6 @@
 			<div class="nav">
 				<ul>
 					<li><a href='${conPath }/freeBoardList.do'>자유게시판</a>
-					
 					<li><a href=''>Q&A</a>
 						<ul class="sub_nav">
 							<li><a href=''>메뉴 4-1</a></li>
@@ -57,20 +56,15 @@
 						</ul></li>
 					<li><a href=''>동물병원 검색</a>
 						<ul class="sub_nav">
-							<li><a href='${conPath }/hsearchBoard/mapboard.jsp'>지도로 검색</a></li>
+							<li><a href='${conPath }/hsearchBoard/mapboard.jsp'>지도로
+									검색</a></li>
 							<li><a href='${conPath }/hBoardList.do'>동물로 검색</a></li>
 						</ul></li>
-					<li><a href='${conPath }/sBoardList.let'>증상검색</a>
-						<ul class="sub_nav">
-							<li><a href=''>메뉴 2-1</a></li>
-							<li><a href=''>메뉴 2-2</a></li>
-							<li><a href=''>메뉴 2-3</a></li>
-						</ul></li>
+					<li><a href='${conPath }/sBoardList.let'>증상검색</a></li>
 					<li><a href=''>사이트 소개</a>
 						<ul class="sub_nav">
-							<li><a href=''>메뉴 1-1</a></li>
-							<li><a href=''>메뉴 1-2</a></li>
-							<li><a href=''>메뉴 1-3</a></li>
+							<li><a href='${conPath }/noticeList.let'>공지사항</a></li>
+							
 						</ul></li>
 				</ul>
 

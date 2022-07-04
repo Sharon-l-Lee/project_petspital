@@ -12,14 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lec.petspitalDao.FileboardDao;
 import com.lec.petspitalDao.NoticeDao;
 import com.lec.petspitalDto.AdminDto;
-import com.lec.petspitalDto.MemberDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class ANoticeWriteService implements Service {
+public class ANoticeModifyService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -44,17 +42,18 @@ public class ANoticeWriteService implements Service {
 			HttpSession session = request.getSession();
 			AdminDto admin = (AdminDto) session.getAttribute("admin");
 			String aid = admin.getAid();
+			int nnum = Integer.parseInt(request.getParameter("nnum"));
 			String nfilename = filename;
 			String nsubject = mRequest.getParameter("nsubject");
 			String ncontent = mRequest.getParameter("ncontent");
 			String nip = request.getRemoteAddr();
 
 			NoticeDao nDao = NoticeDao.getInstance();
-			int result = nDao.writeNboard(aid, nsubject, ncontent, nfilename, nip);
+			int result = nDao.modifyNBoard(nsubject, ncontent, nfilename, nnum);
 			if (result == NoticeDao.SUCCESS) {
-				request.setAttribute("nwriteresult", "공지사항 쓰기 성공");
+				request.setAttribute("nmodifyresult", "공지사항 수정 성공");
 			} else {
-				request.setAttribute("nwriteErrorMsg", "공지사항 쓰기 실패");
+				request.setAttribute("nmodifyErrorMsg", "공지사항 수정 실패");
 
 			}
 			request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
@@ -79,7 +78,7 @@ public class ANoticeWriteService implements Service {
 							break;
 						os.write(bs, 0, nReadCnt);
 					} // while
-					System.out.println("���� ���� ÷�� &  ���� �Ϸ�");
+					System.out.println("파일 읽기, 쓰기 완료");
 				} // if
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -95,5 +94,8 @@ public class ANoticeWriteService implements Service {
 			}
 		}
 	}
+
+
+	
 
 }

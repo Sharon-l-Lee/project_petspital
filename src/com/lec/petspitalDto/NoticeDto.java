@@ -54,8 +54,20 @@ public class NoticeDto {
 
 
 	
-	
-	
+
+
+	public NoticeDto(int nnum, String nsubject, String ncontent, String nfilename, Date nrdate, int nhit, String nip) {
+		super();
+		this.nnum = nnum;
+		this.nsubject = nsubject;
+		this.ncontent = ncontent;
+		this.nfilename = nfilename;
+		this.nrdate = nrdate;
+		this.nhit = nhit;
+		this.nip = nip;
+	}
+
+
 	@Override
 	public String toString() {
 		return "NoticeDto [nnum=" + nnum + ", aid=" + aid + ", aname=" + aname + ", nsubject=" + nsubject

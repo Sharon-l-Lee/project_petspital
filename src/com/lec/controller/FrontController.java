@@ -22,6 +22,7 @@ import com.lec.service.FreeBoardWriteService;
 import com.lec.service.MJoinService;
 import com.lec.service.MLoginService;
 import com.lec.service.MLogoutService;
+import com.lec.service.MainService;
 import com.lec.service.MyModifyService;
 import com.lec.service.Service;
 import com.lec.service.fBoardCommentDeleteService;
@@ -29,6 +30,7 @@ import com.lec.service.fBoardCommentListService;
 import com.lec.service.fBoardCommentModifyService;
 import com.lec.service.fBoardCommentModifyViewService;
 import com.lec.service.fBoardCommentWriteService;
+import com.lec.service.hBoardCommetnWriteService;
 import com.lec.service.hBoardContentService;
 import com.lec.service.hBoardDeleteService;
 import com.lec.service.hBoardListService;
@@ -75,6 +77,8 @@ public class FrontController extends HttpServlet {
 		Service service =null;
 		
 		if(comm.equals("/main.do")) {
+			service = new MainService();
+			service.execute(request, response);
 			viewPage = "main/main.jsp";
 		}else if(comm.equals("/loginView.do")) {
 			viewPage = "member/login2.jsp";
@@ -156,34 +160,38 @@ public class FrontController extends HttpServlet {
 			service = new fBoardCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
-		}else if(comm.equals("/hBoardWriteView.do")) {//º´¿ø ±Û¾²±â
+		}else if(comm.equals("/hBoardWriteView.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½
 			service = new hBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardWrite.jsp";
-		}else if(comm.equals("/hBoardWrite.do")) {//º´¿ø ±Û¾²±â
+		}else if(comm.equals("/hBoardWrite.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½
 			service = new hBoardWriteService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardList.do")) {//º´¿ø ¸®½ºÆ®
+		}else if(comm.equals("/hBoardList.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 			service = new hBoardListService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardList.jsp";
-		}else if(comm.equals("/hBoardContent.do")) {//º´¿ø ¼¼ºÎ»çÇ×
+		}else if(comm.equals("/hBoardContent.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½
 			service = new hBoardContentService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardContent.jsp";
-		}else if(comm.equals("/hBoardModifyView.do")) {//º´¿ø ¼öÁ¤ ºä
+		}else if(comm.equals("/hBoardModifyView.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			service = new hBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardModify.jsp";
-		}else if(comm.equals("/hBoardModify.do")) {//º´¿ø ¼öÁ¤
+		}else if(comm.equals("/hBoardModify.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			service = new hBoardModifyService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardDelete.do")) {//º´¿ø »èÁ¦
+		}else if(comm.equals("/hBoardDelete.do")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			service = new hBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
+		}else if(comm.equals("/hBoardCommentWrite.do")) {//ë³‘ì› ëŒ“ê¸€
+			service = new hBoardCommetnWriteService();
+			service.execute(request, response);
+			viewPage = "hBoardContent.do";
 		}
 		
 		

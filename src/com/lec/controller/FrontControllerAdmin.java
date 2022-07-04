@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.service.ALoginService;
 import com.lec.service.AMemberViewService;
-<<<<<<< HEAD
+import com.lec.service.ANoticeContentService;
+import com.lec.service.ANoticeDeleteService;
 import com.lec.service.ANoticeListService;
+import com.lec.service.ANoticeModifyService;
+import com.lec.service.ANoticeModifyViewService;
 import com.lec.service.ANoticeWriteService;
-=======
->>>>>>> 23d53bae7ade4f8311f8f0f8c6970d46fb0a8bba
 import com.lec.service.ASymptomBoardContentService;
 import com.lec.service.ASymptomBoardDeleteService;
 import com.lec.service.ASymptomBoardListService;
@@ -61,72 +62,85 @@ public class FrontControllerAdmin extends HttpServlet {
 		String viewPage = null;
 		Service service =null;
 		
-		if(comm.equals("/adminlogin.let")) {//°ü¸®ÀÚ
+		if(comm.equals("/adminlogin.let")) {//
 			service = new ALoginService();
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
-		}else if(comm.equals("/adminView.let")) {//°ü¸®ÀÚ ÆäÀÌÁö
+		}else if(comm.equals("/adminView.let")) {//
 			viewPage = "admin/adminView.jsp";
-		}else if(comm.equals("/memberView.let")) {//°ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ ¸â¹ö¸®½ºÆ®º¸±â
+		}else if(comm.equals("/memberView.let")) {//
 			service = new AMemberViewService();
 			service.execute(request, response);
 			viewPage = "admin/memberView.jsp";
-		}else if(comm.equals("/memberGradeUp.let")) {//µî±Þ¾÷
+		}else if(comm.equals("/memberGradeUp.let")) {//
 			service = new AmGradeUpService();
 			service.execute(request, response);
 			viewPage = "memberView.let";
-		}else if(comm.equals("/memberGradeDown.let")) {//µî±Þ ´Ù¿î
+		}else if(comm.equals("/memberGradeDown.let")) {//
 			service = new AmGradeDownService();
 			service.execute(request, response);
 			viewPage = "memberView.let";
-		}else if(comm.equals("/sBoardWriteView.let")) {//Áõ»ó ¾²±â view
+		}else if(comm.equals("/sBoardWriteView.let")) {//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ view
 			service = new ASymptomBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "adminSBoard/sBoardWrite.jsp";
-		}else if(comm.equals("/sBoardWrite.let")) {//Áõ»ó ¾²±â
+		}else if(comm.equals("/sBoardWrite.let")) {//
 			service = new ASymptomBoardWriteService();
 			service.execute(request, response);
 			viewPage = "adminView.let";
-		}else if(comm.equals("/sBoardList.let")) {//Áõ»ó Ãâ·Â
+		}else if(comm.equals("/sBoardList.let")) {//
 			service = new ASymptomBoardListService();
 			service.execute(request, response);
 			viewPage = "adminSBoard/sBoardList.jsp";
-		}else if(comm.equals("/sBoardContent.let")) {//Áõ»ó »ó¼¼º¸±â
+		}else if(comm.equals("/sBoardContent.let")) {//
 			service = new ASymptomBoardContentService();
 			service.execute(request, response);
 			viewPage = "adminSBoard/sBoardContent.jsp";
-		}else if(comm.equals("/sBoardModifyView.let")) {//Áõ»ó ¼öÁ¤ÇÏ±â view
+		}else if(comm.equals("/sBoardModifyView.let")) {//
 			service = new ASymptomBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "adminSBoard/sBoardModifyView.jsp";
-		}else if(comm.equals("/sBoardModify.let")) {//Áõ»ó ¼öÁ¤ÇÏ±â
+		}else if(comm.equals("/sBoardModify.let")) {//
 			service = new ASymptomBoardModifyService();
 			service.execute(request, response);
 			viewPage = "sBoardList.let";
-		}else if(comm.equals("/sBoardDelete.let")) {//Áõ»ó »èÁ¦ÇÏ±â
+		}else if(comm.equals("/sBoardDelete.let")) {//
 			service = new ASymptomBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "sBoardList.let";
-<<<<<<< HEAD
-		}else if(comm.equals("/noticeWriteView.let")) {//°øÁö»çÇ× ¾²±â view
+		}else if(comm.equals("/noticeWriteView.let")) {//
 			viewPage = "notice/noticeWrite.jsp";
-		}else if(comm.equals("/noticeWrite.let")) {//°øÁö»çÇ× ¾²±â
+		}else if(comm.equals("/noticeWrite.let")) {//
 			service = new ANoticeWriteService();
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
-		}else if(comm.equals("/noticeList.let")) {//°øÁö»çÇ× Ãâ·Â
+		}else if(comm.equals("/noticeList.let")) {//
 			service = new ANoticeListService();
 			service.execute(request, response);
 			viewPage = "notice/noticeList.jsp";
+		}else if(comm.equals("/noticeDelete.let")) {//
+			service = new ANoticeDeleteService();
+			service.execute(request, response);
+			viewPage = "noticeList.let";
+		}else if(comm.equals("/noticeContent.let")) {//ê³µì§€ì‚¬í•­ ì„¸ë¶€ë‚´ìš©
+			service = new ANoticeContentService();
+			service.execute(request, response);
+			viewPage = "notice/noticeContent.jsp";
+		}else if(comm.equals("/noticeModifyView.let")) {//ê³µì§€ì‚¬í•­ ìˆ˜ì • view
+			service = new ANoticeModifyViewService();
+			service.execute(request, response);
+			viewPage = "notice/noticeModify.jsp";
+		}else if(comm.equals("/noticeModify.let")) {//ê³µì§€ì‚¬í•­ ìˆ˜ì • 
+			service = new ANoticeModifyService();
+			service.execute(request, response);
+			viewPage = "noticeList.let";
 		}
 		
 		
 		
-=======
-		}
 		
 		
->>>>>>> 23d53bae7ade4f8311f8f0f8c6970d46fb0a8bba
+		
 
 		/*
 		 * 

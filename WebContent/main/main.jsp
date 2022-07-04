@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/main.css" rel="stylesheet">
+<script type="text/javascript">
+</script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -64,10 +66,14 @@
 				<h3>NOTICE & NEWS</h3>
 				<table>
 					<tbody>
-						<tr><td>멍멍이</td></tr>
-						<tr><td>고양이</td></tr>
+						<c:if test="${notice.size() !=0 }">
+						<c:forEach var="i" items="${notice }">
+							<tr><td><a href="${conPath }/noticeContent.let?nnum=${i.nnum }">${i.nsubject }</a></td></tr>
+						</c:forEach>
+						<!-- <tr><td>고양이</td></tr>
 						<tr><td>쨱쨱</td></tr>
-						<tr><td>토끼는 뭐라고울지?</td></tr>
+						<tr><td>토끼는 뭐라고울지?</td></tr> -->
+						</c:if>
 					</tbody>
 				</table>
 			</div>
