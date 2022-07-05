@@ -1,0 +1,153 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'level';
+    src: url('../fonts/NanumSquareL.ttf') format('truetype');
+}
+/* @media screen and (max-device-width:979px) {
+	#wrap {
+		width: 100%;
+		background-color: lightyellow;
+	}
+	#wrap #nav ul li:last-child {
+		display: none;
+	}
+	#wrap #nav ul li {
+		width: 25%;
+	}
+	#wrap #content p {
+		font-size: 1.5em;
+	}
+}
+
+@media screen and (min-device-width:980px) and (max-device-width:1201px)
+	{
+	#wrap {
+		width: 100%;
+		background-color: aqua;
+		opacity: 0.8;
+	}
+	#wrap #nav ul li {
+		width: 20%;
+	}
+}
+
+@media screen and (min-device-width:1201px) {
+	#wrap {
+		width: 800px;
+	}
+	#wrap #content {
+		background-color: coral;
+	}
+	#wrap #nav ul li {
+		width: 20%;
+	}
+}
+ */
+* {
+	padding: 0;
+	margin: 0;
+}
+
+header {
+	width: 100%;
+	margin: 0 auto;
+	z-index: 200;
+    position: fixed;
+}
+
+header #top ul {
+	overflow: hidden;
+	border: 1px solid #00A19D;
+	background-color: #00A19D;
+	height: 40px;
+}
+
+header #top ul li {
+	list-style: none;
+	float: right;
+	padding: 10px 30px;
+	height: 40px;
+}
+
+header #top ul li a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;
+}
+
+header #gnb {
+	padding: 35px 0;
+	position: relative;
+	height: 15%;
+	background-color: #F9F7F7;
+	/* border-bottom:2px solid #00A19D; */
+}
+
+header #gnb .logo {
+	
+	display:inline-block;
+	position:relative;
+	right:150px;
+	width:10%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+header #gnb .nav {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+header #gnb .nav>ul {
+	display: inline-block;
+	overflow: hidden;
+}
+
+header #gnb .nav>ul>li {
+	list-style: none;
+	float: right;
+	padding: 10px 30px;
+	text-align: center;
+}
+
+header #gnb .nav ul>li>a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.8em;
+	font-family:'level';
+	color: #00A19D;
+}
+
+header .nav .sub_nav>li:hover {
+	background-color: crimson;
+}
+
+header .nav .sub_nav {
+	width: 100%;
+	margin: 0 auto;
+	display: hidden;
+}
+
+header .nav .sub_nav li {
+	float: left;
+	line-height: 30px;
+	height: 30px;
+	list-style: none;
+}
+
+header #gnb .nav .sub_nav>li>a {
+	text-decoration: none;
+	color: black;
+}
+
+header #gnb .nav .sub_nav>li>a {
+	text-decoration: none;
+	font-size: 0.7em;
+	color: black;
+}
+
+header #gnb>ul>li:hover .sub_nav>li {
+	display: block;
+}

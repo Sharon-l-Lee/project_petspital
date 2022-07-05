@@ -52,9 +52,9 @@
 
 		
 			//수정
-		$('#modify').click(function(){
-			var frcontent = ('${frcondto.frcontent}');
-			
+		/* $('#modify').click(function(){
+			/* var frcontent = ('${frcondto.frcontent}'); 
+			var frnum;
 			$.ajax({
 			// url : 요청경로
 			// type : get방식 / post 방식
@@ -67,15 +67,50 @@
 				data : "frnum="+frnum,
 				dataType : 'html',
 				success : function(data){
-					$('#result').html(data);
+					$('#box').html(data);
 				},
 				error : function(code){
 					alert(code.status);
 				}
 			});
-		});
+		});  */
 		
+		
+		var frnum;
+		function addarea(frnum){
+			
+			$.ajax({
+				// url : 요청경로
+				// type : get방식 / post 방식
+				// data : 요청 파라미터와 파라미터값
+				// dataType : html/json/... 요청경로로 실행한 결과의 타입
+				// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+				// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+					url : '${conPath }/fbCommentModifyView.do',
+					type : 'post',
+					data : "frnum="+frnum,
+					dataType : 'html',
+					success : function(data){
+						$('#box').html(data);
+					},
+					error : function(code){
+						alert(code.status);
+					}
+				});
+		
+	
+	}
 	});
+	/* 
+	var frnum;
+	function addarea(frnum){
+		
+		let box = document.getElementById("box");
+        let area = document.createElement('textarea');
+
+        box.appendChild(area);
+		
+	} */
 	
 
 </script>
@@ -98,7 +133,7 @@
 			type="hidden" name="fstep" value="${fstep }"> <input
 			type="hidden" name="findent" value="${findent }"> <input
 			type="hidden" name="mid" value="${member.mid } ">
-	
+
 		<article id="content">
 			<h2 class="boardname">자유게시판</h2>
 			<section id="header">
@@ -142,11 +177,14 @@
 					</div>
 				</div>
 				<div class="fboard_btn">
-
-					<button
-						onclick="location.href='${conPath }/freeBoardModifyView.do?fnum=${param.fnum }&pageNum=${param.pageNum }'">수정</button>
-					<button
-						onclick="location.href='${conPath }/freeBoardDelete.do?fnum=${param.fnum }'">삭제</button>
+					<c:if test="${member.mid eq fbcontent.mid }">
+						<button
+							onclick="location.href='${conPath }/freeBoardModifyView.do?fnum=${param.fnum }&pageNum=${param.pageNum }'">수정</button>
+					</c:if>
+					<c:if test="${member.mid eq fbcontent.mid || not empty admin.aid }">
+						<button
+							onclick="location.href='${conPath }/freeBoardDelete.do?fnum=${param.fnum }'">삭제</button>
+					</c:if>
 					<button
 						onclick="location.href='${conPath }/freeBoardReplyView.do?fnum=${param.fnum }&pageNum=${param.pageNum }'">답글</button>
 					<button
@@ -202,11 +240,13 @@
 											<p><b>관리자</b></p>
 										</c:if> --%>
 									</div>
-									<div class="list_content">${comlist.frcontent }</div>
-									<div class="list_date">${comlist.frrdate } ${comlist.frnum }</div>
+									<div class="list_content" id="box">${comlist.frcontent }</div>
+									<div class="list_date">${comlist.frrdate }
+										${comlist.frnum }</div>
 									<div class="list_button">
 										<c:if test="${comlist.mid eq member.mid }">
-											<button id="modify" class="rlist_btn" onclick="fun(${comlist.frnum })">수정</button>
+											<button id="modify" class="rlist_btn" onclick="addarea(${comlist.frnum });">수정</button>
+											<%-- 	onclick="addarea(${comlist.frnum }); --%>
 											<button class="rlist_btn">삭제</button>
 										</c:if>
 										<c:if test="${comlist.mid != member.mid }">
@@ -220,7 +260,7 @@
 
 							<div id="appendDiv"></div>
 							<button class="append_btn" id="append">더보기</button>
-						
+
 						</c:if>
 					</div>
 					<!-- 등록된 댓글이 없습니다 -->
@@ -232,8 +272,8 @@
 		</article>
 
 
-		</div>
-			<jsp:include page="../main/footer.jsp"/>
-		
+	</div>
+	<jsp:include page="../main/footer.jsp" />
+
 </body>
 </html>

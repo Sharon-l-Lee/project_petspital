@@ -26,7 +26,7 @@
 				<div class="login_content">
 					<div class="input_box">
 						<input type="text" id="mid" name="mid" required="required"
-							placeholder="아이디를 입력하세요" class="input">
+							placeholder="아이디를 입력하세요" class="input" value=${member.mid }>
 					</div>
 					<div class="input_box">
 						<input type="password" id="mpw" name="mpw" required="required"

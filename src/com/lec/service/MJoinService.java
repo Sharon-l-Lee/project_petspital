@@ -32,8 +32,8 @@ public class MJoinService implements Service {
 		  int result = mDao.joinMember(member);
 		  if(result == MemberDao.SUCCESS) {
 			  HttpSession session = request.getSession();
-			  session.setAttribute("mid", mid); // ·Î±×ÀÎ Ã¢¿¡ ³Ñ°ÜÁÖ±â À§ÇØ¼­
-			  request.setAttribute("join_result", "È¸¿ø°¡ÀÔ ¿Ï·á" );
+			  session.setAttribute("mid", mid); // 
+			  request.setAttribute("join_result", "ê°€ìž… ì„±ê³µ" );
 		  }
 	}
 

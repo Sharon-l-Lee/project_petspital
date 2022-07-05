@@ -38,6 +38,8 @@ import com.lec.service.hBoardModifyService;
 import com.lec.service.hBoardModifyViewService;
 import com.lec.service.hBoardWriteService;
 import com.lec.service.hBoardWriteViewService;
+import com.lec.service.hBookmarkInService;
+import com.lec.service.hBookmarkOutService;
 import com.lec.service.hCommentAppendService;
 
 /**
@@ -161,42 +163,50 @@ public class FrontController extends HttpServlet {
 			service = new fBoardCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
-		}else if(comm.equals("/hBoardWriteView.do")) {//���� �۾���
+		}else if(comm.equals("/hBoardWriteView.do")) {//占쏙옙占쏙옙 占쌜억옙占쏙옙
 			service = new hBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardWrite.jsp";
-		}else if(comm.equals("/hBoardWrite.do")) {//���� �۾���
+		}else if(comm.equals("/hBoardWrite.do")) {//占쏙옙占쏙옙 占쌜억옙占쏙옙
 			service = new hBoardWriteService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardList.do")) {//���� ����Ʈ
+		}else if(comm.equals("/hBoardList.do")) {//占쏙옙占쏙옙 占쏙옙占쏙옙트
 			service = new hBoardListService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardList.jsp";
-		}else if(comm.equals("/hBoardContent.do")) {//���� ���λ���
+		}else if(comm.equals("/hBoardContent.do")) {//占쏙옙占쏙옙 占쏙옙占싸삼옙占쏙옙
 			service = new hBoardContentService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardContent.jsp";
-		}else if(comm.equals("/hBoardModifyView.do")) {//���� ���� ��
+		}else if(comm.equals("/hBoardModifyView.do")) {//
 			service = new hBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardModify.jsp";
-		}else if(comm.equals("/hBoardModify.do")) {//���� ����
+		}else if(comm.equals("/hBoardModify.do")) {//
 			service = new hBoardModifyService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardDelete.do")) {//���� ����
+		}else if(comm.equals("/hBoardDelete.do")) {//
 			service = new hBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardCommentWrite.do")) {//병원 댓글
+		}else if(comm.equals("/hBoardCommentWrite.do")) {//
 			service = new hBoardCommetnWriteService();
 			service.execute(request, response);
 			viewPage = "hBoardContent.do";
-		}else if(comm.equals("/hCommentAppend.do")) {//병원 댓글 추가
+		}else if(comm.equals("/hCommentAppend.do")) {//
 			service = new hCommentAppendService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hreplyappend.jsp";
+		}else if(comm.equals("/hBookmarkIn.do")) {//북마크
+			service = new hBookmarkInService();
+			service.execute(request, response);
+			viewPage = "hBoardContent.do";
+		}else if(comm.equals("/hBookmarkOut.do")) {//북마크 해제
+			service = new hBookmarkOutService();
+			service.execute(request, response);
+			viewPage = "hBoardContent.do";
 		}
 		
 		

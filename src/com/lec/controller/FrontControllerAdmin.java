@@ -26,6 +26,8 @@ import com.lec.service.ASymptomBoardWriteService;
 import com.lec.service.ASymptomBoardWriteViewService;
 import com.lec.service.AmGradeDownService;
 import com.lec.service.AmGradeUpService;
+import com.lec.service.MEmailConfirmService;
+import com.lec.service.MIdConfirmService;
 import com.lec.service.Service;
 
 
@@ -134,6 +136,14 @@ public class FrontControllerAdmin extends HttpServlet {
 			service = new ANoticeModifyService();
 			service.execute(request, response);
 			viewPage = "noticeList.let";
+		}else if(comm.equals("/idConfirm.let")) {//아이디 확인
+			service = new MIdConfirmService();
+			service.execute(request, response);
+			viewPage = "member/idConfirm.jsp";
+		}else if(comm.equals("/emailConfirm.let")) {//이메일 확인
+			service = new MEmailConfirmService();
+			service.execute(request, response);
+			viewPage = "member/emailConfirm.jsp";
 		}
 		
 		

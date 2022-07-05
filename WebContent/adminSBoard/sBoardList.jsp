@@ -18,15 +18,6 @@
 	<jsp:include page="../main/header.jsp"></jsp:include>
 
 	<div id="wrap">
-		<div id="background"></div>
-		<div id="search_menu">
-			<ul>
-				<li class="c_change"><a href="#">반려견</a></li>
-				<li class="c_change"><a href="#">반려묘</a></li>
-				<li class="c_change"><a href="#">기타 동물</a></li>
-			</ul>
-
-		</div>
 		<div class="info">
 			<p>자주 보이는 질환</p>
 		</div>
@@ -35,6 +26,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 							<dt class="title">#눈 이상</dt> 
+							<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 1 }">
 							<dd class="name">
@@ -47,6 +39,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 						<dt class="title">#코 이상</dt> 
+						<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 2 }">
 							<dd class="name">
@@ -60,7 +53,8 @@
 				</li>
 				<li class="box_3">
 					<dl class="search_list">
-						<dt class="title">#입 이상</dt> 
+						<dt class="title">#입 이상</dt>
+						<hr> 
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 3 }">
 							<dd class="name">
@@ -75,6 +69,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 						<dt class="title">#귀 이상</dt> 
+						<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 4 }">
 							<dd class="name">
@@ -89,6 +84,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 						<dt class="title">#피부 이상</dt> 
+						<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 5 }">
 							<dd class="name">
@@ -102,7 +98,8 @@
 				</li>
 				<li class="box_3">
 					<dl class="search_list">
-						<dt class="title">#구강 이상</dt> 
+						<dt class="title">#구강 이상</dt>
+						<hr> 
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 6 }">
 							<dd class="name">
@@ -117,6 +114,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 						<dt class="title">#다리 이상</dt> 
+						<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 7 }">
 							<dd class="name">
@@ -130,7 +128,8 @@
 				</li>
 				<li class="box_3">
 					<dl class="search_list">
-						<dt class="title">#숨소리 이상</dt> 
+						<dt class="title">#숨소리 이상</dt>
+						<hr> 
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 8 }">
 							<dd class="name">
@@ -144,7 +143,8 @@
 				</li>
 				<li class="box_3">
 					<dl class="search_list">
-						<dt class="title">#행동 이상</dt> 
+						<dt class="title">#행동 이상</dt>
+						<hr> 
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 9 }">
 							<dd class="name">
@@ -159,6 +159,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 						<dt class="title">#음식섭취 문제</dt> 
+						<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 10 }">
 							<dd class="name">
@@ -173,6 +174,7 @@
 				<li class="box_3">
 					<dl class="search_list">
 						<dt class="title">#소화기 이상</dt> 
+						<hr>
 							<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 11 }">
 							<dd class="name">

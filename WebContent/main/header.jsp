@@ -44,8 +44,10 @@
 			</c:if>
 		</div>
 		<div id="gnb">
-			<div class="logo"></div>
 			<div class="nav">
+			<div class="logo">
+				<img src="${conPath }/img/logo_transp.png" width=100%>
+			</div>
 				<ul>
 					<li><a href='${conPath }/freeBoardList.do'>자유게시판</a>
 					<li><a href=''>Q&A</a>

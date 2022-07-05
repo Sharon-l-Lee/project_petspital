@@ -93,6 +93,55 @@
 		
 		});
 		 */
+		/*  $('#bookmark').click(function(){
+			let i;
+			i= $(this).val();
+			/* alert(i);
+		 }); */
+		 
+		$('#bookmark').click(function () {
+			if ($(this).val() == 0) {
+				$.ajax({
+					// url : 요청경로
+					// type : get방식 / post 방식
+					// data : 요청 파라미터와 파라미터값
+					// dataType : html/json/... 요청경로로 실행한 결과의 타입
+					// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+					// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+					url: '${conPath }/hBookmarkIn.do',
+					type: 'post',
+					data: "rnum=" + rnum,
+					dataType: 'html',
+					success: function (data) {
+						/* $('#result').html(data); */
+					},
+					error: function (code) {
+						alert(code.status);
+					}
+				});
+
+
+			} else if ($(this).val() == 1) {
+				$.ajax({
+					// url : 요청경로
+					// type : get방식 / post 방식
+					// data : 요청 파라미터와 파라미터값
+					// dataType : html/json/... 요청경로로 실행한 결과의 타입
+					// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+					// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+					url: '${conPath }/hBookmarkOut.do',
+					type: 'post',
+					data: "rnum=" + rnum,
+					dataType: 'html',
+					success: function (data) {
+						/* $('#button').html(data); */
+					},
+					error: function (code) {
+						alert(code.status);
+					}
+				});
+		    }
+		});
 	});
 	
 
@@ -112,14 +161,15 @@
 					<p class="subject">
 						<b>${rhcontent.rsubject }
 						<c:if test="${not empty bookmarking.bnum}">
-						<div class="bookmark">★</div>
+						<button id="bookmark" value="1"><img src="${conPath }/boardImg/bookmarkcolor.png" width=60px height=40px></button>
 							
 						</c:if>
 						<c:if test="${empty bookmarking.bnum}">
-						<div class="bookmark">☆</div>
+						<button id="bookmark" value="0"><img src="${conPath }/boardImg/bookmark.png" width=60px height=40px></button>
 							
 						</c:if>
 						</b>
+						<div id="result"></div>
 			<%-- 			<span id="bookmark"><img src="${conPath }/boardImg/bookmark.png" width=60px height=40px></span> --%>
 					</p>
 				</header>

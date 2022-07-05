@@ -1,27 +1,27 @@
 @charset "UTF-8";
 
-body{
+*{
 	margin: 0;
 	padding: 0;
+}
+	
+	
+#joinForm_wrap {
 	overflow:auto;
 	height:100%;
 	background-color:#F2F0F0;
-}
-#joinForm_wrap {
-	
 	border: 1px solid #dadada;
-	height:50%;
 
-	
-	
 }
 
-.join{
+	
+
+#joinForm_wrap .join{
 	margin: 50px auto;
 	text-align: center;
 }
 
-#container {
+#joinForm_wrap #container {
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 	font-size: 12px;
 	margin: 50PX auto;
@@ -29,18 +29,18 @@ body{
 	min-width: 460px;
 }
 
-#content {
+#joinForm_wrap #container #content {
 	width: 460px;
 	margin: 0 auto;
 }
 
-.join_content {
+#joinForm_wrap #container #content .join_content {
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 	font-size: 12px;
 	-webkit-text-size-adjust: none;
 }
 
-.group {
+#joinForm_wrap #container #content .join_content .group {
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 	font-size: 12px;
 /* 	-webkit-text-size-adjust: none; 반응형을 위한 속성 */
@@ -48,15 +48,15 @@ body{
 	width: 100%;
 }
 
-.join_row {
+#joinForm_wrap #container #content .join_content .group .join_row {
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 	font-size: 12px;
 	
 }
 
-.join_title {
+#joinForm_wrap #container #content .join_content .group .join_row .join_title {
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
-	padding: 0;
+	padding-top: 15px;
 	margin: 19px 0 8px;
 	font-size: 14px;
 	font-weight: 700;
@@ -75,6 +75,13 @@ body{
 	vertical-align: top;
 	background: #ffffff;
 	outline: 0;
+}
+
+.join_row #pwChk, #emailConfirmResult {
+	position: relative;
+	top:13px;
+/* 	margin-top:20px; */
+	
 }
 
 #postcode{

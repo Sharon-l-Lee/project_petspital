@@ -25,6 +25,8 @@
 	$(function() {
 		$("#tabs").tabs();
 	});
+
+
 </script>
 </head>
 <body>
