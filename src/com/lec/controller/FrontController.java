@@ -41,6 +41,7 @@ import com.lec.service.hBoardWriteViewService;
 import com.lec.service.hBookmarkInService;
 import com.lec.service.hBookmarkOutService;
 import com.lec.service.hCommentAppendService;
+import com.lec.service.myFboardListService;
 
 /**
  * Servlet implementation class FrontController
@@ -207,6 +208,10 @@ public class FrontController extends HttpServlet {
 			service = new hBookmarkOutService();
 			service.execute(request, response);
 			viewPage = "hBoardContent.do";
+		}else if(comm.equals("/myFboardList.do")) {//내 글보기
+			service = new myFboardListService();
+			service.execute(request, response);
+			viewPage = "member/myFboardView.jsp";
 		}
 		
 		

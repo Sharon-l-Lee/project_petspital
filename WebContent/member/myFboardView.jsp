@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="conPath" value="${pageContext.request.contextPath }" />
@@ -31,30 +30,32 @@
 						<table>
 							<thead>
 								<tr id="tabletitle">
+									<th class="th_title"><span>번호</span></th>
 									<th class="th_title"><span>제목</span></th>
 									<th class="th_date">작성일</th>
 									<th class="num">조회수</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${freeBoardView.size() != 0  }">
-									<c:forEach var="fboard" items="${freeBoardView }">
+								<c:if test="${myfreeBoard.size() != 0  }">
+									<c:forEach var="myfboard" items="${myfreeBoard }">
 										<tr>
+											<td class="boardcontent">${myfboard.fnum }</td>
 											<td class="boardcontent">
 												<div class="boardtitle">
 													<div>
-														<c:if test="${fboard.findent eq 0 }">
-															<a href="${conPath }/freeBoardContent.do?fnum=${fboard.fnum }&pageNum=${pageNum }">${fboard.fsubject } </a>
+														<c:if test="${myfboard.findent eq 0 }">
+															<a href="${myfboard }/freeBoardContent.do?fnum=${fboard.fnum }&pageNum=${pageNum }">${myfboard.fsubject } </a>
 														</c:if>
 														<c:if test="${fboard.findent > 0 }">
-															<img src="${conPath }/img/ar2.png" width="${(fboard.findent)*20 }"><a href="${conPath }/freeBoardContent.do?fnum=${fboard.fnum }&pageNum=${pageNum }">${fboard.fsubject } </a>
+															<img src="${conPath }/img/ar2.png" width="${(myfboard.findent)*20 }"><a href="${conPath }/freeBoardContent.do?fnum=${fboard.fnum }&pageNum=${pageNum }">${fboard.fsubject } </a>
 														</c:if>
 													</div>
 												</div>
 											</td>
 											
-											<td class="boardcontent">${fboard.frdate }</td>
-											<td class="boardcontent">${fboard.fhit }</td>
+											<td class="boardcontent">${myfboard.frdate }</td>
+											<td class="boardcontent">${myfboard.fhit }</td>
 
 										</tr>
 									</c:forEach>

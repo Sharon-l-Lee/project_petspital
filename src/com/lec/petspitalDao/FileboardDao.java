@@ -489,4 +489,105 @@ public class FileboardDao {
 		
 
 	}
+	//내 글 보기
+	//SELECT * 
+//    FROM(SELECT ROWNUM RN, A.*
+//            FROM(SELECT * FROM FILEBOARD WHERE MID='aaa' order by frdate desc)A)
+//       WHERE RN BETWEEN  1 AND 10
+	
+	public ArrayList<FileboardDto> listMyFboard(String mid, int startRow, int endRow) {
+		ArrayList<FileboardDto> dtos = new ArrayList<FileboardDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * " + 
+				"    FROM(SELECT ROWNUM RN, A.*" + 
+				"         FROM(SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.MID = M.MID AND M.MID= ? order by frdate desc)A)" + 
+				"    WHERE RN BETWEEN  ? AND ?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				 int fnum = rs.getInt("fnum");
+				 System.out.println(1);
+				 String mname = rs.getString("mname");
+				 String fsubject = rs.getString("fsubject");
+				 String fcontent = rs.getString("fcontent");
+				 String ffilename = rs.getString("ffilename");
+				 System.out.println(2);
+				 String ffilename2 = rs.getString("ffilename2");
+				 String ffilename3 = rs.getString("ffilename3");
+				 Date frdate = rs.getDate("frdate");
+				 System.out.println(3);
+				 int fhit = rs.getInt("fhit");
+				 int fgroup = rs.getInt("fgroup");
+				 int fstep= rs.getInt("fstep");
+				 int findent= rs.getInt("findent");
+				 String fip = rs.getString("fip");
+				 System.out.println(4);
+				
+				dtos.add(new FileboardDto(fnum, mid,mname, fsubject, fcontent, ffilename, ffilename2, ffilename3, frdate, fhit, fgroup, fstep, findent, fip));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return dtos;
+
+	}
+	//내 글 갯수
+	//SELECT COUNT(*) FROM FILEBOARD WHERE MID='aaa';
+	
+	public int countMyBoard(String mid) {
+		int cnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql =  "SELECT COUNT(*) FROM FILEBOARD WHERE MID= ? ";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return cnt;
+	}
+	
+
 }

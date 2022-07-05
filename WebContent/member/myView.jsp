@@ -21,7 +21,7 @@
 							<li><a href="${conPath }/myModifyView.do" class="menu"><span>내 정보</span></a></li>
 							<li><a href="#" class="menu"><span>게시글 관리</span></a>
 								<ul class="subm">
-									<li><a href="#" class="submenu">자유게시판</a></li>
+									<li><a href="${conPath }/myFboardList.do" class="submenu">자유게시판</a></li>
 									<li><a href="#" class="submenu">QNA</a></li>
 								</ul></li>
 							<li><a href="#" class="menu"><span>북마크 보기</span></a></li>

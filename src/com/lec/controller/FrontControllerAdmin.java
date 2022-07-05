@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.service.AFboardListService;
 import com.lec.service.ALoginService;
 import com.lec.service.AMemberViewService;
 import com.lec.service.ANoticeContentService;
@@ -82,7 +83,7 @@ public class FrontControllerAdmin extends HttpServlet {
 			service = new AmGradeDownService();
 			service.execute(request, response);
 			viewPage = "memberView.let";
-		}else if(comm.equals("/sBoardWriteView.let")) {//���� ���� view
+		}else if(comm.equals("/sBoardWriteView.let")) {//占쏙옙占쏙옙 占쏙옙占쏙옙 view
 			service = new ASymptomBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "adminSBoard/sBoardWrite.jsp";
@@ -124,27 +125,32 @@ public class FrontControllerAdmin extends HttpServlet {
 			service = new ANoticeDeleteService();
 			service.execute(request, response);
 			viewPage = "noticeList.let";
-		}else if(comm.equals("/noticeContent.let")) {//공지사항 세부내용
+		}else if(comm.equals("/noticeContent.let")) {//怨듭��궗�빆 �꽭遺��궡�슜
 			service = new ANoticeContentService();
 			service.execute(request, response);
 			viewPage = "notice/noticeContent.jsp";
-		}else if(comm.equals("/noticeModifyView.let")) {//공지사항 수정 view
+		}else if(comm.equals("/noticeModifyView.let")) {//怨듭��궗�빆 �닔�젙 view
 			service = new ANoticeModifyViewService();
 			service.execute(request, response);
 			viewPage = "notice/noticeModify.jsp";
-		}else if(comm.equals("/noticeModify.let")) {//공지사항 수정 
+		}else if(comm.equals("/noticeModify.let")) {//怨듭��궗�빆 �닔�젙 
 			service = new ANoticeModifyService();
 			service.execute(request, response);
 			viewPage = "noticeList.let";
-		}else if(comm.equals("/idConfirm.let")) {//아이디 확인
+		}else if(comm.equals("/idConfirm.let")) {//�븘�씠�뵒 �솗�씤
 			service = new MIdConfirmService();
 			service.execute(request, response);
 			viewPage = "member/idConfirm.jsp";
-		}else if(comm.equals("/emailConfirm.let")) {//이메일 확인
+		}else if(comm.equals("/emailConfirm.let")) {//�씠硫붿씪 �솗�씤
 			service = new MEmailConfirmService();
 			service.execute(request, response);
 			viewPage = "member/emailConfirm.jsp";
+		}else if(comm.equals("/adminFboardList.let")) {//관리자탭에서 자유게시판 글 관리
+			service = new AFboardListService();
+			service.execute(request, response);
+			viewPage = "admin/adminFboardList.jsp";
 		}
+		
 		
 		
 		

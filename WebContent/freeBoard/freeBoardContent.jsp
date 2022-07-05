@@ -75,11 +75,14 @@
 			});
 		});  */
 		
-		
-		var frnum;
-		function addarea(frnum){
+		var addarea =function(value,object){
+			object.innerHTML=value;
+			};
+
+		/* var frnum;
+		function addarea(frnum){ */
 			
-			$.ajax({
+			/* $.ajax({
 				// url : 요청경로
 				// type : get방식 / post 방식
 				// data : 요청 파라미터와 파라미터값
@@ -96,10 +99,10 @@
 					error : function(code){
 						alert(code.status);
 					}
-				});
-		
+				}); */
+		/* 		console.log(frnum);		
 	
-	}
+	} */
 	});
 	/* 
 	var frnum;
@@ -245,7 +248,7 @@
 										${comlist.frnum }</div>
 									<div class="list_button">
 										<c:if test="${comlist.mid eq member.mid }">
-											<button id="modify" class="rlist_btn" onclick="addarea(${comlist.frnum });">수정</button>
+											<button id="modify" class="rlist_btn" onclick="addarea('${comlist.frnum }',this)" >수정</button>
 											<%-- 	onclick="addarea(${comlist.frnum }); --%>
 											<button class="rlist_btn">삭제</button>
 										</c:if>
