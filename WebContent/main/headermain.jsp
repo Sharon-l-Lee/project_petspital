@@ -51,11 +51,7 @@
 				<ul>
 					<li><a href='${conPath }/freeBoardList.do'>자유게시판</a>
 					<li><a href=''>Q&A</a>
-						<ul class="sub_nav">
-							<li><a href=''>메뉴 4-1</a></li>
-							<li><a href=''>메뉴 4-2</a></li>
-							<li><a href=''>메뉴 4-3</a></li>
-						</ul></li>
+						</li>
 					<li><a href=''>동물병원 검색</a>
 						<ul class="sub_nav">
 							<li><a href='${conPath }/hsearchBoard/mapboard.jsp'>지도로

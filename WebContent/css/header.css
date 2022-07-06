@@ -129,34 +129,22 @@ header #gnb .nav ul>li>a {
 	color: #00A19D;
 }
 
-header .nav .sub_nav>li:hover {
-	background-color: crimson;
+header #gnb .sub_nav {
+	margin-top: 10px;
+	width: 150px;
+	display: none;
+	position: absolute;
+	font-size: 0.5em;
 }
 
-header .nav .sub_nav {
-	width: 100%;
-	margin: 0 auto;
-	display: hidden;
-}
-
-header .nav .sub_nav li {
-	float: left;
-	line-height: 30px;
-	height: 30px;
+header #gnb .sub_nav li {
 	list-style: none;
 }
 
-header #gnb .nav .sub_nav>li>a {
-	text-decoration: none;
-	color: black;
-}
-
-header #gnb .nav .sub_nav>li>a {
-	text-decoration: none;
-	font-size: 0.7em;
-	color: black;
-}
-
-header #gnb>ul>li:hover .sub_nav>li {
+header #gnb .nav>ul>li:hover>ul {
 	display: block;
+}
+
+header #gnb .nav>ul>li>ul>li:hover {
+	
 }

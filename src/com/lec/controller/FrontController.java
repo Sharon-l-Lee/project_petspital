@@ -112,7 +112,7 @@ public class FrontController extends HttpServlet {
 		} else if (comm.equals("/myView.do")) {
 			// service = new MyViewService();
 			// service.execute(request, response);
-			viewPage = "member/myView.jsp";
+			viewPage = "member/myView2.jsp";
 		} else if (comm.equals("/myModifyView.do")) {
 			viewPage = "member/myModifyView.jsp";
 		} else if (comm.equals("/myModify.do")) {

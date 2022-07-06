@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/mypage.css" rel="stylesheet">
+<link href="${conPath }/css/mypage2.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -18,14 +18,14 @@
 				<div class="mypage">
 					<div class="mypage_nav">
 						<ul class="subnav">
-							<li><a href="${conPath }/myModifyView.do" class="menu"><span>내 정보</span></a></li>
-							<li><a href="#" class="menu"><span>게시글 관리</span></a>
+							<li><a href="${conPath }/myModifyView.do" class="menu">내 정보</a></li>
+							<li><a href="#" class="menu">게시글 관리</a>
 								<ul class="subm">
 									<li><a href="${conPath }/myFboardList.do" class="submenu">자유게시판</a></li>
 									<li><a href="#" class="submenu">QNA</a></li>
 								</ul></li>
-							<li><a href="${conPath }/myBmarkList.do" class="menu"><span>북마크 보기</span></a></li>
-							<li><a href="${conPath }/mWithdrawal.do" class="menu"><span>회원 탈퇴</span></a></li>
+							<li><a href="${conPath }/myBmarkList.do" class="menu">북마크 보기</a></li>
+							<li><a href="${conPath }/mWithdrawal.do" class="menu">회원 탈퇴</a></li>
 						</ul>
 					</div>
 					<!-- 내 정보 보기 -->
