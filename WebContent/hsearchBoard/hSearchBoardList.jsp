@@ -10,16 +10,20 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/freeboard.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-	$(document).ready(function () {
-		$('#rcategoryname').change(function () {
+<script>
+	$(document).ready(function() {
+		$('#rcategoryname').change(function() {
 			var cname = $(this).val();
-			
-				location.href = "hBoardList.do?rcategoryname=" + cname;
-			
+
+			location.href = "hBoardList.do?rcategoryname=" + cname;
+
 		});
 	});
-
+	
+	function access() {
+		alert('로그인 후 이용해주세요');
+		location.href = "${conPath}/loginView.do";
+	}
 </script>
 </head>
 <body>
@@ -42,13 +46,13 @@
 						onclick="location.href='${conPath }/hBoardWriteView.do?pageNum=${pageNum }'">글쓰기</button>
 					<div class="freeboard">
 						<div>
-							 <select id="rcategoryname">
+							<select id="rcategoryname">
 								<option value="default">동물선택</option>
 								<c:forEach var="i" items="${rlist }">
 									<option value="${i.rcategoryname }">${i.rcategoryname }</option>
 								</c:forEach>
 
-							</select> 
+							</select>
 						</div>
 						<table>
 							<thead>
@@ -61,10 +65,10 @@
 								</tr>
 							</thead>
 							<tbody>
-							<%-- 	<c:if test="${HboardView.size() != 0  && (rlist.categoryid != 0)}">
+								<%-- 	<c:if test="${HboardView.size() != 0  && (rlist.categoryid != 0)}">
 								
 								</c:if> --%>
-							
+
 								<c:if test="${HboardView.size() != 0  }">
 									<c:forEach var="hboard" items="${HboardView }">
 										<tr>
@@ -76,9 +80,17 @@
 											<td class="boardcontent">
 												<div class="boardtitle">
 													<div>
-														<a
-															href="${conPath }/hBoardContent.do?rnum=${hboard.rnum }&pageNum=${pageNum }">${hboard.rsubject }
-														</a>
+
+														<c:if test="${not empty member || not empty admin}">
+															<a
+																href="${conPath }/hBoardContent.do?rnum=${hboard.rnum }&pageNum=${pageNum }">${hboard.rsubject }
+															</a>
+														</c:if>
+														<c:if test="${empty member && empty admin}">
+															<a href="#" onclick="access();">${hboard.rsubject }</a>
+
+														</c:if>
+
 													</div>
 												</div>
 											</td>

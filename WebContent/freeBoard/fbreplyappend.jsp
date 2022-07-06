@@ -23,7 +23,7 @@
 					</p>
 					
 				</div>
-				<div class="list_content">${comlist.frcontent }</div>
+				<div class="list_content" id="box">${comlist.frcontent }</div>
 				<div class="list_date">${comlist.frrdate }</div>
 				<div class="list_button">
 					<c:if test="${comlist.mid eq member.mid }">

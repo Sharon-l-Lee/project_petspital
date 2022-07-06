@@ -14,7 +14,7 @@
 <body>
 	<div id="modify_comment">
 		<form action="${conPath }/fbCommentModify.do">
-			<textarea rows="3" cols="10" id="frcontent" class="frcontent"></textarea>
+			<textarea rows="3" cols="10" id="frcontent" class="frcontent">${ccontent.frcontent }</textarea>
 			<input type="submit" value="수정완료">
 			<input type="reset" value="취소">
 		<input type="hidden" name="frnum" class="frnum" value="${frnum }">	

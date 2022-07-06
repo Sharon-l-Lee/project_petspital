@@ -9,12 +9,56 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/freeboard.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
 	function access() {
 		alert('로그인 후 이용해주세요');
 		location.href = "${conPath}/loginView.do";
 	}
+/*
+		function fbsearch() {
+			var fsubject = $('.searchtext').val();
+			$.ajax({
+				// url : 요청경로
+				// type : get방식 / post 방식
+				// data : 요청 파라미터와 파라미터값
+				// dataType : html/json/... 요청경로로 실행한 결과의 타입
+				// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+				// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+					url : '${conPath }/fboardSearchList.do',
+					type : 'post',
+					data : "fsubejct="+fsubejct,
+					dataType : 'html',
+					success : function(data){
+						$('#box').html(data);
+					},
+					error : function(code){
+						alert(code.status);
+					}
+				}); 
+		}*/
+		/*	$(document).ready(function() {
+		 $.ajax({
+			// url : 요청경로
+			// type : get방식 / post 방식
+			// data : 요청 파라미터와 파라미터값
+			// dataType : html/json/... 요청경로로 실행한 결과의 타입
+			// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+			// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+				url : '${conPath }/fbCommentModifyView.do',
+				type : 'post',
+				data : "frnum="+frnum,
+				dataType : 'html',
+				success : function(data){
+					$('#box').html(data);
+				},
+				error : function(code){
+					alert(code.status);
+				}
+			}); 
+	});*/
+
 </script>
 </head>
 <body>
@@ -49,7 +93,7 @@
 						<tbody>
 							<c:if test="${freeBoardView.size() != 0  }">
 								<c:forEach var="fboard" items="${freeBoardView }">
-									
+
 									<tr>
 										<td class="boardcontent">
 											<div class="boardnum">
@@ -95,7 +139,7 @@
 										<td class="boardcontent">${fboard.fhit }</td>
 
 									</tr>
-									
+
 								</c:forEach>
 							</c:if>
 						</tbody>
@@ -149,6 +193,13 @@
 										<div class="next">next</div>
 								</c:if>
 							</div> --%>
+				</div>
+
+				<div id="search_area">
+					<form action="">
+						<input type="text" class="textbox" name="searchtext" value="${param.searchtext }">
+						<input type="submit" value="검색" name="sbtn" style=width:25%;height:36px;border:0;background-color:#00A19D;color:#F9F7F7;>
+					</form>
 				</div>
 			</div>
 		</div>

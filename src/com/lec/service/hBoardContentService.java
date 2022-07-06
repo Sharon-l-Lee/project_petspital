@@ -9,6 +9,7 @@ import com.lec.petspitalDao.FileboardDao;
 import com.lec.petspitalDao.FreplyDao;
 import com.lec.petspitalDao.HreplyDao;
 import com.lec.petspitalDao.RhospitalDao;
+import com.lec.petspitalDto.AdminDto;
 import com.lec.petspitalDto.FileboardDto;
 import com.lec.petspitalDto.MemberDto;
 import com.lec.petspitalDto.RhospitalDto;
@@ -43,9 +44,19 @@ public class hBoardContentService implements Service {
 		
 		HttpSession session =request.getSession();
 		MemberDto member = (MemberDto) session.getAttribute("member");
-		String mid = member.getMid();
+		AdminDto admin = (AdminDto)session.getAttribute("admin");
+		String mid=null;
+		String aid = null;
+		if(member !=null) {
+			
+			 mid = member.getMid();
+		}
+		if(admin !=null) {
+			 aid = admin.getAid();
+		}
 		BookmarkDao bDao = BookmarkDao.getInstance();
-		request.setAttribute("bookmarking", bDao.getBookmark(rnum, mid));
+		request.setAttribute("bookmarking", bDao.doBookmark(rnum, mid));
+		
 	
 		
 		/* int recurrentPage = 1;

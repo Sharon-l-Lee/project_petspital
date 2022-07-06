@@ -63,6 +63,13 @@ public class RhospitalDto {
 	
 	
 	
+	public RhospitalDto(int rnum, String mid, String rsubject, Date rrdate) {
+		this.rnum = rnum;
+		this.mid = mid;
+		this.rsubject = rsubject;
+		this.rrdate = rrdate;
+	}
+
 	@Override
 	public String toString() {
 		return "RhospitalDto [rnum=" + rnum + ", rcategoryid=" + rcategoryid + ", rcategoryname=" + rcategoryname

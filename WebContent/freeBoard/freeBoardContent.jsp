@@ -13,45 +13,61 @@
 <script>
 	var pageNum;
 	var fnum = Number('${param.fnum}');
-	
+
 	var pageCnt = Number('${pageCnt}');
 	var totCnt = Number('${totCnt}');
-	
-	
-	$(document).ready(function(){
+
+	$(document).ready(function() {
 		var pageCnt = Number('${pageCnt}');
 		var totCnt = Number('${totCnt}');
-		if(totCnt<=5){
-			$("#append").css('display','none');
+		if (totCnt <= 5) {
+			$("#append").css('display', 'none');
 		}
 		pageNum = Number($('.repageNum').last().val());
-		if(pageCnt == pageNum){
-			$('#append').css('display','none');
+		if (pageCnt == pageNum) {
+			$('#append').css('display', 'none');
 		}
-		$('#append').click(function(){
+
+		$('#append').click(function() {
 			pageNum = Number($('.repageNum').last().val());
-			if(isNaN(pageNum)){
-				pageNum=1;
+			if (isNaN(pageNum)) {
+				pageNum = 1;
 			}
-			
+
 			$.ajax({
 				url : '${conPath}/commentAppend.do',
 				type : 'get',
 				dataType : 'html',
-				data : "repageNum="+(pageNum+1)+ "&fnum=" + fnum,
-				success : function(data){
+				data : "repageNum=" + (pageNum + 1) + "&fnum=" + fnum,
+				success : function(data) {
 					$('#appendDiv').append(data);
 					pageNum = Number($('.repageNum').last().val());
-					if(pageCnt <= pageNum){
-						alert('마지막 페이지까지 뿌려서 더보기 버튼을 없애');
-						$('#append').css('display','none');
+					if (pageCnt <= pageNum) {
+						/* 	alert('마지막 페이지까지 뿌려서 더보기 버튼을 없애'); */
+						$('#append').css('display', 'none');
 					}
 				}
 			});//ajax
 		});// 더보기 버튼
 
 		
-			//수정
+		
+		
+		/* $('.addarea(${comlist.frnum })').click(function(){
+			if($(this).hasClass('modifyon')){
+				$('list_content').hide();
+				$('addarea(${comlist.frnum })').show();
+				
+			}
+			if($(this).hasClass('modifyfin')){
+				$('list_content').show();
+				$('addarea(${comlist.frnum })').hide();
+				
+			}
+		}); */
+		
+		
+		//수정
 		/* $('#modify').click(function(){
 			/* var frcontent = ('${frcondto.frcontent}'); 
 			var frnum;
@@ -74,48 +90,66 @@
 				}
 			});
 		});  */
-		
-		var addarea =function(value,object){
-			object.innerHTML=value;
-			};
 
 		/* var frnum;
 		function addarea(frnum){ */
-			
-			/* $.ajax({
-				// url : 요청경로
-				// type : get방식 / post 방식
-				// data : 요청 파라미터와 파라미터값
-				// dataType : html/json/... 요청경로로 실행한 결과의 타입
-				// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
-				// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
-					url : '${conPath }/fbCommentModifyView.do',
-					type : 'post',
-					data : "frnum="+frnum,
-					dataType : 'html',
-					success : function(data){
-						$('#box').html(data);
-					},
-					error : function(code){
-						alert(code.status);
-					}
-				}); */
+
+		/* $.ajax({
+			// url : 요청경로
+			// type : get방식 / post 방식
+			// data : 요청 파라미터와 파라미터값
+			// dataType : html/json/... 요청경로로 실행한 결과의 타입
+			// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+			// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+				url : '${conPath }/fbCommentModifyView.do',
+				type : 'post',
+				data : "frnum="+frnum,
+				dataType : 'html',
+				success : function(data){
+					$('#box').html(data);
+				},
+				error : function(code){
+					alert(code.status);
+				}
+			}); */
 		/* 		console.log(frnum);		
-	
-	} */
+		
+		} */
 	});
 	/* 
 	var frnum;
 	function addarea(frnum){
 		
 		let box = document.getElementById("box");
-        let area = document.createElement('textarea');
+	    let area = document.createElement('textarea');
 
-        box.appendChild(area);
+	    box.appendChild(area);
 		
 	} */
-	
 
+	/* function addarea(frnum){
+		console.log(frnum);
+
+		$.ajax({
+			// url : 요청경로
+			// type : get방식 / post 방식
+			// data : 요청 파라미터와 파라미터값
+			// dataType : html/json/... 요청경로로 실행한 결과의 타입
+			// success : 요청경로로 실행한 응답이 성공하였을 때 수행할 콜백함수
+			// error :  요청경로로 실행한 응답이 실패되었을 때 수행할 콜백함수
+				url : '${conPath }/fbCommentModifyView.do',
+				type : 'post',
+				data : "frnum="+frnum,
+				dataType : 'html',
+				success : function(data){
+					$('#box').html(data);
+				},
+				error : function(code){
+					alert(code.status);
+				}
+		
+	});
+	} */
 </script>
 </head>
 <body>
@@ -244,13 +278,20 @@
 										</c:if> --%>
 									</div>
 									<div class="list_content" id="box">${comlist.frcontent }</div>
+									
+										<div class="modify_comment" style="display: none;">
+											<textarea rows="3" cols="5" id="modify_area">${comlist.frcontent }</textarea>
+											<button class="modifyfin">수정완료</button>
+											<button>취소</button>
+										</div>
+									
 									<div class="list_date">${comlist.frrdate }
 										${comlist.frnum }</div>
 									<div class="list_button">
 										<c:if test="${comlist.mid eq member.mid }">
-											<button id="modify" class="rlist_btn" onclick="addarea('${comlist.frnum }',this)" >수정</button>
-											<%-- 	onclick="addarea(${comlist.frnum }); --%>
-											<button class="rlist_btn">삭제</button>
+											<%--  <a href="#" id="modify" class="rlist_btn modifyon addarea(${comlist.frnum })">수정</a>
+												onclick="addarea(${comlist.frnum });
+											<a href="#" class="rlist_btn">삭제</a> --%>
 										</c:if>
 										<c:if test="${comlist.mid != member.mid }">
 											<div class="rlist_btn"></div>

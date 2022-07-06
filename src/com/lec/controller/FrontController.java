@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.service.BookmarkMyService;
 import com.lec.service.CommentAppendService;
+import com.lec.service.FboardSearchListService;
 import com.lec.service.FreeBoardContentService;
 import com.lec.service.FreeBoardDeleteService;
 import com.lec.service.FreeBoardListService;
@@ -23,8 +25,10 @@ import com.lec.service.MJoinService;
 import com.lec.service.MLoginService;
 import com.lec.service.MLogoutService;
 import com.lec.service.MainService;
+import com.lec.service.MwithdrawalService;
 import com.lec.service.MyModifyService;
 import com.lec.service.Service;
+import com.lec.service.fBaordCommentModifyViewService;
 import com.lec.service.fBoardCommentDeleteService;
 import com.lec.service.fBoardCommentListService;
 import com.lec.service.fBoardCommentModifyService;
@@ -49,185 +53,204 @@ import com.lec.service.myFboardListService;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FrontController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FrontController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		actionDo(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		actionDo(request, response);
 	}
 
-	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void actionDo(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String comm = uri.substring(conPath.length());
 		String viewPage = null;
-		Service service =null;
-		
-		if(comm.equals("/main.do")) {
+		Service service = null;
+
+		if (comm.equals("/main.do")) {
 			service = new MainService();
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
-		}else if(comm.equals("/loginView.do")) {
+		} else if (comm.equals("/loginView.do")) {
 			viewPage = "member/login2.jsp";
-		}else if(comm.equals("/login.do")) {
+		} else if (comm.equals("/login.do")) {
 			service = new MLoginService();
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
-		}else if(comm.equals("/joinView.do")) {
+		} else if (comm.equals("/joinView.do")) {
 			viewPage = "member/join.jsp";
-		}else if(comm.equals("/join.do")) {
+		} else if (comm.equals("/join.do")) {
 			service = new MJoinService();
 			service.execute(request, response);
 			viewPage = "member/login.jsp";
-		}else if(comm.equals("/logout.do")) {
+		} else if (comm.equals("/logout.do")) {
 			service = new MLogoutService();
 			service.execute(request, response);
 			viewPage = "loginView.do";
-		}else if(comm.equals("/myView.do")) {
-			//service = new MyViewService();
-			//service.execute(request, response);
+		} else if (comm.equals("/myView.do")) {
+			// service = new MyViewService();
+			// service.execute(request, response);
 			viewPage = "member/myView.jsp";
-		}else if(comm.equals("/myModifyView.do")) {
+		} else if (comm.equals("/myModifyView.do")) {
 			viewPage = "member/myModifyView.jsp";
-		}else if(comm.equals("/myModify.do")) {
+		} else if (comm.equals("/myModify.do")) {
 			service = new MyModifyService();
 			service.execute(request, response);
 			viewPage = "member/myView.jsp";
-		}else if(comm.equals("/freeBoardWriteView.do")) {
+		} else if (comm.equals("/freeBoardWriteView.do")) {
 			viewPage = "freeBoard/freeBoardWrite.jsp";
-		}else if(comm.equals("/freeBoardWrite.do")) {
+		} else if (comm.equals("/freeBoardWrite.do")) {
 			service = new FreeBoardWriteService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		}else if(comm.equals("/freeBoardList.do")) { 
+		} else if (comm.equals("/freeBoardList.do")) {
 			service = new FreeBoardListService();
 			service.execute(request, response);
 			viewPage = "freeBoard/freeBoardList.jsp";
-		}else if(comm.equals("/freeBoardModifyView.do")) {
+		} else if (comm.equals("/freeBoardModifyView.do")) {
 			service = new FreeBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "freeBoard/freeBoardModify.jsp";
-		}else if(comm.equals("/freeBoardModify.do")) {
+		} else if (comm.equals("/freeBoardModify.do")) {
 			service = new FreeBoardModifyService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		}else if(comm.equals("/freeBoardContent.do")) {
+		} else if (comm.equals("/freeBoardContent.do")) {
 			service = new FreeBoardContentService();
 			service.execute(request, response);
 			viewPage = "freeBoard/freeBoardContent.jsp";
-		}else if(comm.equals("/freeBoardDelete.do")) {
+		} else if (comm.equals("/freeBoardDelete.do")) {
 			service = new FreeBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		}else if(comm.equals("/freeBoardReplyView.do")) {
+		} else if (comm.equals("/freeBoardReplyView.do")) {
 			service = new FreeBoardReplyViewService();
 			service.execute(request, response);
 			viewPage = "freeBoard/freeBoardReply.jsp";
-		}else if(comm.equals("/freeBoardReply.do")) {
+		} else if (comm.equals("/freeBoardReply.do")) {
 			service = new FreeBoardReplyService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		}else if(comm.equals("/fbCommentWrite.do")) {
+		} else if (comm.equals("/fbCommentWrite.do")) {
 			service = new fBoardCommentWriteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
-		}else if(comm.equals("/commentAppend.do")) {
+		} else if (comm.equals("/commentAppend.do")) {
 			service = new CommentAppendService();
 			service.execute(request, response);
 			viewPage = "freeBoard/fbreplyappend.jsp";
-		}else if(comm.equals("/fbCommentModifyView.do")) {//
+		} else if (comm.equals("/fbCommentModifyView.do")) {//
 			service = new fBoardCommentModifyViewService();
 			service.execute(request, response);
 			viewPage = "freeBoard/replyInput.jsp";
-		}else if(comm.equals("/fbCommentModify.do")) {//
+		} else if (comm.equals("/fbCommentModify.do")) {//
 			service = new fBoardCommentModifyService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
-		}else if(comm.equals("/fbCommentDelete.do")) {//
+		} else if (comm.equals("/fbCommentDelete.do")) {//
 			service = new fBoardCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
-		}else if(comm.equals("/hBoardWriteView.do")) {//占쏙옙占쏙옙 占쌜억옙占쏙옙
+		} else if (comm.equals("/hBoardWriteView.do")) {// 
 			service = new hBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardWrite.jsp";
-		}else if(comm.equals("/hBoardWrite.do")) {//占쏙옙占쏙옙 占쌜억옙占쏙옙
+		} else if (comm.equals("/hBoardWrite.do")) {// 
 			service = new hBoardWriteService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardList.do")) {//占쏙옙占쏙옙 占쏙옙占쏙옙트
+		} else if (comm.equals("/hBoardList.do")) {// 
 			service = new hBoardListService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardList.jsp";
-		}else if(comm.equals("/hBoardContent.do")) {//占쏙옙占쏙옙 占쏙옙占싸삼옙占쏙옙
+		} else if (comm.equals("/hBoardContent.do")) {// 
 			service = new hBoardContentService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardContent.jsp";
-		}else if(comm.equals("/hBoardModifyView.do")) {//
+		} else if (comm.equals("/hBoardModifyView.do")) {//
 			service = new hBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardModify.jsp";
-		}else if(comm.equals("/hBoardModify.do")) {//
+		} else if (comm.equals("/hBoardModify.do")) {//
 			service = new hBoardModifyService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardDelete.do")) {//
+		} else if (comm.equals("/hBoardDelete.do")) {//
 			service = new hBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "hBoardList.do";
-		}else if(comm.equals("/hBoardCommentWrite.do")) {//
+		} else if (comm.equals("/hBoardCommentWrite.do")) {//
 			service = new hBoardCommetnWriteService();
 			service.execute(request, response);
 			viewPage = "hBoardContent.do";
-		}else if(comm.equals("/hCommentAppend.do")) {//
+		} else if (comm.equals("/hCommentAppend.do")) {//
 			service = new hCommentAppendService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hreplyappend.jsp";
-		}else if(comm.equals("/hBookmarkIn.do")) {//북마크
+		} else if (comm.equals("/hBookmarkIn.do")) {// 북마크
 			service = new hBookmarkInService();
 			service.execute(request, response);
 			viewPage = "hBoardContent.do";
-		}else if(comm.equals("/hBookmarkOut.do")) {//북마크 해제
+		} else if (comm.equals("/hBookmarkOut.do")) {// 북마크 해제
 			service = new hBookmarkOutService();
 			service.execute(request, response);
 			viewPage = "hBoardContent.do";
-		}else if(comm.equals("/myFboardList.do")) {//내 글보기
+		} else if (comm.equals("/myFboardList.do")) {// 내 글보기
 			service = new myFboardListService();
 			service.execute(request, response);
 			viewPage = "member/myFboardView.jsp";
+		}else if (comm.equals("/fboardSearchList.do")) {// 자유게시판 검색
+			service = new FboardSearchListService();
+			service.execute(request, response);
+			viewPage = "freeBoardList.do";
+		}else if (comm.equals("/myBmarkList.do")) {// 북마크 보기
+			service = new BookmarkMyService();
+			service.execute(request, response);
+			viewPage = "member/bookmarkView.jsp";
+		}else if (comm.equals("/myBmarkList.do")) {// 북마크 보기
+			service = new BookmarkMyService();
+			service.execute(request, response);
+			viewPage = "member/bookmarkView.jsp";
+		}else if (comm.equals("/mWithdrawal.do")) {// 회원 탈퇴
+			service = new MwithdrawalService();
+			service.execute(request, response);
+			viewPage = "main.do";
 		}
-		
-		
-		
+
+
 		/*
-			 * else if(comm.equals("/fbCommentModifyView.do")) { service = new
-			 * fBaordCommentModifyViewService(); ; service.execute(request, response);
-			 * viewPage = "freeBoardContent.do"; }
-			 */
-		
-		
-		
-		
+		  else if (comm.equals("/fbCommentModifyView.do")) {
+			service = new fBaordCommentModifyViewService();
+			service.execute(request, response);
+			viewPage = "freeBoard/replyInput.jsp";
+		} }
+		 */
+
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);
-		
+
 	}
 
 }

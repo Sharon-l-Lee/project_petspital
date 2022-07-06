@@ -37,7 +37,7 @@ public class FileboardDao {
 	}
 	
 	
-	//°Ô½ÃÆÇ ¸®½ºÆ®
+	//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	public ArrayList<FileboardDto> listBoard(int startRow, int endRow) {
 		ArrayList<FileboardDto> dtos = new ArrayList<FileboardDto>();
 		Connection conn = null;
@@ -92,7 +92,7 @@ public class FileboardDao {
 
 	}
 
-//	--2.µî·ÏµÈ ±Û ¼ö public int count()
+//	--2.ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ ï¿½ï¿½ public int count()
 //	SELECT COUNT(*) FROM FILEBOARD;
 	public int countBoard() {
 		int cnt = 0;
@@ -127,7 +127,7 @@ public class FileboardDao {
 		return cnt;
 	}
 	
-//	±Û¾²±â public 
+//	ï¿½Û¾ï¿½ï¿½ï¿½ public 
 	
 	public int writeBoard(String mid, String fsubject, String fcontent, String ffilename, String ffilename2,String ffilename3, String fip ) {
 		int result = FAIL;
@@ -137,7 +137,7 @@ public class FileboardDao {
 		String sql = "INSERT INTO FILEBOARD (fNUM, MID, fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFILENAME3, fGROUP, fSTEP, fINDENT, fIP)" + 
 				"    VALUES(FILEBOARD_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, FILEBOARD_SEQ.CURRVAL, 0, 0, ?)";
 		
-		try { //¿ø±Û¾²±â´Â step°ú ·¹º§ ¸ğµÎ 0°íÁ¤
+		try { //ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
@@ -148,9 +148,9 @@ public class FileboardDao {
 			pstmt.setString(6, ffilename3);
 			pstmt.setString(7, fip);
 			result = pstmt.executeUpdate();
-			System.out.println("¿ø±Û¾²±â ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"¿ø±Û¾²±â½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -166,7 +166,7 @@ public class FileboardDao {
 		return result;
 	}
 
-//	 ´äº¯±Û ¾²±â Àü ÀÛ¾÷ (void·Î)
+//	 ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Û¾ï¿½ (voidï¿½ï¿½)
 
 	private void preReplyStepA(int fgroup, int fstep){
 		
@@ -174,14 +174,14 @@ public class FileboardDao {
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE FILEBOARD SET fSTEP =fSTEP +1 WHERE fGROUP = ? AND fSTEP > ?";
 		
-		try { //¿ø±Û¾²±â´Â step°ú ·¹º§ ¸ğµÎ 0°íÁ¤
+		try { //ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fgroup);
 			pstmt.setInt(2, fstep);
 			
 			 int result = pstmt.executeUpdate();
-			System.out.println(result == 0? "Ã¹´äº¯" : result +"Çà ½ºÅÇ Á¶Á¤");
+			System.out.println(result == 0? "Ã¹ï¿½äº¯" : result +"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -199,10 +199,10 @@ public class FileboardDao {
 	}
 	
 	
-//	´äº¯±Û ¾²±â
+//	ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int replyBoard (String mid, String fsubject, String fcontent, String ffilename, String ffilename2, String ffilename3, int fgroup, int fstep, int findent, String fip){
 		
-		preReplyStepA(fgroup, fstep); //´äº¯±Û Àü¿¡ fstepÁ¶Á¤
+		preReplyStepA(fgroup, fstep); //ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ fstepï¿½ï¿½ï¿½ï¿½
 		int result =FAIL;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -225,10 +225,10 @@ public class FileboardDao {
 			pstmt.setInt(9, findent+1);
 			pstmt.setString(10, fip);
 			result = pstmt.executeUpdate();
-			System.out.println("´äº¯±Û¾²±â ¼º°ø");
+			System.out.println("ï¿½äº¯ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			
-			System.out.println(e.getMessage()+"´äº¯±Û¾²±â ½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½äº¯ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -246,7 +246,7 @@ public class FileboardDao {
 		
 	}
 	
-	//±Û ¼öÁ¤ÇÏ±â 
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 
 	public int modifyBoard(int fnum, String fsubject, String fcontent, String ffilename, String ffilename2, String ffilename3, String fip){
 		int result = FAIL;
 		Connection conn = null;
@@ -271,7 +271,7 @@ public class FileboardDao {
 			pstmt.setString(6, fip);
 			pstmt.setInt(7, fnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "¼öÁ¤ ¼º°ø" : "¼öÁ¤½ÇÆĞ");
+			System.out.println(result ==SUCCESS ? "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -292,7 +292,7 @@ public class FileboardDao {
 	
 	}
 	
-//	±Û »èÁ¦ÇÏ±â
+//	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 	
 	public int deleteBoard(int fnum){
@@ -306,9 +306,9 @@ public class FileboardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fnum);
 			result = pstmt.executeUpdate();
-			System.out.println("»èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"»èÁ¦½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -325,7 +325,7 @@ public class FileboardDao {
 		
 	}
 
-	//Á¶È¸¼ö ¿Ã¸®±â 
+	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ 
 
 	
 	private void hitUp(int fnum) {
@@ -356,7 +356,7 @@ public class FileboardDao {
 	}
 	
 	
-//	»ó¼¼º¸±â(FNUMÀ¸·Î DTO°¡Á®¿À±â) »ó¼¼º¸±â + Á¶È¸¼ö ³ôÀÌ±â
+//	ï¿½ó¼¼ºï¿½ï¿½ï¿½(FNUMï¿½ï¿½ï¿½ï¿½ DTOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ó¼¼ºï¿½ï¿½ï¿½ + ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 	
 	public FileboardDto getBoard(int fnum){
 		hitUp(fnum);
@@ -409,7 +409,7 @@ public class FileboardDao {
 	}
 
 	
-	//´äº¯±Û ´Ş±â, ¼öÁ¤ÇÏ±â¸¦ À§ÇÑ ±Û¹øÈ£·Î dtoºÒ·¯¿À±â
+	//ï¿½äº¯ï¿½ï¿½ ï¿½Ş±ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ï±â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£ï¿½ï¿½ dtoï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public FileboardDto reply_modifyView(int fnum){
 		FileboardDto dto = null;
@@ -460,7 +460,7 @@ public class FileboardDao {
 		
 	}
 
-//È¸¿ø Å»Åğ¸¦ À§ÇÑ ±Û °­Á¦ »èÁ¦
+//È¸ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void withdrawDeleteBoard(int mid){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -471,9 +471,9 @@ public class FileboardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mid);
 			pstmt.executeUpdate();
-			System.out.println("°Ô½ÃÆÇ ±Û °­Á¦ »èÁ¦ ¼º°ø");
+			System.out.println("ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"°Ô½ÃÆÇ ±Û °­Á¦ »èÁ¦½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -489,7 +489,7 @@ public class FileboardDao {
 		
 
 	}
-	//³» ±Û º¸±â
+	
 	//SELECT * 
 //    FROM(SELECT ROWNUM RN, A.*
 //            FROM(SELECT * FROM FILEBOARD WHERE MID='aaa' order by frdate desc)A)
@@ -514,22 +514,18 @@ public class FileboardDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				 int fnum = rs.getInt("fnum");
-				 System.out.println(1);
 				 String mname = rs.getString("mname");
 				 String fsubject = rs.getString("fsubject");
 				 String fcontent = rs.getString("fcontent");
 				 String ffilename = rs.getString("ffilename");
-				 System.out.println(2);
 				 String ffilename2 = rs.getString("ffilename2");
 				 String ffilename3 = rs.getString("ffilename3");
 				 Date frdate = rs.getDate("frdate");
-				 System.out.println(3);
 				 int fhit = rs.getInt("fhit");
 				 int fgroup = rs.getInt("fgroup");
 				 int fstep= rs.getInt("fstep");
 				 int findent= rs.getInt("findent");
 				 String fip = rs.getString("fip");
-				 System.out.println(4);
 				
 				dtos.add(new FileboardDto(fnum, mid,mname, fsubject, fcontent, ffilename, ffilename2, ffilename3, frdate, fhit, fgroup, fstep, findent, fip));
 			}
@@ -552,7 +548,7 @@ public class FileboardDao {
 		return dtos;
 
 	}
-	//³» ±Û °¹¼ö
+	//ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//SELECT COUNT(*) FROM FILEBOARD WHERE MID='aaa';
 	
 	public int countMyBoard(String mid) {
@@ -589,5 +585,127 @@ public class FileboardDao {
 		return cnt;
 	}
 	
+	//ê²€ìƒ‰
+	
+	public ArrayList<FileboardDto> searchList(String fsubject, int startRow, int endRow) {
+		ArrayList<FileboardDto> dtos = new ArrayList<FileboardDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * " + 
+				"    FROM(SELECT ROWNUM RN, A.* " + 
+				"        FROM(SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.mID=M.mID AND fSUBJECT LIKE '%'||?||'%' ORDER BY fGROUP DESC, FSTEP)A)" + 
+				"				WHERE RN BETWEEN ? AND ?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fsubject);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				 int fnum = rs.getInt("fnum");
+				 String mid = rs.getString("mid");
+				 String mname = rs.getString("mname");
+				 fsubject = rs.getNString("fsubject");
+				 String fcontent = rs.getString("fcontent");
+				 String ffilename = rs.getString("ffilename");
+				 String ffilename2 = rs.getString("ffilename2");
+				 String ffilename3 = rs.getString("ffilename3");
+				 Date frdate = rs.getDate("frdate");
+				 int fhit = rs.getInt("fhit");
+				 int fgroup = rs.getInt("fgroup");
+				 int fstep= rs.getInt("fstep");
+				 int findent= rs.getInt("findent");
+				 String fip = rs.getString("fip");
+				
+				dtos.add(new FileboardDto(fnum, mid,mname, fsubject, fcontent, ffilename, ffilename2, ffilename3, frdate, fhit, fgroup, fstep, findent, fip));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return dtos;
+
+	}
+	
+	//ê²€ìƒ‰ëœ ê¸€ ê°¯ìˆ˜
+	public int countSearch(String fsubject) {
+		int cnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql =  "SELECT COUNT(*) FROM FILEBOARD WHERE fSUBJECT LIKE '%'||?||'%'";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fsubject);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			}
+		}
+		return cnt;
+	}
+	
+	//íƒˆí‡´ìš© ê¸€ì‚­ì œ
+			public int withdrawfb(String mid){
+				int result = FAIL;
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				String sql = "DELETE FROM FILEBOARD WHERE MID =?";
+				
+				try { 
+					conn = ds.getConnection();
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, mid);;
+					result = pstmt.executeUpdate();
+					System.out.println("ììœ ê²Œì‹œíŒ ê¸€ ê°•ì œ ì‚­ì œ ì„±ê³µ");
+				} catch (SQLException e) {
+					System.out.println(e.getMessage()+"ììœ ê²Œì‹œíŒ ê¸€ ê°•ì œ ì‚­ì œ ì‹¤íŒ¨");
+				} finally {
+					
+						try {
+							if(pstmt!=null)
+							pstmt.close();
+							if(conn!=null)
+							conn.close();
+						} catch (SQLException e) {
+							System.out.println(e.getMessage());
+						
+						}
+				}
+				return result;
+				
+			}
 
 }

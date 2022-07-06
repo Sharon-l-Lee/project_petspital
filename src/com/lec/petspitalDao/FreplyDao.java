@@ -43,7 +43,7 @@ public class FreplyDao {
 		ResultSet rs = null;
 		String sql = "SELECT * " + 
 				"    FROM(SELECT ROWNUM RN, A.* " + 
-				"        FROM (SELECT FRNUM, FNUM, MID, nvl((select mname from member where mid=f.mid),'°ü¸®ÀÚ') mname,FRCONTENT,FRRDATE, FRIP FROM FREPLY F where fnum=? order by frnum desc)A)" + 
+				"        FROM (SELECT FRNUM, FNUM, MID, nvl((select mname from member where mid=f.mid),'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½') mname,FRCONTENT,FRRDATE, FRIP FROM FREPLY F where fnum=? order by frnum desc)A)" + 
 				"				WHERE RN between ? and ?";
 
 		try {
@@ -84,8 +84,8 @@ public class FreplyDao {
 
 	}
 	
-//	--´ñ±Û ÀÔ·Â
-//	INSERT INTO FREPLY(fRNUM, fNUM, mID,fRCONTENT, FRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa', '´ñ±Û È®ÀÎ',SYSDATE, '127.10.25' );
+//	--ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
+//	INSERT INTO FREPLY(fRNUM, fNUM, mID,fRCONTENT, FRDATE, FRIP ) VALUES(FREPLY_SEQ.NEXTVAL, 16, 'aaa', 'ï¿½ï¿½ï¿½ È®ï¿½ï¿½',SYSDATE, '127.10.25' );
 	public int writeComment(int fnum, String mid, String aid, String frcontent, String frip ) {
 		int result = FAIL;
 		Connection conn = null;
@@ -104,9 +104,9 @@ public class FreplyDao {
 			pstmt.setString(4, frcontent);
 			pstmt.setString(5, frip);
 			result = pstmt.executeUpdate();
-			System.out.println(result==SUCCESS ? "´ñ±Û ¾²±â ¼º°ø" : "´ñ±Û¾²±â½ÇÆĞ");
+			System.out.println(result==SUCCESS ? "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"´ñ±Û¾²±â½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -124,8 +124,8 @@ public class FreplyDao {
 
 	
 	
-	//	--´ñ±Û ¼öÁ¤
-//	UPDATE FREPLY SET fRCONTENT= '´ñ±ÛÈ®ÀÎ¼öÁ¤' WHERE fRNUM=1;
+	//	--ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//	UPDATE FREPLY SET fRCONTENT= 'ï¿½ï¿½ï¿½È®ï¿½Î¼ï¿½ï¿½ï¿½' WHERE fRNUM=1;
 	public int modifyComment(String frcontent, int frnum){
 		int result = FAIL;
 		Connection conn = null;
@@ -138,7 +138,7 @@ public class FreplyDao {
 			pstmt.setString(1, frcontent);
 			pstmt.setInt(2, frnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "´ñ±Û ¼öÁ¤ ¼º°ø" : "´ñ±Û ¼öÁ¤½ÇÆĞ");
+			System.out.println(result ==SUCCESS ? "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -158,7 +158,7 @@ public class FreplyDao {
 		
 	
 	}
-//	--´ñ±Û »èÁ¦
+//	--ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //	DELETE FROM FREPLY WHERE fRNUM='2';
 	
 	public int deleteComment(int frnum){
@@ -172,9 +172,9 @@ public class FreplyDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, frnum);
 			result = pstmt.executeUpdate();
-			System.out.println("´ñ±Û »èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"´ñ±Û »èÁ¦½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -191,7 +191,7 @@ public class FreplyDao {
 		
 	}
 
-//	--´ñ±Û ¼ö
+//	--ï¿½ï¿½ï¿½ ï¿½ï¿½
 	//SELECT COUNT(*)CNT FROM FREPLY;
 	
 	public int countComment() {
@@ -228,7 +228,7 @@ public class FreplyDao {
 	}
 	
 	
-	//´ñ±Û ÀüÃ¼ °¡Á®¿À±â
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public FreplyDto getComment(int frnum){
 		FreplyDto dto = null;
@@ -271,5 +271,37 @@ public class FreplyDao {
 		return dto;
 		
 	}
+	
+	//íƒˆí‡´ìš© ê¸€ì‚­ì œ DELETE FROM FREPLY WHERE MID ='7';
+	public int withdrawfr(String mid){
+		int result = FAIL;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM FREPLY WHERE MID = ?";
+		
+		try { 
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);;
+			result = pstmt.executeUpdate();
+			System.out.println("ììœ ê²Œì‹œíŒ ëŒ“ê¸€ ê°•ì œ ì‚­ì œ ì„±ê³µ");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage()+"ììœ ê²Œì‹œíŒ ëŒ“ê¸€ ê°•ì œ ì‚­ì œ ì‹¤íŒ¨");
+		} finally {
+			
+				try {
+					if(pstmt!=null)
+					pstmt.close();
+					if(conn!=null)
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				
+				}
+		}
+		return result;
+		
+	}
+
 	
 }

@@ -18,7 +18,7 @@ public class hBookmarkOutService implements Service {
 		BookmarkDao bDao = BookmarkDao.getInstance();
 		int result = bDao.deleteBookmark(rnum, mid);
 		if(result == BookmarkDao.SUCCESS) {
-			request.setAttribute("bookmarkin", "ºÏ¸¶Å© ÇØÁ¦ ¼º°ø");
+			request.setAttribute("bookmarkin", "ë¶ë§ˆí¬ ì§€ìš°ê¸° ì„±ê³µ");
 		}
 	}
 

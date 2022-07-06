@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.lec.petspitalDto.BookmarkDto;
 import com.lec.petspitalDto.FileboardDto;
 import com.lec.petspitalDto.RhospitalDto;
 
@@ -37,7 +38,7 @@ public class RhospitalDao {
 		return instance;
 	}
 	
-//	--º´¿ø ±Û Ãâ·Â
+//	--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 //	SELECT * FROM
 //	    (SELECT ROWNUM RN, A.*
 //	    FROM(SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.mID=M.mID)A)
@@ -133,9 +134,9 @@ public class RhospitalDao {
 
 	
 	
-//	--º´¿ø ±Û ÀÔ·Â (grade2ÀÎ »ç¶÷¸¸)
+//	--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½ (grade2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
 //	INSERT INTO RHOSPITAL ( rNUM,rCATEGORYID, mID, rSUBJECT, rCONTENT,rFILENAME, rFILENAME2, rFILENAME3, rRDATE,rIP  )
-//	    VALUES(RHOS_SEQ.NEXTVAL, 1, 'aaa','°­³² µ¿¹°º´¿ø', '°­³²¿¡ ÀÖ´Â µ¿¹°º´¿øÀÔ´Ï´Ù', 'noImg.png', NULL, NULL, SYSDATE, '123.10.52');
+//	    VALUES(RHOS_SEQ.NEXTVAL, 1, 'aaa','ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 'noImg.png', NULL, NULL, SYSDATE, '123.10.52');
 
 	public int writeHboard(int rcategoryid, String mid, String rsubject, String rcontent, String rfilename, String rfilename2,String rfilename3, String rip ) {
 		int result = FAIL;
@@ -145,7 +146,7 @@ public class RhospitalDao {
 		String sql = "INSERT INTO RHOSPITAL (rNUM,rCATEGORYID, mID, rSUBJECT, rCONTENT,rFILENAME, rFILENAME2, rFILENAME3, rRDATE, rIP  )" + 
 				"	    VALUES(RHOS_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ?)";
 		
-		try { //¿ø±Û¾²±â´Â step°ú ·¹º§ ¸ğµÎ 0°íÁ¤
+		try { //ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rcategoryid);
@@ -157,9 +158,9 @@ public class RhospitalDao {
 			pstmt.setString(7, rfilename3);
 			pstmt.setString(8, rip);
 			result = pstmt.executeUpdate();
-			System.out.println("º´¿ø ¿ø±Û¾²±â ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"º´¿ø ¿ø±Û¾²±â½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -174,7 +175,7 @@ public class RhospitalDao {
 		}
 		return result;
 	}
-//	--º´¿ø ±Û »èÁ¦ (±Û ¾´ »ç¶÷¸¸)
+//	--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
 //	DELETE FROM RHOSPITAL WHERE rNUM=1;
 	
 	
@@ -189,9 +190,9 @@ public class RhospitalDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rnum);
 			result = pstmt.executeUpdate();
-			System.out.println("»èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"»èÁ¦½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -207,10 +208,10 @@ public class RhospitalDao {
 		return result;
 		
 	}
-//	--º´¿ø ±Û ¼öÁ¤ (±Û ¾´ »ç¶÷¸¸)
+//	--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
 //	UPDATE RHOSPITAL SET rCATEGORYID=2,
-//	                    rSUBJECT='ºĞ´ç µ¿¹°º´¿ø',
-//	                    rCONTENT='ºĞ´ç¿¡ ÀÖ´Â µ¿¹°º´¿øÀÔ´Ï´Ù',
+//	                    rSUBJECT='ï¿½Ğ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+//	                    rCONTENT='ï¿½Ğ´ç¿¡ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½',
 //	                    rFILENAME='noImg.png',
 //	                    rFILENAME2=NULL,
 //	                    rFILENAME3=NULL
@@ -240,7 +241,7 @@ public class RhospitalDao {
 			pstmt.setString(7, rip);
 			pstmt.setInt(8, rnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "¼öÁ¤ ¼º°ø" : "¼öÁ¤½ÇÆĞ");
+			System.out.println(result ==SUCCESS ? "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -263,7 +264,7 @@ public class RhospitalDao {
 	
 	
 	
-//	--Á¶È¸¼ö ¿Ã¸®±â
+//	--ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½
 //	UPDATE RHOSPITAL SET rHIT = rHIT+1 WHERE rNUM=1;
 	
 
@@ -293,7 +294,7 @@ public class RhospitalDao {
 				}
 		}
 	}
-//	--±Û °¹¼ö
+//	--ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //	SELECT COUNT(*) FROM RHOSPITAL;
 //	
 	
@@ -330,7 +331,7 @@ public class RhospitalDao {
 		return cnt;
 	}
 	
-//	--º´¿ø ±Û »ó¼¼º¸±â(Á¶È¸¼ö up)
+//	--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½(ï¿½ï¿½È¸ï¿½ï¿½ up)
 //	SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.MID = M.MID AND rNUM=2;
 	
 	
@@ -382,7 +383,7 @@ public class RhospitalDao {
 		
 	}
 
-//	--¼öÁ¤¿ë »ó¼¼º¸±â
+//	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 //	SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.MID = M.MID AND rNUM=2;
 	
 	public RhospitalDto modifyView(int rnum){
@@ -433,7 +434,7 @@ public class RhospitalDao {
 	}
 
 	
-//	--°­Á¦ »èÁ¦
+//	--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //	DELETE FROM RHOSPITAL WHERE MID =?
 	public void withdrawDeleteHboard(int mid){
 		Connection conn = null;
@@ -445,9 +446,9 @@ public class RhospitalDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mid);
 			pstmt.executeUpdate();
-			System.out.println("º´¿ø ±Û °­Á¦ »èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"º´¿ø ±Û °­Á¦ »èÁ¦½ÇÆĞ");
+			System.out.println(e.getMessage()+"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} finally {
 			
 				try {
@@ -463,5 +464,81 @@ public class RhospitalDao {
 		
 
 	}
+	
+	//ë¶ë§ˆí¬ ë¦¬ìŠ¤íŠ¸
+		public ArrayList<RhospitalDto> listBmarkBoard(String mid, int startRow, int endRow) {
+			ArrayList<RhospitalDto> dtos = new ArrayList<RhospitalDto>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from" + 
+					"    (select rownum rn, a.* from (select b.rnum, rsubject, rrdate from bookmark b, RHOSPITAL r where b.rnum = r.rnum and b.mid = ? order by r.rnum desc)a)" + 
+					"    where rn between ? and ? ";
+
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mid);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					int rnum = rs.getInt("rnum");
+					 String rsubject = rs.getString("rsubject");
+					 Date rrdate = rs.getDate("rrdate");
+					
+					dtos.add(new RhospitalDto(rnum, mid,  rsubject, rrdate));
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} finally {
+
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+
+				}
+			}
+			return dtos;
+
+		}
+		
+//íƒˆí‡´ìš© ê¸€ì‚­ì œ
+		public int withdrawho(String mid){
+			int result = FAIL;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "DELETE FROM RHOSPITAL WHERE MID =?";
+			
+			try { 
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mid);;
+				result = pstmt.executeUpdate();
+				System.out.println("ë³‘ì› ê¸€ ê°•ì œ ì‚­ì œ ì„±ê³µ");
+			} catch (SQLException e) {
+				System.out.println(e.getMessage()+"ë³‘ì› ê¸€ ê°•ì œ ì‚­ì œ ì‹¤íŒ¨");
+			} finally {
+				
+					try {
+						if(pstmt!=null)
+						pstmt.close();
+						if(conn!=null)
+						conn.close();
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					
+					}
+			}
+			return result;
+			
+		}
+
 	
 }

@@ -148,7 +148,27 @@ table tr:hover{
     border-bottom-left-radius: 4px;
     background-color: rgb(244, 244, 244);
 }
-./* prev {
+
+#wrap #content #search_area{
+	width:80%;
+	margin: 20px auto;
+	text-align: center;
+	
+	
+}
+
+#wrap #content #search_area .textbox{
+	width:60%;
+	height:30px;
+	outline: none;
+	
+}
+#wrap #content #search_area .sbtn{
+	font-family: 'GmarketSansMedium';
+	
+}
+
+/* prev {
 	width:80px;
 	position:relative;
 	display: inline-block;

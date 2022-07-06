@@ -9,6 +9,7 @@ public class FreeBoardListService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		String searchtext = request.getParameter("searchtext");
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
 			pageNum = "1";
@@ -18,8 +19,8 @@ public class FreeBoardListService implements Service {
 		int startRow = (currentPage-1) * PAGESIZE +1;
 		int endRow = startRow + PAGESIZE -1;
 		FileboardDao fDao = FileboardDao.getInstance();
-		int totalBoard = fDao.countBoard();
-		request.setAttribute("freeBoardView", fDao.listBoard(startRow, endRow));
+		int totalBoard = fDao.countSearch(searchtext);
+		request.setAttribute("freeBoardView", fDao.searchList(searchtext, startRow, endRow));
 		int pageCnt = (int) Math.ceil((double)totalBoard/PAGESIZE);
 		
 		int startPage = ((currentPage-1) / BLOCKSIZE)*BLOCKSIZE+1;

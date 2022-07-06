@@ -41,7 +41,7 @@ public class MemberDao {
 		return instance;
 	}
 
-	// È¸¿ø ·Î±×ÀÎ SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
+	// È¸ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
 	public int memberLogin(String mid, String mpw) {
 		int result = LOGIN_FAIL;
 		Connection conn = null;
@@ -79,7 +79,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// ¾ÆÀÌµğ Áßº¹ Ã¼Å© SELECT * FROM MEMBER WHERE mID='aaa';
+	// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ Ã¼Å© SELECT * FROM MEMBER WHERE mID='aaa';
 	public int idCheck(String mid) {
 		int result = MEMBER_EXIST;
 		Connection conn = null;
@@ -116,7 +116,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// ÀÌ¸ŞÀÏ Áßº¹ Ã¼Å© SELECT * FROM MEMBER WHERE mEMAIL ='aaa@naver.com';
+	// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ßºï¿½ Ã¼Å© SELECT * FROM MEMBER WHERE mEMAIL ='aaa@naver.com';
 
 	public int emailCheck(String memail) {
 		int result = MEMBER_EXIST;
@@ -154,7 +154,7 @@ public class MemberDao {
 		return result;
 	}
 
-//		//ID·Î DTO °¡Á®¿À±â SELECT * FROM MEMBER WHERE mID ='aaa';
+//		//IDï¿½ï¿½ DTO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SELECT * FROM MEMBER WHERE mID ='aaa';
 	public MemberDto idDto(String mid) {
 		MemberDto dto = null;
 		Connection conn = null;
@@ -183,7 +183,7 @@ public class MemberDao {
 						mrdate);
 
 			}
-			System.out.println("id·Î °¡Á®¿Â dto : " + dto);
+			System.out.println("idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dto : " + dto);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -202,11 +202,11 @@ public class MemberDao {
 
 		return dto;
 	}
-	// È¸¿ø°¡ÀÔ
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	// INSERT INTO MEMBER (mID, mPW, mNAME, mBIRTH, mGENDER, mEMAIL, mPHONE,
 	// mADDRESS, mADDRESS2)
-	// VALUES ('aaa', '111', 'ÀÌÅä³¢', '95/01/01', 'M','bunny@naver.com',
-	// '010-0000-1111', '¼­¿ï½Ã °­³²±¸', '¾îÂ¼±¸·Î') ;
+	// VALUES ('aaa', '111', 'ï¿½ï¿½ï¿½ä³¢', '95/01/01', 'M','bunny@naver.com',
+	// '010-0000-1111', 'ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½') ;
 
 	public int joinMember(MemberDto member) {
 		int result = FAIL;
@@ -228,7 +228,7 @@ public class MemberDao {
 			pstmt.setString(8, member.getMaddress());
 			pstmt.setString(9, member.getMaddress2());
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "È¸¿ø°¡ÀÔ¼º°ø" : "½ÇÆĞ");
+			System.out.println(result == SUCCESS ? "È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -246,15 +246,15 @@ public class MemberDao {
 		return result;
 	}
 
-//		   --Á¤º¸¼öÁ¤
+//		   --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //       UPDATE MEMBER SET mPW='1111',
-//       	 mNAME='ÀÌÅä³¢',
+//       	 mNAME='ï¿½ï¿½ï¿½ä³¢',
 //      	  mEMAIL='bny@naver.com',
 //      	  mBIRTH='88/01/01',
 //      	  mGENDER='F',
 //       	 mPHONE='010-0101-0101',
-//        	mADDRESS='¼­¿ï½Ã ¿ª»ïµ¿',
-//      	  mADDRESS2='¸ú¸ú·Î'
+//        	mADDRESS='ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ïµ¿',
+//      	  mADDRESS2='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 //      	  WHERE mID='aaa';
 
 	public int modifyMember(MemberDto member) {
@@ -284,7 +284,7 @@ public class MemberDao {
 			pstmt.setString(8, member.getMaddress2());
 			pstmt.setString(9, member.getMid());
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "È¸¿ø¼öÁ¤" : "½ÇÆĞ");
+			System.out.println(result == SUCCESS ? "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -302,7 +302,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// --µî±Şº° È¸¿ø ¸®½ºÆ® (¾Æ´Ï¸é µî±Ş ¿ª¼ø, °¡ÀÔÀÏ ¼ø)
+	// --ï¿½ï¿½Şºï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 	// SELECT * FROM (SELECT ROWNUM RN, M.* FROM (SELECT * FROM MEMBER)M)
 	// WHERE RN BETWEEN 1 AND 10
 	// ORDER BY mGRADE DESC, mRDATE ;
@@ -355,7 +355,7 @@ public class MemberDao {
 	}
 
 
-//		È¸¿ø¼ö SELECT COUNT(*) CNT FROM MEMBER;
+//		È¸ï¿½ï¿½ï¿½ï¿½ SELECT COUNT(*) CNT FROM MEMBER;
 	public int memberCnt() {
 		int totalCnt = 0;
 		Connection conn = null;
@@ -390,7 +390,7 @@ public class MemberDao {
 	}
 	
 	
-	//È¸¿ø Å»Åğ DELETE FROM MEMBER WHERE MID = 'NNN';
+	//È¸ï¿½ï¿½ Å»ï¿½ï¿½ DELETE FROM MEMBER WHERE MID = 'NNN';
 	
 
 
@@ -405,7 +405,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "È¸¿ø»èÁ¦" : "½ÇÆĞ");
+			System.out.println(result == SUCCESS ? "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -423,7 +423,7 @@ public class MemberDao {
 		return result;
 	}
 	
-	//È¸¿ø µî±Ş º¯°æ UPDATE MEMBER SET mGRADE='2' WHERE mID='aaa';
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UPDATE MEMBER SET mGRADE='2' WHERE mID='aaa';
 	
 	public int gradeUp(String mid) {
 		int result = FAIL;
@@ -436,7 +436,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "µî±Ş ¾÷ ¼º°ø" : "µî±Ş ¾÷ ½ÇÆĞ");
+			System.out.println(result == SUCCESS ? "ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -454,7 +454,7 @@ public class MemberDao {
 		return result;
 	}
     
-	//µî±Ş ´Ù¿î
+	//ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½
 	public int gradeDown(String mid) {
 		int result = FAIL;
 		Connection conn = null;
@@ -466,7 +466,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "µî±Ş ´Ù¿î ¼º°ø" : "µî±Ş ´Ù¿î ½ÇÆĞ");
+			System.out.println(result == SUCCESS ? "ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½" : "ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -485,7 +485,7 @@ public class MemberDao {
 	}
     
 
-	//¸â¹ö Ãâ·Â
+	//
 	
 	public ArrayList<MemberDto> memberList(int startRow, int endRow) {
 		ArrayList<MemberDto> dtos = new ArrayList<MemberDto>();
@@ -533,4 +533,35 @@ public class MemberDao {
 
 	}
 
+	
+		//íšŒì› íƒˆí‡´
+	
+	public int withdrawal(String mid) {
+		int result = FAIL;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM MEMBER WHERE MID = ?";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			result = pstmt.executeUpdate();
+			System.out.println(result == SUCCESS ? "íšŒì› íƒˆí‡´ ì™„ë£Œ" : "íšŒì›íƒˆí‡´ì‹¤íŒ¨");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+
+	}
 }

@@ -52,7 +52,17 @@ SELECT COUNT(*) FROM MEMBER;
 --회원 탈퇴
 DELETE FROM MEMBER WHERE MID = '7';
 --탈퇴용 글삭제
+DELETE FROM FILEBOARD WHERE MID ='7';
+DELETE FROM BOOKMARK WHERE  MID ='aaa';
+commit;
 
+
+DELETE FROM HREPLY WHERE MID ='7';
+
+
+
+DELETE FROM RHOSPITAL WHERE MID ='7';
+DELETE FROM FREPLY WHERE MID ='7';
 
 ---공지사항 
 
@@ -263,16 +273,44 @@ select SCATEGORYNAME FROM SCATEGORY WHERE SCATEGORYID = 1;
 --동물
 select rcategoryname from RCATEGORY;
 select rCATEGORYNAME FROM RCATEGORY WHERE RCATEGORYID = 1;
-
+SELECT * FROM HREPLY;
 --북마크
+--북마크 리스트
+select * FROM RHOSPITAL;
+SELECT *
+    FROM (SELECT ROWNUM RN, A.*
+        FROM(SELECT R.* ,BNUM FROM BOOKMARK B , RHOSPITAL R WHERE B.MID='ddd' ORDER BY B.RNUM DESC)A)
+        WHERE RN BETWEEN 1 AND 10;
+        SELECT R.* FROM BOOKMARK B , RHOSPITAL R WHERE r.rnum=b.rnum AND B.MID='ddd' ORDER BY B.RNUM DESC;
+ --       SELECT H.*, BNUM, H.RNUM, B.MID FROM BOOKMARK B , HREPLY H WHERE H.MID = B.MID AND B.MID='ddd' ORDER BY H.RNUM DESC;
+SELECT ROWNUM RN, B.*
+    FROM(SELECT * FROM BOOKMARK WHERE MID='ddd' ORDER BY RNUM DESC)B;
+SELECT * FROM BOOKMARK WHERE MID='ddd' ORDER BY RNUM DESC;
 --북마크 넣기
-INSERT INTO BOOKMARK (bNUM, rNUM, mID) VALUES (BMARK_SEQ.NEXTVAL, 4, 'aaa');
+
+INSERT INTO BOOKMARK (bNUM, rNUM, mID, aID) VALUES (BMARK_SEQ.NEXTVAL, 4, 'ddd', null);
+INSERT INTO BOOKMARK (bNUM, rNUM, mID) VALUES (BMARK_SEQ.NEXTVAL, 4, 'ddd');
+select * from
+    (select rownum rn, a.* from (select b.rnum, rsubject, rrdate from bookmark b, RHOSPITAL r where b.rnum = r.rnum and b.mid = 'ddd' order by r.rnum desc)a)
+    where rn between 1 and 10;
+    
+select rownum rn, a.* from (select b.*, rsubject, rrdate from bookmark b, RHOSPITAL r where b.rnum = r.rnum and b.mid = 'ddd' order by r.rnum desc)a;
+select b.*, rsubject, rrdate from bookmark b, RHOSPITAL r where b.rnum = r.rnum and b.mid = 'ddd' order by r.rnum desc;
 
 --북마크 지우기
-DELETE BOOKMARK WHERE bNUM= 1 AND mID = 'aaa';
-
+DELETE BOOKMARK WHERE rNUM= 2 AND mID = 'ddd';
+SELECT COUNT(*) FROM BOOKMARK b WHERE rNUM=4 AND b.mID='ddd';
 --북마크 보기
-SELECT * FROM BOOKMARK WHERE mID='aaa';
-
+SELECT * FROM BOOKMARK b WHERE b.mID='ddd';
+SELECT COUNT(*) FROM BOOKMARK WHERE mID='ddd';
 --북마크 갯수
-SELECT  COUNT(*) FROM BOOKMARK WHERE rNUM=4 AND mID='aaa';
+SELECT COUNT(*) FROM BOOKMARK WHERE rNUM=4 AND mID='aaa';
+commit;
+--자유게시판 검색
+
+SELECT * 
+    FROM(SELECT ROWNUM RN, A.* 
+        FROM(SELECT F.*, MNAME FROM FILEBOARD F, MEMBER M WHERE F.mID=M.mID AND fSUBJECT LIKE '%'||'고양이'||'%' ORDER BY fGROUP DESC, FSTEP)A)
+				WHERE RN BETWEEN 1 AND 10;
+SELECT * FROM FILEBOARD WHERE fSUBJECT LIKE '%'||'강아지'||'%';
+SELECT COUNT(*)CNT FROM FILEBOARD WHERE fSUBJECT LIKE '%'||'강아지'||'%';

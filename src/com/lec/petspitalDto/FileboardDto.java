@@ -18,7 +18,7 @@ public class FileboardDto {
 	private int findent;
 	private String fip;
 	
-	//»ý¼ºÀÚ
+
 	
 	public FileboardDto() {
 		super();
