@@ -68,7 +68,7 @@
 
 				<div id="id_pw_find">
 					<p>
-						<a href="${conPath }/hmember/id_find.jsp">아이디/비밀번호 찾기</a>
+						<a href="${conPath }/member/idfind.jsp">아이디/비밀번호 찾기</a>
 				</div>
 				<div id="go_join">
 					<p>

@@ -34,6 +34,9 @@
 					<input type="hidden" name="pageNum" value="${pageNum }"> <input
 						type="hidden" name="mid" value="${member.mid } "> <input
 						type="hidden" name="qnum" value="${param.qnum } ">
+						<input type="hidden" name="qgroup" value="${qgroup }">
+						 <input type="hidden" name="qstep" value="${qstep }"> 
+						 <input type="hidden" name="qindent" value="${qindent }"> 
 
 					<div id="borarcontent">
 						<div class="formtitle">제목</div>
@@ -93,6 +96,9 @@
 					<input type="hidden" name="pageNum" value="${pageNum }"> <input
 						type="hidden" name="mid" value="${member.mid } "> <input
 						type="hidden" name="qnum" value="${param.qnum } ">
+							<input type="text" name="qgroup" value="${param.qgroup }">
+						 <input type="text" name="qstep" value="${param.qstep }"> 
+						 <input type="text" name="qindent" value="${param.qindent }"> 
 
 					<div id="borarcontent">
 						<div class="formtitle">답변 제목</div>

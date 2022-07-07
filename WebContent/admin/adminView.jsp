@@ -26,7 +26,7 @@
 								</ul></li>
 							<li><a href="#" class="menu"><span>게시글 관리</span></a>
 								<ul class="subm">
-									<li><a href="#" class="submenu">자유게시판</a></li>
+									<li><a href="${conPath }/adminFboardList.let" class="submenu">자유게시판</a></li>
 									<li><a href="#" class="submenu">QNA</a></li>
 								</ul></li>
 							

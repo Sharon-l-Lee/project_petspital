@@ -16,14 +16,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="${conPath }/js/jqueryui/jquery-ui.js"></script>
-<script>
-	$(function() {
-		$("#accordion").accordion();
-		var header = $("#accordion").accordion("option", "header");
-		$("#accordion").accordion("option", "header", ".subj");
 
-	});
-</script>
 
 </head>
 <body>
@@ -36,35 +29,23 @@
 
 					<div class="title_area">
 						<div class="info_title">
-							<h2 class="tit">QnA게시판</h2>
+							<h2 class="tit">${qnum }번글 답변</h2>
 						</div>
-						<p class="tcol">질문과 답변을 올릴 수 있습니다</p>
 					</div>
 					<!-- 게시판 -->
-					<div class="freeboard_wrap">
-						<c:if test="${not empty member }">
-							<button class="w_btn"
-								onclick="location.href='${conPath }/qWriteView.do?pageNum=${pageNum }'">글쓰기</button>
-						</c:if>
+					
 						<div class="freeboard">
 
 							<div id="accordion">
-								<c:if test="${qnaList.size() != 0  }">
-									<c:forEach var="qna" items="${qnaList }">
+								<c:if test="${answerView.size() != 0  }">
+									<c:forEach var="answer" items="${answerView }">
 
-										<div class="subj">Q: ${qna.qsubject }</div>
 										<div>
-											<p>질문 내용 : ${qna.qcontent }</p>
+											<h4>A : ${answer.qsubject }</h4>
+											<div>${answer.qcontent }</div>
 											
-											<c:if test="${not empty member || not empty admin }">
-												<div class="re_btn">
-													<button
-														onclick="location.href='${conPath}/qWriteView.do?qgroup=${qna.qgroup }&qstep=${qna.qstep }&qindent=${qna.qindent }'">답변</button>
-													<button
-														onclick="location.href='${conPath}/answerView.do?qgroup=${qna.qgroup }&qnum=${qna.qnum }'">답변보기</button>
-													<a href="">답변 갯수 : </a>
-												</div>
-											</c:if>
+											
+										
 										</div>
 
 									</c:forEach>
@@ -76,16 +57,6 @@
 
 
 							<div id="paging">
-								<%-- 	<div class="move">
-								<c:if test="${startPage > BLOCKSIZE}">
-										<div class="prev"><a href="${conPath }/freeBoardList.do?pageNum=${startPage-1}">prev</a></div>
-								</c:if>
-								<c:if test="${startPage <= BLOCKSIZE}">
-										<div class="prev">prev</div>
-								</c:if>
-							</div>
- --%>
-
 								<div class="pagenum">
 									<c:if test="${pageNum > 1}">
 										<div class="number">
@@ -112,14 +83,7 @@
 									</c:if>
 
 								</div>
-								<%-- <div class="move">
-								<c:if test="${pageCnt > endPage }">
-										<div class="next"><a href="${conPath }/freeBoardList.do?pageNum=${endPage+1}">next</a></div>
-								</c:if>
-								<c:if test="${pageCnt <= endPage}">
-										<div class="next">next</div>
-								</c:if>
-							</div> --%>
+							
 							</div>
 						</div>
 					</div>
@@ -127,7 +91,7 @@
 			</div>
 
 		</div>
-	</div>
+	
 
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>

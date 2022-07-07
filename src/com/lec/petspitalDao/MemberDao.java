@@ -41,7 +41,7 @@ public class MemberDao {
 		return instance;
 	}
 
-	// ȸ�� �α��� SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
+	// 회占쏙옙 占싸깍옙占쏙옙 SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
 	public int memberLogin(String mid, String mpw) {
 		int result = LOGIN_FAIL;
 		Connection conn = null;
@@ -79,7 +79,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// ���̵� �ߺ� üũ SELECT * FROM MEMBER WHERE mID='aaa';
+	// 占쏙옙占싱듸옙 占쌩븝옙 체크 SELECT * FROM MEMBER WHERE mID='aaa';
 	public int idCheck(String mid) {
 		int result = MEMBER_EXIST;
 		Connection conn = null;
@@ -116,7 +116,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// �̸��� �ߺ� üũ SELECT * FROM MEMBER WHERE mEMAIL ='aaa@naver.com';
+	// 占싱몌옙占쏙옙 占쌩븝옙 체크 SELECT * FROM MEMBER WHERE mEMAIL ='aaa@naver.com';
 
 	public int emailCheck(String memail) {
 		int result = MEMBER_EXIST;
@@ -154,7 +154,7 @@ public class MemberDao {
 		return result;
 	}
 
-//		//ID�� DTO �������� SELECT * FROM MEMBER WHERE mID ='aaa';
+//		//ID占쏙옙 DTO 占쏙옙占쏙옙占쏙옙占쏙옙 SELECT * FROM MEMBER WHERE mID ='aaa';
 	public MemberDto idDto(String mid) {
 		MemberDto dto = null;
 		Connection conn = null;
@@ -183,7 +183,7 @@ public class MemberDao {
 						mrdate);
 
 			}
-			System.out.println("id�� ������ dto : " + dto);
+			System.out.println("id占쏙옙 占쏙옙占쏙옙占쏙옙 dto : " + dto);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -202,11 +202,11 @@ public class MemberDao {
 
 		return dto;
 	}
-	// ȸ������
+	// 회占쏙옙占쏙옙占쏙옙
 	// INSERT INTO MEMBER (mID, mPW, mNAME, mBIRTH, mGENDER, mEMAIL, mPHONE,
 	// mADDRESS, mADDRESS2)
-	// VALUES ('aaa', '111', '���䳢', '95/01/01', 'M','bunny@naver.com',
-	// '010-0000-1111', '����� ������', '��¼����') ;
+	// VALUES ('aaa', '111', '占쏙옙占썰끼', '95/01/01', 'M','bunny@naver.com',
+	// '010-0000-1111', '占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙', '占쏙옙쩌占쏙옙占쏙옙') ;
 
 	public int joinMember(MemberDto member) {
 		int result = FAIL;
@@ -228,7 +228,7 @@ public class MemberDao {
 			pstmt.setString(8, member.getMaddress());
 			pstmt.setString(9, member.getMaddress2());
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "ȸ�����Լ���" : "����");
+			System.out.println(result == SUCCESS ? "회占쏙옙占쏙옙占쌉쇽옙占쏙옙" : "占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -246,15 +246,15 @@ public class MemberDao {
 		return result;
 	}
 
-//		   --��������
+//		   --占쏙옙占쏙옙占쏙옙占쏙옙
 //       UPDATE MEMBER SET mPW='1111',
-//       	 mNAME='���䳢',
+//       	 mNAME='占쏙옙占썰끼',
 //      	  mEMAIL='bny@naver.com',
 //      	  mBIRTH='88/01/01',
 //      	  mGENDER='F',
 //       	 mPHONE='010-0101-0101',
-//        	mADDRESS='����� ���ﵿ',
-//      	  mADDRESS2='������'
+//        	mADDRESS='占쏙옙占쏙옙占� 占쏙옙占쏙동',
+//      	  mADDRESS2='占쏙옙占쏙옙占쏙옙'
 //      	  WHERE mID='aaa';
 
 	public int modifyMember(MemberDto member) {
@@ -284,7 +284,7 @@ public class MemberDao {
 			pstmt.setString(8, member.getMaddress2());
 			pstmt.setString(9, member.getMid());
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "ȸ������" : "����");
+			System.out.println(result == SUCCESS ? "회占쏙옙占쏙옙占쏙옙" : "占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -302,7 +302,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// --��޺� ȸ�� ����Ʈ (�ƴϸ� ��� ����, ������ ��)
+	// --占쏙옙頻占� 회占쏙옙 占쏙옙占쏙옙트 (占싣니몌옙 占쏙옙占� 占쏙옙占쏙옙, 占쏙옙占쏙옙占쏙옙 占쏙옙)
 	// SELECT * FROM (SELECT ROWNUM RN, M.* FROM (SELECT * FROM MEMBER)M)
 	// WHERE RN BETWEEN 1 AND 10
 	// ORDER BY mGRADE DESC, mRDATE ;
@@ -355,7 +355,7 @@ public class MemberDao {
 	}
 
 
-//		ȸ���� SELECT COUNT(*) CNT FROM MEMBER;
+//		회占쏙옙占쏙옙 SELECT COUNT(*) CNT FROM MEMBER;
 	public int memberCnt() {
 		int totalCnt = 0;
 		Connection conn = null;
@@ -390,7 +390,7 @@ public class MemberDao {
 	}
 	
 	
-	//ȸ�� Ż�� DELETE FROM MEMBER WHERE MID = 'NNN';
+	//회占쏙옙 탈占쏙옙 DELETE FROM MEMBER WHERE MID = 'NNN';
 	
 
 
@@ -405,7 +405,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "회원탈퇴 성공" : "실패");
+			System.out.println(result == SUCCESS ? "�쉶�썝�깉�눜 �꽦怨�" : "�떎�뙣");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -423,7 +423,7 @@ public class MemberDao {
 		return result;
 	}
 	
-	//ȸ�� ��� ���� UPDATE MEMBER SET mGRADE='2' WHERE mID='aaa';
+	//회占쏙옙 占쏙옙占� 占쏙옙占쏙옙 UPDATE MEMBER SET mGRADE='2' WHERE mID='aaa';
 	
 	public int gradeUp(String mid) {
 		int result = FAIL;
@@ -436,7 +436,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "��� �� ����" : "��� �� ����");
+			System.out.println(result == SUCCESS ? "占쏙옙占� 占쏙옙 占쏙옙占쏙옙" : "占쏙옙占� 占쏙옙 占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -454,7 +454,7 @@ public class MemberDao {
 		return result;
 	}
     
-	//��� �ٿ�
+	//占쏙옙占� 占쌕울옙
 	public int gradeDown(String mid) {
 		int result = FAIL;
 		Connection conn = null;
@@ -466,7 +466,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "��� �ٿ� ����" : "��� �ٿ� ����");
+			System.out.println(result == SUCCESS ? "占쏙옙占� 占쌕울옙 占쏙옙占쏙옙" : "占쏙옙占� 占쌕울옙 占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -534,7 +534,7 @@ public class MemberDao {
 	}
 
 	
-		//회원 탈퇴
+		//�쉶�썝 �깉�눜
 	
 	public int withdrawal(String mid) {
 		int result = FAIL;
@@ -547,7 +547,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "회원 탈퇴 완료" : "회원탈퇴실패");
+			System.out.println(result == SUCCESS ? "�쉶�썝 �깉�눜 �셿猷�" : "�쉶�썝�깉�눜�떎�뙣");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -564,4 +564,82 @@ public class MemberDao {
 		return result;
 
 	}
+	
+	
+	public String idFind(String memail) {
+		String fmid = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT MID FROM MEMBER WHERE MEMAIL= ? ";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memail);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+
+				fmid = rs.getString("mid");
+		
+				
+
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+		return fmid;
+	}
+	
+	public String pwFind(String memail) {
+		String fmpw = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT MPW FROM MEMBER WHERE MEMAIL= ? ";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memail);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+
+				fmpw = rs.getString("mpw");
+		
+				
+
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+		return fmpw;
+	}
+	
 }

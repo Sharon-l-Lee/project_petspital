@@ -33,6 +33,19 @@
 	text-align: center;
 	font-weight: bold;
 }
+#wrap .w_btn {
+	padding:10px 30px;
+	outline: none;
+	border: 0;
+	margin-bottom:10px;
+	background-color: #00A19D;
+	color:#F9F7F7;
+	position: relative;
+	left: 81%;
+	font-family: 'GmarketSansMedium';
+	font-size:1.13em;
+	cursor: pointer;
+}
 
 #wrap .content {
 	margin-top: 50px;
@@ -71,11 +84,18 @@
 
 #wrap .content .content_box dd {
 	padding: 15px 0 0 200px;
+	width:40%;
+	
 }
 
 #wrap .content .content_box dd a {
 	text-decoration: none;
 	color: black;
+	width:300px;
+	position:relative;
+	display:inline-block;
+	right:80px;
+	
 }
 
 .box_3 {

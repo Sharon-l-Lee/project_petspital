@@ -37,7 +37,7 @@ public class FileboardDao {
 	}
 	
 	
-	//�Խ��� ����Ʈ
+	//
 	public ArrayList<FileboardDto> listBoard(int startRow, int endRow) {
 		ArrayList<FileboardDto> dtos = new ArrayList<FileboardDto>();
 		Connection conn = null;
@@ -92,7 +92,7 @@ public class FileboardDao {
 
 	}
 
-//	--2.��ϵ� �� �� public int count()
+//	--2. public int count()
 //	SELECT COUNT(*) FROM FILEBOARD;
 	public int countBoard() {
 		int cnt = 0;
@@ -127,7 +127,7 @@ public class FileboardDao {
 		return cnt;
 	}
 	
-//	�۾��� public 
+//	
 	
 	public int writeBoard(String mid, String fsubject, String fcontent, String ffilename, String ffilename2,String ffilename3, String fip ) {
 		int result = FAIL;
@@ -137,7 +137,7 @@ public class FileboardDao {
 		String sql = "INSERT INTO FILEBOARD (fNUM, MID, fSUBJECT, fCONTENT, fFILENAME, fFILENAME2, fFILENAME3, fGROUP, fSTEP, fINDENT, fIP)" + 
 				"    VALUES(FILEBOARD_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, FILEBOARD_SEQ.CURRVAL, 0, 0, ?)";
 		
-		try { //���۾���� step�� ���� ��� 0����
+		try { //占쏙옙占쌜억옙占쏙옙占� step占쏙옙 占쏙옙占쏙옙 占쏙옙占� 0占쏙옙占쏙옙
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
@@ -148,9 +148,9 @@ public class FileboardDao {
 			pstmt.setString(6, ffilename3);
 			pstmt.setString(7, fip);
 			result = pstmt.executeUpdate();
-			System.out.println("���۾��� ����");
+			System.out.println("占쏙옙占쌜억옙占쏙옙 占쏙옙占쏙옙");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"���۾������");
+			System.out.println(e.getMessage()+"占쏙옙占쌜억옙占쏙옙占쏙옙占�");
 		} finally {
 			
 				try {
@@ -166,7 +166,7 @@ public class FileboardDao {
 		return result;
 	}
 
-//	 �亯�� ���� �� �۾� (void��)
+//	
 
 	private void preReplyStepA(int fgroup, int fstep){
 		
@@ -174,14 +174,14 @@ public class FileboardDao {
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE FILEBOARD SET fSTEP =fSTEP +1 WHERE fGROUP = ? AND fSTEP > ?";
 		
-		try { //���۾���� step�� ���� ��� 0����
+		try { //
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fgroup);
 			pstmt.setInt(2, fstep);
 			
 			 int result = pstmt.executeUpdate();
-			System.out.println(result == 0? "ù�亯" : result +"�� ���� ����");
+			System.out.println(result == 0? "첫占썰변" : result +"占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -199,10 +199,10 @@ public class FileboardDao {
 	}
 	
 	
-//	�亯�� ����
+//	
 	public int replyBoard (String mid, String fsubject, String fcontent, String ffilename, String ffilename2, String ffilename3, int fgroup, int fstep, int findent, String fip){
 		
-		preReplyStepA(fgroup, fstep); //�亯�� ���� fstep����
+		preReplyStepA(fgroup, fstep); //
 		int result =FAIL;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -225,10 +225,10 @@ public class FileboardDao {
 			pstmt.setInt(9, findent+1);
 			pstmt.setString(10, fip);
 			result = pstmt.executeUpdate();
-			System.out.println("�亯�۾��� ����");
+			System.out.println("占썰변占쌜억옙占쏙옙 占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			
-			System.out.println(e.getMessage()+"�亯�۾��� ����");
+			System.out.println(e.getMessage()+"占썰변占쌜억옙占쏙옙 占쏙옙占쏙옙");
 		} finally {
 			
 				try {
@@ -246,7 +246,7 @@ public class FileboardDao {
 		
 	}
 	
-	//�� �����ϱ� 
+	// 
 	public int modifyBoard(int fnum, String fsubject, String fcontent, String ffilename, String ffilename2, String ffilename3, String fip){
 		int result = FAIL;
 		Connection conn = null;
@@ -271,7 +271,7 @@ public class FileboardDao {
 			pstmt.setString(6, fip);
 			pstmt.setInt(7, fnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "���� ����" : "��������");
+			System.out.println(result ==SUCCESS ? "占쏙옙占쏙옙 占쏙옙占쏙옙" : "占쏙옙占쏙옙占쏙옙占쏙옙");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -292,9 +292,9 @@ public class FileboardDao {
 	
 	}
 	
-//	�� �����ϱ�
+//	
 
-	
+	//관리자 삭제
 	public int deleteBoard(int fnum){
 		int result = FAIL;
 		Connection conn = null;
@@ -306,9 +306,9 @@ public class FileboardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, fnum);
 			result = pstmt.executeUpdate();
-			System.out.println("���� ����");
+			System.out.println("");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"��������");
+			System.out.println(e.getMessage()+"");
 		} finally {
 			
 				try {
@@ -325,7 +325,7 @@ public class FileboardDao {
 		
 	}
 
-	//��ȸ�� �ø��� 
+	//占쏙옙회占쏙옙 占시몌옙占쏙옙 
 
 	
 	private void hitUp(int fnum) {
@@ -356,7 +356,7 @@ public class FileboardDao {
 	}
 	
 	
-//	�󼼺���(FNUM���� DTO��������) �󼼺��� + ��ȸ�� ���̱�
+//	占쏢세븝옙占쏙옙(FNUM占쏙옙占쏙옙 DTO占쏙옙占쏙옙占쏙옙占쏙옙) 占쏢세븝옙占쏙옙 + 占쏙옙회占쏙옙 占쏙옙占싱깍옙
 	
 	public FileboardDto getBoard(int fnum){
 		hitUp(fnum);
@@ -409,7 +409,7 @@ public class FileboardDao {
 	}
 
 	
-	//�亯�� �ޱ�, �����ϱ⸦ ���� �۹�ȣ�� dto�ҷ�����
+	//占썰변占쏙옙 占쌨깍옙, 占쏙옙占쏙옙占싹기를 占쏙옙占쏙옙 占쌜뱄옙호占쏙옙 dto占쌀뤄옙占쏙옙占쏙옙
 	
 	public FileboardDto reply_modifyView(int fnum){
 		FileboardDto dto = null;
@@ -460,7 +460,7 @@ public class FileboardDao {
 		
 	}
 
-//ȸ�� Ż�� ���� �� ���� ����
+//회占쏙옙 탈占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	public void withdrawDeleteBoard(int mid){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -471,9 +471,9 @@ public class FileboardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mid);
 			pstmt.executeUpdate();
-			System.out.println("�Խ��� �� ���� ���� ����");
+			System.out.println("占쌉쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"�Խ��� �� ���� ��������");
+			System.out.println(e.getMessage()+"占쌉쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙");
 		} finally {
 			
 				try {
@@ -548,7 +548,7 @@ public class FileboardDao {
 		return dtos;
 
 	}
-	//�� �� ����
+	//占쏙옙 占쏙옙 占쏙옙占쏙옙
 	//SELECT COUNT(*) FROM FILEBOARD WHERE MID='aaa';
 	
 	public int countMyBoard(String mid) {
@@ -585,7 +585,7 @@ public class FileboardDao {
 		return cnt;
 	}
 	
-	//검색
+	//寃��깋
 	
 	public ArrayList<FileboardDto> searchList(String fsubject, int startRow, int endRow) {
 		ArrayList<FileboardDto> dtos = new ArrayList<FileboardDto>();
@@ -642,7 +642,7 @@ public class FileboardDao {
 
 	}
 	
-	//검색된 글 갯수
+	//寃��깋�맂 湲� 媛��닔
 	public int countSearch(String fsubject) {
 		int cnt = 0;
 		Connection conn = null;
@@ -677,7 +677,7 @@ public class FileboardDao {
 		return cnt;
 	}
 	
-	//탈퇴용 글삭제
+	//�깉�눜�슜 湲��궘�젣
 			public void withdrawfb(String mid){
 				Connection conn = null;
 				PreparedStatement pstmt = null;
@@ -688,9 +688,9 @@ public class FileboardDao {
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, mid);;
 					pstmt.executeUpdate();
-					System.out.println("자유게시판 글 강제 삭제 성공");
+					System.out.println("�옄�쑀寃뚯떆�뙋 湲� 媛뺤젣 �궘�젣 �꽦怨�");
 				} catch (SQLException e) {
-					System.out.println(e.getMessage()+"자유게시판 글 강제 삭제 실패");
+					System.out.println(e.getMessage()+"�옄�쑀寃뚯떆�뙋 湲� 媛뺤젣 �궘�젣 �떎�뙣");
 				} finally {
 					
 						try {

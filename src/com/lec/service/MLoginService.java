@@ -19,7 +19,7 @@ public class MLoginService implements Service {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", mDao.idDto(mid));
 		}else {
-			request.setAttribute("loginErrorMsg", "ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”");
+			request.setAttribute("loginErrorMsg", "¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä");
 			
 		}
 

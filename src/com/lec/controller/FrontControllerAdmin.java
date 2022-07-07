@@ -83,7 +83,7 @@ public class FrontControllerAdmin extends HttpServlet {
 			service = new AmGradeDownService();
 			service.execute(request, response);
 			viewPage = "memberView.let";
-		}else if(comm.equals("/sBoardWriteView.let")) {//占쏙옙占쏙옙 占쏙옙占쏙옙 view
+		}else if(comm.equals("/sBoardWriteView.let")) {//
 			service = new ASymptomBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "adminSBoard/sBoardWrite.jsp";
@@ -125,23 +125,23 @@ public class FrontControllerAdmin extends HttpServlet {
 			service = new ANoticeDeleteService();
 			service.execute(request, response);
 			viewPage = "noticeList.let";
-		}else if(comm.equals("/noticeContent.let")) {//怨듭��궗�빆 �꽭遺��궡�슜
+		}else if(comm.equals("/noticeContent.let")) {//
 			service = new ANoticeContentService();
 			service.execute(request, response);
 			viewPage = "notice/noticeContent.jsp";
-		}else if(comm.equals("/noticeModifyView.let")) {//怨듭��궗�빆 �닔�젙 view
+		}else if(comm.equals("/noticeModifyView.let")) {//
 			service = new ANoticeModifyViewService();
 			service.execute(request, response);
 			viewPage = "notice/noticeModify.jsp";
-		}else if(comm.equals("/noticeModify.let")) {//怨듭��궗�빆 �닔�젙 
+		}else if(comm.equals("/noticeModify.let")) {//
 			service = new ANoticeModifyService();
 			service.execute(request, response);
 			viewPage = "noticeList.let";
-		}else if(comm.equals("/idConfirm.let")) {//�븘�씠�뵒 �솗�씤
+		}else if(comm.equals("/idConfirm.let")) {//
 			service = new MIdConfirmService();
 			service.execute(request, response);
 			viewPage = "member/idConfirm.jsp";
-		}else if(comm.equals("/emailConfirm.let")) {//�씠硫붿씪 �솗�씤
+		}else if(comm.equals("/emailConfirm.let")) {//
 			service = new MEmailConfirmService();
 			service.execute(request, response);
 			viewPage = "member/emailConfirm.jsp";
@@ -150,6 +150,7 @@ public class FrontControllerAdmin extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "admin/adminFboardList.jsp";
 		}
+		
 		
 		
 		

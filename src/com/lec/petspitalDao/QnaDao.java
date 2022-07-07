@@ -36,7 +36,7 @@ public class QnaDao {
 	}
 	
 	
-	//QNA출력
+	//QNA異쒕젰
 		public ArrayList<QnaDto> listQnA(int startRow, int endRow) {
 			ArrayList<QnaDto> dtos = new ArrayList<QnaDto>();
 			Connection conn = null;
@@ -143,7 +143,7 @@ public class QnaDao {
 
 		}
 
-//		글 갯수
+//		湲� 媛��닔
 //		SELECT COUNT(*) FROM FILEBOARD;
 		public int countQnA() {
 			int cnt = 0;
@@ -178,7 +178,7 @@ public class QnaDao {
 			return cnt;
 		}
 		
-//		qna질문쓰기
+//		qna吏덈Ц�벐湲�
 		
 		public int writeQ(String mid, String qsubject, String qcontent, String qfilename, String qip ) {
 			int result = FAIL;
@@ -197,9 +197,9 @@ public class QnaDao {
 				pstmt.setString(4, qfilename);
 				pstmt.setString(5, qip);
 				result = pstmt.executeUpdate();
-				System.out.println("q쓰기성공");
+				System.out.println("q�벐湲곗꽦怨�");
 			} catch (SQLException e) {
-				System.out.println(e.getMessage()+"q쓰기실패");
+				System.out.println(e.getMessage()+"q�벐湲곗떎�뙣");
 			} finally {
 				
 					try {
@@ -216,7 +216,7 @@ public class QnaDao {
 		}
 
 	
-//		 답변 쓰기 전
+//		 �떟蹂� �벐湲� �쟾
 
 		private void preReply(int qgroup, int qstep){
 			
@@ -224,14 +224,14 @@ public class QnaDao {
 			PreparedStatement pstmt = null;
 			String sql = "UPDATE QNA SET qSTEP =qSTEP +1 WHERE qGROUP = ? AND qSTEP > ?";
 			
-			try { //���۾���� step�� ���� ��� 0����
+			try { //占쏙옙占쌜억옙占쏙옙占� step占쏙옙 占쏙옙占쏙옙 占쏙옙占� 0占쏙옙占쏙옙
 				conn = ds.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, qgroup);
 				pstmt.setInt(2, qstep);
 				
 				 int result = pstmt.executeUpdate();
-				System.out.println(result == 0? "답변글 전 조정 완료" : result +"답변글 전 조정 실패");
+				System.out.println(result == 0? "�떟蹂�湲� �쟾 議곗젙 �셿猷�" : result +"�떟蹂�湲� �쟾 議곗젙 �떎�뙣");
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			} finally {
@@ -249,7 +249,7 @@ public class QnaDao {
 		}
 		
 		
-//		답변
+//		�떟蹂�
 		public int replyA(String mid, String qsubject, String qcontent, String qfilename, int qgroup, int qstep, int qindent, String qip){
 			
 			preReply(qgroup, qstep); 
@@ -274,10 +274,10 @@ public class QnaDao {
 				pstmt.setInt(7, qindent+1);
 				pstmt.setString(8, qip);
 				result = pstmt.executeUpdate();
-				System.out.println("답변글완료");
+				System.out.println("�떟蹂�湲��셿猷�");
 			} catch (SQLException e) {
 				
-				System.out.println(e.getMessage()+"답변글 실패");
+				System.out.println(e.getMessage()+"�떟蹂�湲� �떎�뙣");
 			} finally {
 				
 					try {
@@ -316,7 +316,7 @@ public class QnaDao {
 				pstmt.setString(4, qip);
 				pstmt.setInt(5, qnum);
 				result = pstmt.executeUpdate();
-				System.out.println(result ==SUCCESS ? "수정완료" : "수정실패");
+				System.out.println(result ==SUCCESS ? "�닔�젙�셿猷�" : "�닔�젙�떎�뙣");
 			} catch (SQLException e) {
 				
 				System.out.println(e.getMessage());
@@ -339,7 +339,7 @@ public class QnaDao {
 		
 //		
 
-		//질문삭제
+		//吏덈Ц�궘�젣
 		public int deleteQ(int qnum, int qgroup){
 			predeleteA(qgroup);
 			int result = FAIL;
@@ -353,9 +353,9 @@ public class QnaDao {
 				pstmt.setInt(1, qnum);
 				pstmt.setInt(2, qgroup);
 				result = pstmt.executeUpdate();
-				System.out.println("질문 삭제 성공");
+				System.out.println("吏덈Ц �궘�젣 �꽦怨�");
 			} catch (SQLException e) {
-				System.out.println(e.getMessage()+"질문 삭제실패");
+				System.out.println(e.getMessage()+"吏덈Ц �궘�젣�떎�뙣");
 			} finally {
 				
 					try {
@@ -372,7 +372,7 @@ public class QnaDao {
 			
 		}
 
-		//질문 삭제 전
+		//吏덈Ц �궘�젣 �쟾
 		private void predeleteA(int qgroup) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -401,7 +401,7 @@ public class QnaDao {
 		}
 		
 		
-		//답변 삭제
+		//�떟蹂� �궘�젣
 		public int deleteA(int qnum){
 			int result = FAIL;
 			Connection conn = null;
@@ -413,9 +413,9 @@ public class QnaDao {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, qnum);
 				result = pstmt.executeUpdate();
-				System.out.println("답변 삭제 삭제 성공");
+				System.out.println("�떟蹂� �궘�젣 �궘�젣 �꽦怨�");
 			} catch (SQLException e) {
-				System.out.println(e.getMessage()+"답변 삭제 실패");
+				System.out.println(e.getMessage()+"�떟蹂� �궘�젣 �떎�뙣");
 			} finally {
 				
 					try {
@@ -433,7 +433,7 @@ public class QnaDao {
 		}
 		
 		
-		//조회수
+		//議고쉶�닔
 
 		
 		private void hitUp(int qnum) {
@@ -464,7 +464,7 @@ public class QnaDao {
 		}
 		
 		
-//		전체 가져오기(조회수용)
+//		�쟾泥� 媛��졇�삤湲�(議고쉶�닔�슜)
 		
 		public QnaDto getQna(int qnum){
 			hitUp(qnum);
@@ -516,7 +516,7 @@ public class QnaDao {
 		}
 
 		
-		//�亯�� �ޱ�, �����ϱ⸦ ���� �۹�ȣ�� dto�ҷ�����
+		//占썰변占쏙옙 占쌨깍옙, 占쏙옙占쏙옙占싹기를 占쏙옙占쏙옙 占쌜뱄옙호占쏙옙 dto占쌀뤄옙占쏙옙占쏙옙
 		
 		public QnaDto reply_modifyView(int qnum){
 			QnaDto dto = null;
@@ -565,14 +565,14 @@ public class QnaDao {
 			
 		}
 		
-		//답변 갯수
+		//�떟蹂� 媛��닔
 		//SELECT COUNT(*) FROM QNA WHERE qGROUP = 5;
 		public int countA(int qgroup) {
 			int cnt = 0;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			String sql =  "SELECT COUNT(*) FROM QNA WHERE qGROUP = 5";
+			String sql =  "SELECT COUNT(*) FROM QNA WHERE qGROUP = ?";
 
 			try {
 				conn = ds.getConnection();
@@ -601,6 +601,12 @@ public class QnaDao {
 			return cnt;
 		}
 		
+		//답변글 리스트
+//		select * from 
+//	    (select rownum rn, a.*
+//	    from(select * from qna where qgroup =1 and qstep >0)a)
+//	    where rn between 1 and 10
+		
 
 //	//
 //		public void withdrawDeleteBoard(int mid){
@@ -613,9 +619,9 @@ public class QnaDao {
 //				pstmt = conn.prepareStatement(sql);
 //				pstmt.setInt(1, mid);
 //				pstmt.executeUpdate();
-//				System.out.println("qna삭제성공");
+//				System.out.println("qna�궘�젣�꽦怨�");
 //			} catch (SQLException e) {
-//				System.out.println(e.getMessage()+"qna삭제성공");
+//				System.out.println(e.getMessage()+"qna�궘�젣�꽦怨�");
 //			} finally {
 //				
 //					try {
@@ -690,7 +696,7 @@ public class QnaDao {
 //			return dtos;
 //
 //		}
-//		//�� �� ����
+//		//占쏙옙 占쏙옙 占쏙옙占쏙옙
 //		//SELECT COUNT(*) FROM FILEBOARD WHERE MID='aaa';
 //		
 //		public int countMyBoard(String mid) {
@@ -727,7 +733,7 @@ public class QnaDao {
 //			return cnt;
 //		}
 //		
-//		//검색
+//		//寃��깋
 //		
 //		public ArrayList<FileboardDto> searchList(String fsubject, int startRow, int endRow) {
 //			ArrayList<FileboardDto> dtos = new ArrayList<FileboardDto>();
@@ -784,7 +790,7 @@ public class QnaDao {
 //
 //		}
 //		
-//		//검색된 글 갯수
+//		//寃��깋�맂 湲� 媛��닔
 //		public int countSearch(String fsubject) {
 //			int cnt = 0;
 //			Connection conn = null;
@@ -819,7 +825,7 @@ public class QnaDao {
 //			return cnt;
 //		}
 //		
-//		//탈퇴용 글삭제
+//		//�깉�눜�슜 湲��궘�젣
 //				public int withdrawfb(String mid){
 //					int result = FAIL;
 //					Connection conn = null;
@@ -831,9 +837,9 @@ public class QnaDao {
 //						pstmt = conn.prepareStatement(sql);
 //						pstmt.setString(1, mid);;
 //						result = pstmt.executeUpdate();
-//						System.out.println("자유게시판 글 강제 삭제 성공");
+//						System.out.println("�옄�쑀寃뚯떆�뙋 湲� 媛뺤젣 �궘�젣 �꽦怨�");
 //					} catch (SQLException e) {
-//						System.out.println(e.getMessage()+"자유게시판 글 강제 삭제 실패");
+//						System.out.println(e.getMessage()+"�옄�쑀寃뚯떆�뙋 湲� 媛뺤젣 �궘�젣 �떎�뙣");
 //					} finally {
 //						
 //							try {

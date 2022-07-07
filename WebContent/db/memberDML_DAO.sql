@@ -1,7 +1,7 @@
 SELECT * FROM MEMBER;
 SELECT * FROM ADMIN;
 SELECT * FROM NOTICE;
-SELECT MID FROM MEMBER WHERE MEMAIL='bunny@naver.com';
+SELECT MID FROM MEMBER WHERE MEMAIL='@naver.com';
 SELECT MPW FROM MEMBER WHERE MEMAIL='bunny@naver.com';
 DELETE FROM MEMBER WHERE MID = 'nnn';
 commit;
@@ -158,6 +158,8 @@ UPDATE FILEBOARD SET fSUBJECT='글1(수정)',
 DELETE FROM FILEBOARD WHERE mID='aaa';
 
 --글 삭제(관리자)
+DELETE FROM FILEBOARD WHERE fNUM='10';
+rollback;
 COMMIT;
 
 SELECT COUNT(*) FROM fileboard;
@@ -356,7 +358,14 @@ SELECT COUNT(*) FROM QNA;
 SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.MID = Q.MID AND qNUM='1';
 
 --답변, 수정 상세보기 용 DTO보기
-SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.MID = Q.MID AND qNUM='1';
+SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.MID = m.MID AND qNUM='1';
+
+select * from 
+    (select rownum rn, a.*
+    from(select * from qna where qgroup =1 and qstep >0)a)
+    where rn between 1 and 10;
+select rownum rn, a.*
+    from(select * from qna where qgroup =1 and qstep >0)a;
 --글 강제 삭제
 DELETE FROM QNA Q WHERE MID = 'AAA';
 --조회수
@@ -367,3 +376,5 @@ SELECT * FROM
     (SELECT ROWNUM RN, A.*
     FROM(SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.mID=M.mID and qGroup = 1 and qstep >0 ORDER by qSTEP)A)
     WHERE RN BETWEEN 1 AND 30; 
+SELECT MID FROM MEMBER WHERE MEMAIL='bunny@naver.com';
+SELECT MPW FROM MEMBER WHERE MEMAIL='bunny@naver.com';

@@ -54,9 +54,11 @@ public class qaWriteService implements Service {
 			QnaDao qDao = QnaDao.getInstance();
 			int result = qDao.replyA(mid, qsubject, qcontent, qfilename, qgroup, qstep, qindent, qip);
 			if (result == NoticeDao.SUCCESS) {
-				request.setAttribute("nwriteresult", "질문 쓰기 성공");
+				request.setAttribute("nwriteresult", "답변글 올리기 성공");
+				request.setAttribute("reqgroup", qgroup);
+				request.setAttribute("reqcontent", qcontent);
 			} else {
-				request.setAttribute("nwriteErrorMsg", "질문 쓰기 실패");
+				request.setAttribute("nwriteErrorMsg", "답변글 올리기 실패");
 
 			}
 			request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
@@ -81,7 +83,7 @@ public class qaWriteService implements Service {
 							break;
 						os.write(bs, 0, nReadCnt);
 					} // while
-					System.out.println("파일첨부 복사 완료");
+					System.out.println("�뙆�씪泥⑤� 蹂듭궗 �셿猷�");
 				} // if
 			} catch (Exception e) {
 				System.out.println(e.getMessage());

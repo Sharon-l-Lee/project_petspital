@@ -28,6 +28,7 @@ import com.lec.service.MainService;
 import com.lec.service.MwithdrawalService;
 import com.lec.service.MyModifyService;
 import com.lec.service.Service;
+import com.lec.service.answerViewService;
 import com.lec.service.fBaordCommentModifyViewService;
 import com.lec.service.fBoardCommentDeleteService;
 import com.lec.service.fBoardCommentListService;
@@ -45,7 +46,9 @@ import com.lec.service.hBoardWriteViewService;
 import com.lec.service.hBookmarkInService;
 import com.lec.service.hBookmarkOutService;
 import com.lec.service.hCommentAppendService;
+import com.lec.service.idViewService;
 import com.lec.service.myFboardListService;
+import com.lec.service.pwViewService;
 import com.lec.service.qListAppendService;
 import com.lec.service.qWriteService;
 import com.lec.service.qWriteViewService;
@@ -256,7 +259,22 @@ public class FrontController extends HttpServlet {
 			service = new qnaListService();
 			service.execute(request, response);
 			viewPage = "QnABoard/qnaBoardView2.jsp";
+		}else if (comm.equals("/answerView.do")) {// qna리스트
+			service = new answerViewService();
+			service.execute(request, response);
+			viewPage = "QnABoard/answerView.jsp";
+		}else if (comm.equals("/idpwfindView.do")) {//idpw찾기 View
+			viewPage = "member/idfind.jsp";
+		}else if (comm.equals("/idfind.do")) {// id찾기
+			service = new idViewService();
+			service.execute(request, response);
+			viewPage = "idpwfindView.do";
+		}else if (comm.equals("/pwfind.do")) {// id찾기
+			service = new pwViewService();
+			service.execute(request, response);
+			viewPage = "idpwfindView.do";
 		}
+
 
 
 		

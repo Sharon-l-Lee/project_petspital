@@ -10,12 +10,6 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/freeboard.css" rel="stylesheet">
 
-<script type="text/javascript">
-	function access() {
-		alert('로그인 후 이용해주세요');
-		location.href = "${conPath}/loginView.do";
-	}
-</script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -31,10 +25,6 @@
 			</div>
 			<!-- 게시판 -->
 			<div class="freeboard_wrap">
-				<c:if test="${not empty member || not empty admin }">
-					<button class="w_btn"
-						onclick="location.href='${conPath }/noticeWriteView.let?pageNum=${pageNum }'">글쓰기</button>
-				</c:if>
 				<div class="freeboard">
 					<table>
 						<thead>
@@ -43,7 +33,6 @@
 								<th class="th_title"><span>제목</span></th>
 								<th class="th_name">작성자</th>
 								<th class="th_date">작성일</th>
-								<th class="num">삭제</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,7 +72,6 @@
 											</div>
 										</td>
 										<td class="boardcontent">${fboard.frdate }</td>
-										<td class="boardcontent"><button onclick="">삭제</button></td>
 
 									</tr>
 									
@@ -109,7 +97,7 @@
 					<div class="pagenum">
 						<c:if test="${pageNum > 1}">
 							<div class="number">
-								<a href="${conPath }/freeBoardList.do?pageNum=${pageNum-1 }"><</a>
+								<a href="${conPath }/adminFboardList.let?pageNum=${pageNum-1 }"><</a>
 							</div>
 						</c:if>
 						<c:if test="${pageNum <= 1}">
@@ -118,13 +106,13 @@
 
 						<c:forEach var="i" begin="${startPage }" end="${endPage }">
 							<div class="number">
-								<a href="${conPath }/freeBoardList.do?pageNum=${i }">${i }</a>
+								<a href="${conPath }/adminFboardList.let?pageNum=${i }">${i }</a>
 							</div>
 						</c:forEach>
 
 						<c:if test="${pageNum < endPage}">
 							<div class="number">
-								<a href="${conPath }/freeBoardList.do?pageNum=${pageNum+1 }">></a>
+								<a href="${conPath }/adminFboardList.let?pageNum=${pageNum+1 }">></a>
 							</div>
 						</c:if>
 						<c:if test="${pageNum >= endPage}">

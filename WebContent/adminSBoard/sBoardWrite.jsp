@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/hboardwrite.css" rel="stylesheet">
+<link href="${conPath }/css/sboardwrite.css" rel="stylesheet">
 <link href="${conPath }/se2/css/ko_KR/smart_editor2.css"
 	rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
