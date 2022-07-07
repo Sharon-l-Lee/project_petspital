@@ -127,31 +127,30 @@ flex-direction: row;
 	width:100%;
 	height:800px;
 	margin:0 auto;
-	
 	 border-collapse:collapse; 
 	
 	
 }
 
-thead{
+#wrap #bonmun .freeboard thead{
 	
 	height:80px;
 }
 
-#tabletitle{
+#wrap #bonmun .freeboard  #tabletitle{
 	margin:0 auto;
 	border-bottom: 1px solid lightgray;
 	border-top: 1px solid lightgray;
 }
 
-#tabletitle > th:first-child, th:last-child{
+#wrap #bonmun .freeboard  #tabletitle > th:first-child, th:last-child{
 	width:12%;
 } 
 
-#tabletitle > th:nth-child(3),th:nth-child(4) {
+#wrap #bonmun .freeboard  #tabletitle > th:nth-child(3),th:nth-child(4) {
 	width:20%;
 } 
-#tabletitle > th:nth-child(2){
+#wrap #bonmun .freeboard #tabletitle > th:nth-child(2){
 	width:36%;
 	
 } 
@@ -159,18 +158,21 @@ thead{
 	text-decoration: none;
 }
 
- tbody tr:nth-child(2n+1){
+#sub_content #bonmun .freeboard tbody tr:nth-child(2n+1){
 	/* background-color:#F9F7F7;
 	#F9F7F7 f4f6f8 */
 } 
-table tr{
+#sub_content #bonmun .freeboard table tr{
 	background-color:white;
 	height:50px;
 }
-table tr:hover{
+#sub_content #bonmun .freeboard table tr:hover{
 	background-color:#F9F7F7;
 	border-left:3px solid #00A19D;
 	cursor: pointer;
+}
+#sub_content #bonmun .freeboard table td{
+	height:50px;
 }
 .boardcontent {
 	text-align: center;

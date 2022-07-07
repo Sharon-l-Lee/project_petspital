@@ -1,18 +1,25 @@
 @charset "UTF-8";
-
+*{
+	
+	margin:0;
+	padding:0;
+}
 footer {
 	position: absolute;
 	/* transform: translateY(-100%); */
 	background-color:#bebebe;
 	overflow:hidden;
 	width: 100%;
-	height:25%;
+	height:28%;
 
 	
 }
 
-footer #footer{
+ #footer{
+ position:relative;
+ top:25px;
 	margin-left : 450px;
+
 }
 footer div {
 	float:left;
@@ -23,8 +30,9 @@ footer div.logo {
 	text-align: center;
 }
 footer div.logo img {
-	margin-left:100px;
-	width:220x;
+	position:relative;
+	left:80px;
+	width:300x;
 	height: 150px;
 	padding: 0 0 5px 0;
 
@@ -62,7 +70,7 @@ footer .page{
 	height:50px;
 	line-height:50px;
 	margin-left:100px;
-	margin-top: 13px;
+	margin-top: 20px;
 
 
 	
@@ -71,7 +79,7 @@ footer button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  margin:0 20px;
+  margin:0 30px;
 
  
   

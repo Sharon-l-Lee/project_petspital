@@ -1,4 +1,9 @@
 SELECT * FROM MEMBER;
+SELECT * FROM ADMIN;
+SELECT * FROM NOTICE;
+SELECT MID FROM MEMBER WHERE MEMAIL='bunny@naver.com';
+SELECT MPW FROM MEMBER WHERE MEMAIL='bunny@naver.com';
+DELETE FROM MEMBER WHERE MID = 'nnn';
 commit;
 --멤버 로그인
 SELECT * FROM MEMBER WHERE mID ='aaa' AND mPW ='111';
@@ -314,3 +319,51 @@ SELECT *
 				WHERE RN BETWEEN 1 AND 10;
 SELECT * FROM FILEBOARD WHERE fSUBJECT LIKE '%'||'강아지'||'%';
 SELECT COUNT(*)CNT FROM FILEBOARD WHERE fSUBJECT LIKE '%'||'강아지'||'%';
+
+
+--QNA작성
+--질문의 경우
+INSERT INTO QNA (qNUM, mID, qSUBJECT, qCONTENT, qFILENAME, qRDATE, qGROUP, qSTEP, qINDENT, qIP) 
+    VALUES (QNA_SEQ.NEXTVAL, 'bbb', '질문있습니다', '강아지가 갑자기 이상 행동을 합니다', NULL, SYSDATE, QNA_SEQ.CURRVAL,0,0,'125.10.15'
+    );
+--답변의 경우
+
+--답변글 전
+UPDATE QNA SET qSTEP =qSTEP +1 WHERE qGROUP = 1 AND qSTEP > 0;
+--답변글(로그인 한 사람만)
+
+INSERT INTO QNA (qNUM, mID, qSUBJECT, qCONTENT, qFILENAME, qRDATE, qGROUP, qSTEP, qINDENT, qIP) 
+    VALUES (QNA_SEQ.NEXTVAL, 'bbb', '답변합니다', '온라인 상으로 자세한 증상이 없으면 진단하기 어렵습니다', NULL, SYSDATE, 1,1,1,'125.10.15'
+    );
+    
+ --글 수정 (내 글만
+UPDATE QNA SET qSUBJECT='글1(수정)',
+                qCONTENT='수정된 글입니다',
+                qIP='127.11.16',
+                qFILENAME ='noImg.png',
+                qRDATE = SYSDATE
+                WHERE qNUM='1';
+--글 삭제(내 글만
+DELETE FROM QNA WHERE mID='aaa';
+--글 삭제 전 답변도 삭제
+DELETE FROM QNA WHERE qGROUP=1;
+DELETE FROM QNA WHERE QNUM =1 AND QGROUP = 1;
+--글 삭제(관리자)
+COMMIT;
+SELECT * FROM QNA;
+SELECT COUNT(*) FROM QNA;
+--FNUM로 DTO보기 (글 상세보기  + 조회수 높이기 용)
+SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.MID = Q.MID AND qNUM='1';
+
+--답변, 수정 상세보기 용 DTO보기
+SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.MID = Q.MID AND qNUM='1';
+--글 강제 삭제
+DELETE FROM QNA Q WHERE MID = 'AAA';
+--조회수
+UPDATE QNA SET qHIT = qHIT+1 WHERE qNUM='1';   
+SELECT COUNT(*) FROM QNA WHERE qGROUP = 5;
+--QNA출력
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+    FROM(SELECT Q.*, MNAME FROM QNA Q, MEMBER M WHERE Q.mID=M.mID and qGroup = 1 and qstep >0 ORDER by qSTEP)A)
+    WHERE RN BETWEEN 1 AND 30; 

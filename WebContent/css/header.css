@@ -1,7 +1,8 @@
 @charset "UTF-8";
+
 @font-face {
-    font-family: 'level';
-    src: url('../fonts/NanumSquareL.ttf') format('truetype');
+	font-family: 'level';
+	src: url('../fonts/NanumSquareL.ttf') format('truetype');
 }
 /* @media screen and (max-device-width:979px) {
 	#wrap {
@@ -51,7 +52,6 @@
 header {
 	width: 100%;
 	margin: 0 auto;
-
 }
 
 header #top ul {
@@ -78,29 +78,28 @@ header #top ul li a {
 header #gnb {
 	padding: 35px 0;
 	position: relative;
-	height: 10%;
+	height: 15%;
 	background-color: #F9F7F7;
 	/* border-bottom:2px solid #00A19D; */
 }
 
 header #gnb .logo {
-	
 	display:inline-block;
 	position:relative;
 	width:10%; 
 	height:15%;
 	margin: 0 auto;
 	text-align: center;
+	right:50px;
+	top:20px;
 }
-header #gnb .logo img{
-	
-	position:relative;
-	right:170px;
-	top:10px;
-	/* right:600px;
+
+header #gnb .logo img {
+/* 	position: relative;
+	right: 170px;
+	top: 10px;
+	right:600px;
 	top:50px; */
-	
-	
 }
 
 header #gnb .nav {
@@ -112,6 +111,7 @@ header #gnb .nav {
 header #gnb .nav>ul {
 	display: inline-block;
 	overflow: hidden;
+	right:50px;
 }
 
 header #gnb .nav>ul>li {
@@ -119,13 +119,14 @@ header #gnb .nav>ul>li {
 	float: right;
 	padding: 10px 30px;
 	text-align: center;
+	
 }
 
 header #gnb .nav ul>li>a {
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 1.8em;
-	font-family:'level';
+	font-family: 'level';
 	color: #00A19D;
 }
 

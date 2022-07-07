@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/boardwrite.css" rel="stylesheet">
+<link href="${conPath }/css/hboardwrite.css" rel="stylesheet">
 <link href="${conPath }/se2/css/ko_KR/smart_editor2.css"
 	rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -21,10 +21,8 @@
 
 		});
 	});
-	
-	
-
 </script>
+
 </head>
 <body>
 <body>
@@ -33,19 +31,19 @@
 		<div id="content">
 			<form action="${conPath }/sBoardWrite.let" method="post">
 				<input type="hidden" name="pageNum" value="${pageNum }"> <input
-					type="hidden" name="aid" value="${admin.aid } ">
-					<input type="hidden" name="rnum" value="${param.rnum } ">
-				
-				<div id="borarcontent">
-					<div>
-						<div>카테고리</div>
-						<div>
+					type="hidden" name="aid" value="${admin.aid } "> <input
+					type="hidden" name="rnum" value="${param.rnum } ">
+
+				<div id="boradcontent">
+					<div id="category">
+						<div class="formtitle">카테고리</div>
+						<div id="scategoryid">
 							<select name="scategoryid">
 								<option>증상 선택</option>
 								<c:forEach var="i" items="${slist }">
 									<option value="${i.scategoryid }">${i.scategoryname }</option>
 								</c:forEach>
-								
+
 							</select>
 						</div>
 					</div>
@@ -55,7 +53,7 @@
 							class="ipt_title" required="required">
 					</div>
 
-					
+
 					<div class="formtitle">내용</div>
 					<div class="editor">
 						<textarea name="scontent" id="scontent"

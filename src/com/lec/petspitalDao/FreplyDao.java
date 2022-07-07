@@ -273,8 +273,7 @@ public class FreplyDao {
 	}
 	
 	//탈퇴용 글삭제 DELETE FROM FREPLY WHERE MID ='7';
-	public int withdrawfr(String mid){
-		int result = FAIL;
+	public void withdrawfr(String mid){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "DELETE FROM FREPLY WHERE MID = ?";
@@ -283,7 +282,7 @@ public class FreplyDao {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);;
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			System.out.println("자유게시판 댓글 강제 삭제 성공");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage()+"자유게시판 댓글 강제 삭제 실패");
@@ -299,7 +298,6 @@ public class FreplyDao {
 				
 				}
 		}
-		return result;
 		
 	}
 

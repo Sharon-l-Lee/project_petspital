@@ -15,7 +15,7 @@
 	<footer>
 		<div id="footer">
 		<div class="logo">
-			<img src="${conPath }/img/logo.png">
+			<img src="${conPath }/img/footerlogo.png">
 		</div>
 		<div class="address">
 			<ul>

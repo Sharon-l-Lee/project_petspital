@@ -20,6 +20,7 @@
 
 #wrap #content{
 	width:70%;
+	height:100%;
 	margin:0 auto;
 	
 }
@@ -39,7 +40,7 @@
 }
 
 
-#wrap #content .freeboard_wrap .w_btn {
+#wrap #content .w_btn {
 	padding:10px 30px;
 	outline: none;
 	border: 0;
@@ -50,22 +51,34 @@
 	left: 90.5%;
 	font-family: 'GmarketSansMedium';
 	font-size:1.13em;
+	cursor: pointer;
 }
+
 #wrap #content .freeboard {
-	
+	height:90%;
 	/* border:1px solid lightgray; */
 /* 	border-radius: 10px; */
 	/* /* padding : 60px 0px; */
 	/*box-shadow: 2px 2px 2px 2px gray; */
 }
+
+#wrap #content .freeboard #rcategoryname{
+	width:150px;
+	height:25px;
+	margin-bottom:20px;
+}
 #wrap #content .freeboard table{
 	width:100%;
-	height:800px;
 	margin:0 auto;
 	
-	 border-collapse:collapse; 
+	border-collapse:collapse; 
 	
 	
+}
+
+.freeboard table tr{
+	background-color:white;
+	height:50px;
 }
 
 thead{
@@ -90,6 +103,9 @@ thead{
 	width:36%;
 	
 } 
+.freeboard table .none{
+	text-align: center;
+}
  a{
 	text-decoration: none;
 }
@@ -98,13 +114,17 @@ thead{
 	/* background-color:#F9F7F7;
 	#F9F7F7 f4f6f8 */
 } 
-table tr{
-	background-color:white;
-}
+
 table tr:hover{
 	background-color:#F9F7F7;
 	border-left:3px solid #00A19D;
 	cursor: pointer;
+}
+.freeboard table .view {
+	
+}
+.freeboard table .hide {
+	display: none;
 }
 .boardcontent {
 	height:10%;

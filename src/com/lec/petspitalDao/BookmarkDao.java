@@ -230,8 +230,7 @@ public class BookmarkDao {
 	//탈퇴용 북마크 삭제
 	
 	//탈퇴용 글삭제
-	public int withdrawbm(String mid){
-		int result = FAIL;
+	public void withdrawbm(String mid){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "DELETE FROM BOOKMARK WHERE MID = ?";
@@ -240,7 +239,7 @@ public class BookmarkDao {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);;
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			System.out.println("북마크 강제 삭제 성공");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage()+"북마크 글 강제 삭제 실패");
@@ -256,7 +255,6 @@ public class BookmarkDao {
 				
 				}
 		}
-		return result;
 		
 	}
 	

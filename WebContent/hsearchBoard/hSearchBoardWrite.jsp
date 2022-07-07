@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/boardwrite.css" rel="stylesheet">
+<link href="${conPath }/css/hboardwrite.css" rel="stylesheet">
 <link href="${conPath }/se2/css/ko_KR/smart_editor2.css"
 	rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -35,11 +35,11 @@
 				<input type="hidden" name="pageNum" value="${pageNum }"> <input
 					type="hidden" name="mid" value="${member.mid } ">
 				
-				<div id="borarcontent">
-					<div>
-						<div>카테고리</div>
-						<div>
-							<select name="rcategoryid">
+				<div id="boradcontent">
+					<div id="category">
+						<div class="formtitle">카테고리</div>
+						<div id="rcategoryid">
+							<select class="rcategoryid">
 								<option>동물 선택</option>
 								<c:forEach var="i" items="${rlist }">
 									<option value="${i.rcategoryid }">${i.rcategoryname }</option>

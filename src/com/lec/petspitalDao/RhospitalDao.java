@@ -510,8 +510,7 @@ public class RhospitalDao {
 		}
 		
 //탈퇴용 글삭제
-		public int withdrawho(String mid){
-			int result = FAIL;
+		public void withdrawho(String mid){
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = "DELETE FROM RHOSPITAL WHERE MID =?";
@@ -520,7 +519,7 @@ public class RhospitalDao {
 				conn = ds.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mid);;
-				result = pstmt.executeUpdate();
+				pstmt.executeUpdate();
 				System.out.println("병원 글 강제 삭제 성공");
 			} catch (SQLException e) {
 				System.out.println(e.getMessage()+"병원 글 강제 삭제 실패");
@@ -536,7 +535,6 @@ public class RhospitalDao {
 					
 					}
 			}
-			return result;
 			
 		}
 

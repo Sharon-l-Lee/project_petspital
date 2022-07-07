@@ -19,10 +19,15 @@
 
 		});
 	});
-	
+
 	function access() {
 		alert('로그인 후 이용해주세요');
 		location.href = "${conPath}/loginView.do";
+	}
+	function accessgrade() {
+		
+		alert('권한이 부족합니다');
+		
 	}
 </script>
 </head>
@@ -41,9 +46,19 @@
 						<p class="tcol">등록된 병원 목록입니다. 동물 별 병원 리스트 출력이 가능합니다.</p>
 					</div>
 					<!-- 게시판 -->
-
-					<button class="w_btn"
-						onclick="location.href='${conPath }/hBoardWriteView.do?pageNum=${pageNum }'">글쓰기</button>
+					<c:if
+						test="${not empty member && member.mgrade eq 2 || not empty admin  }">
+						<button class="w_btn"
+							onclick="location.href='${conPath }/hBoardWriteView.do?pageNum=${pageNum }'">글쓰기</button>
+					</c:if>
+					<c:if test="${empty admin && empty member }">
+							<button class="w_btn"
+								onclick="access();">글쓰기</button>
+						</c:if>
+					<c:if test="${not empty member && member.mgrade eq 1 }">
+							<button class="w_btn"
+								onclick="accessgrade();">글쓰기</button>
+						</c:if>
 					<div class="freeboard">
 						<div>
 							<select id="rcategoryname">
@@ -68,7 +83,11 @@
 								<%-- 	<c:if test="${HboardView.size() != 0  && (rlist.categoryid != 0)}">
 								
 								</c:if> --%>
-
+								<c:if test="${HboardView.size() eq 0  }">
+									<tr>
+										<td colspan="6" class="none">등록된 병원이 없습니다</td>
+									</tr>
+								</c:if>
 								<c:if test="${HboardView.size() != 0  }">
 									<c:forEach var="hboard" items="${HboardView }">
 										<tr>

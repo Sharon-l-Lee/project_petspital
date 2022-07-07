@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"> -->
-<link rel="stylesheet" href="/resources/demos/style.css">  
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="${conPath }/js/jqueryui/jquery-ui.js"></script>
 <!-- <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> -->
@@ -25,17 +25,21 @@
 	$(function() {
 		$("#tabs").tabs();
 	});
-
-
 </script>
 </head>
 <body>
+	<c:if test="${not empty loginErrorMsg}">
+		<script>
+			alert('${loginErrorMsg}');
+			history.back();
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"></jsp:include>
 
 	<div id="loginForm_wrap">
-					<div id="login_title">
-						<h2>로그인</h2>
-					</div>
+		<div id="login_title">
+			<h2>로그인</h2>
+		</div>
 
 		<div id="tabs">
 			<ul>
@@ -68,7 +72,7 @@
 				</div>
 				<div id="go_join">
 					<p>
-						<a href="${conPath }/hmember/join.jsp">회원가입 / Join Us →</a>
+						<a href="${conPath }/joinView.do">회원가입 / Join Us →</a>
 					</p>
 				</div>
 			</div>

@@ -34,6 +34,9 @@ public class MJoinService implements Service {
 			  HttpSession session = request.getSession();
 			  session.setAttribute("mid", mid); // 
 			  request.setAttribute("join_result", "가입 성공" );
+		  }else {
+			  request.setAttribute("joinErrorMsg", "가입 실패" );
+			  
 		  }
 	}
 

@@ -18,6 +18,9 @@ public class MLoginService implements Service {
 		if(result == MemberDao.LOGIN_SUCCESS) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", mDao.idDto(mid));
+		}else {
+			request.setAttribute("loginErrorMsg", "아이디 혹은 비밀번호를 확인하세요");
+			
 		}
 
 	}

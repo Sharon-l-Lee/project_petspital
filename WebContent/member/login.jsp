@@ -15,7 +15,10 @@
 	rel="stylesheet">
 </head>
 <body>
+	
+	
 	<jsp:include page="../main/header.jsp"></jsp:include>
+	
 	<div id="loginForm_wrap">
 
 		<form action="${conPath }/login.do" method="post">

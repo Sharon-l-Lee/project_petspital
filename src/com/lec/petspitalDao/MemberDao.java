@@ -405,7 +405,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "ȸ������" : "����");
+			System.out.println(result == SUCCESS ? "회원탈퇴 성공" : "실패");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {

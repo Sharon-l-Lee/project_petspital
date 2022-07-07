@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/mypage.css" rel="stylesheet">
+<link href="${conPath }/css/mypage2.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -18,7 +18,7 @@
 				<div class="mypage">
 					<div class="mypage_nav">
 						<ul class="subnav">
-							<li><a href="${conPath }/memberView.let" class="menu"><span>회원 정보 및 등급관리</span></a></li>
+							<li><a href="${conPath }/memberView.let" class="menu">회원 관리</a></li>
 							<li><a href="#" class="menu"><span>관리자 글 관리</span></a>
 								<ul class="subm">
 									<li><a href="${conPath }/noticeList.let" class="submenu">공지사항</a></li>
@@ -29,9 +29,14 @@
 									<li><a href="#" class="submenu">자유게시판</a></li>
 									<li><a href="#" class="submenu">QNA</a></li>
 								</ul></li>
-					<!-- 		<li><a href="#" class="menu"><span>북마크 보기</span></a></li> -->
+							
+							<li><a href="${conPath }/mWithdrawal.do" class="menu">회원
+									탈퇴</a></li>
 						</ul>
 					</div>
+
+
+
 					<div class="mypage_content">
 
 
@@ -51,10 +56,10 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
-
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

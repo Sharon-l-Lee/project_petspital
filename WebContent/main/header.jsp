@@ -46,11 +46,11 @@
 		<div id="gnb">
 			<div class="nav">
 			<div class="logo">
-				<img src="${conPath }/img/logo_transp.png" width=100%>
+				<img src="${conPath }/img/logo_transp.png" width=100% height=80%>
 			</div>
 				<ul>
 					<li><a href='${conPath }/freeBoardList.do'>자유게시판</a>
-					<li><a href=''>Q&A</a></li>
+					<li><a href='${conPath }/qnaList.do'>Q&A</a></li>
 					<li><a href=''>동물병원 검색</a>
 						<ul class="sub_nav">
 							<li><a href='${conPath }/hsearchBoard/mapboard.jsp'>지도로
@@ -68,7 +68,6 @@
 			</div>
 
 		</div>
-		<div id="lnb"></div>
 	</header>
 </body>
 </html>

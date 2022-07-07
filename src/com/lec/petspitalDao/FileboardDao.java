@@ -678,8 +678,7 @@ public class FileboardDao {
 	}
 	
 	//탈퇴용 글삭제
-			public int withdrawfb(String mid){
-				int result = FAIL;
+			public void withdrawfb(String mid){
 				Connection conn = null;
 				PreparedStatement pstmt = null;
 				String sql = "DELETE FROM FILEBOARD WHERE MID =?";
@@ -688,7 +687,7 @@ public class FileboardDao {
 					conn = ds.getConnection();
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, mid);;
-					result = pstmt.executeUpdate();
+					pstmt.executeUpdate();
 					System.out.println("자유게시판 글 강제 삭제 성공");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage()+"자유게시판 글 강제 삭제 실패");
@@ -704,7 +703,6 @@ public class FileboardDao {
 						
 						}
 				}
-				return result;
 				
 			}
 

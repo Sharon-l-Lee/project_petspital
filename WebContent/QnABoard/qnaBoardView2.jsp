@@ -9,12 +9,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/freeboard.css" rel="stylesheet">
-<script type="text/javascript">
-function access() {
-	alert('로그인 후 이용해주세요');
-	location.href = "${conPath}/loginView.do";
-}
+<link href="${conPath }/js/jqueryui/jquery-ui.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="${conPath }/js/jqueryui/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+		var header = $( "#accordion" ).accordion( "option", "header" );
+		$( "#accordion" ).accordion( "option", "header", ".subj" );
+	
+		
+	});
 </script>
+
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -26,67 +37,40 @@ function access() {
 
 					<div class="title_area">
 						<div class="info_title">
-							<h2 class="tit">공지게시판</h2>
+							<h2 class="tit">QnA게시판</h2>
 						</div>
-						<p class="tcol">공지글이 올라오는 곳입니다.</p>
+						<p class="tcol">질문과 답변을 올릴 수 있습니다</p>
 					</div>
 					<!-- 게시판 -->
-					
-						<c:if test="${not empty admin }">
+					<div class="freeboard_wrap">
+						<c:if test="${not empty member }">
 							<button class="w_btn"
-								onclick="location.href='${conPath }/noticeWriteView.let?pageNum=${pageNum }'">글쓰기</button>
-						</c:if>
-						<c:if test="${empty admin }">
-							<button class="w_btn"
-								onclick="access();">글쓰기</button>
+								onclick="location.href='${conPath }/qWriteView.do?pageNum=${pageNum }'">글쓰기</button>
 						</c:if>
 						<div class="freeboard">
-							<table>
-								<thead>
-									<tr id="tabletitle">
-										<th class="num">No</th>
-										<th class="th_title"><span>제목</span></th>
-										<th class="th_name">작성자</th>
-										<th class="th_date">작성일</th>
-										<th class="num">조회수</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:if test="${noticeView.size() eq 0 }">
-									<tr>
-										<td colspan="6" class="none">공지사항이 없습니다</td>
-									</tr>
-								</c:if>
-									<c:if test="${noticeView.size() != 0  }">
-										<c:forEach var="notice" items="${noticeView }">
-											<tr>
-												<td class="boardcontent">
-													<div class="boardnum">
-														<div>${notice.nnum }</div>
-													</div>
-												</td>
-												<td class="boardcontent">
-													<div class="boardtitle">
-														<div>
-															<a
-																href="${conPath }/noticeContent.let?nnum=${notice.nnum }&pageNum=${pageNum }">${notice.nsubject }
-															</a>
-														</div>
-													</div>
-												</td>
-												<td class="boardcontent">
-													<div class="boardwriter">
-														<div>${notice.aname }</div>
-													</div>
-												</td>
-												<td class="boardcontent">${notice.nrdate }</td>
-												<td class="boardcontent">${notice.nhit }</td>
 
-											</tr>
-										</c:forEach>
-									</c:if>
-								</tbody>
-							</table>
+							<div id="accordion">
+								<c:if test="${qnaList.size() != 0  }">
+									<c:forEach var="qna" items="${qnaList }">
+
+										<div class="subj">Q: ${qna.qsubject } </div>
+										<div>
+											<p>질문 내용 : ${qna.qcontent }</p>
+											<div>
+												A:
+											</div>
+												<c:if test="${not empty member || not empty admin }">
+													<div class="re_btn">
+														<button onclick="location.href='${conPath}/qWriteView.do'">답변</button>
+														<a href="">답변 갯수 : </a>
+													</div>
+												</c:if>
+										</div>
+
+									</c:forEach>
+								</c:if>
+							</div>
+							<!-- <div id="append"></div> -->
 
 
 
@@ -105,7 +89,7 @@ function access() {
 								<div class="pagenum">
 									<c:if test="${pageNum > 1}">
 										<div class="number">
-											<a href="${conPath }/noticeList.let?pageNum=${pageNum-1 }"><</a>
+											<a href="${conPath }/qnaList.do?pageNum=${pageNum-1 }"><</a>
 										</div>
 									</c:if>
 									<c:if test="${pageNum <= 1}">
@@ -114,13 +98,13 @@ function access() {
 
 									<c:forEach var="i" begin="${startPage }" end="${endPage }">
 										<div class="number">
-											<a href="${conPath }/noticeList.let?pageNum=${i }">${i }</a>
+											<a href="${conPath }/qnaList.do?pageNum=${i }">${i }</a>
 										</div>
 									</c:forEach>
 
 									<c:if test="${pageNum < endPage}">
 										<div class="number">
-											<a href="${conPath }/noticeList.let?pageNum=${pageNum+1 }">></a>
+											<a href="${conPath }/qnaList.do?pageNum=${pageNum+1 }">></a>
 										</div>
 									</c:if>
 									<c:if test="${pageNum >= endPage}">
@@ -138,6 +122,7 @@ function access() {
 							</div> --%>
 							</div>
 						</div>
+					</div>
 				</div>
 			</div>
 

@@ -286,8 +286,7 @@ public class HreplyDao {
 	
 	
 //탈퇴용 글삭제
-	public int withdrawhr(String mid){
-		int result = FAIL;
+	public void withdrawhr(String mid){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "DELETE FROM HREPLY WHERE MID =?";
@@ -296,7 +295,7 @@ public class HreplyDao {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);;
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			System.out.println("병원 댓글 강제 삭제 성공");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage()+"병원 댓글 강제 삭제 실패");
@@ -312,7 +311,6 @@ public class HreplyDao {
 				
 				}
 		}
-		return result;
 		
 	}
 

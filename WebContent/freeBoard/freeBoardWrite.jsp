@@ -12,56 +12,21 @@
 <!-- summernote editor -->
 <!-- include libraries(jQuery, bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-
-<!-- include summernote css/js-->
-<script src="${conPath }/js/summernote/summernote-lite.js"></script>
-<script src="${conPath }/js/summernote/lang/summernote-ko-KR.js"></script>
-
-<link rel="stylesheet" href="${conPath }/css/summernote/summernote-lite.css">
-
+<script type="text/javascript"
+	src="${conPath }/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <link href="${conPath }/css/boardwrite.css" rel="stylesheet">
-
-<script>
-						$(document).ready(
-								function() {
-									$('#summernote').summernote(
-											{
-												height : 300,
-												minHeight : null,
-												maxHeight : null,
-												lang : 'ko-KR',
-												disableResizeEditor : true,
-												 toolbar: [
-													    // [groupName, [list of button]]
-													    ['fontname', ['fontname']],
-													    ['fontsize', ['fontsize']],
-													    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-													    ['color', ['forecolor','color']],
-													    ['table', ['table']],
-													    ['para', ['ul', 'ol', 'paragraph']],
-													    ['height', ['height']],
-													    ['view', ['fullscreen', 'help']]
-													  ],
-													fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-													fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-												onImageUpload : function(files,
-														editor, welEditable) {
-													sendFile(files[0], editor,
-															welEditable);
-												}
-											});
-								});
-					</script> 
+<link href="${conPath }/se2/css/ko_KR/smart_editor2.css"
+	rel="stylesheet" type="text/css">
 
 
 
 
 <script>
 	$(document).ready(function() {
-		
+		$('form').submit(function() {
+			oEditors.getById["rcontent"].exec("UPDATE_CONTENTS_FIELD", []);
+
+		});
 	});
 </script>
 </head>
@@ -83,12 +48,38 @@
 
 				<div id="borarcontent">
 					<div class="formtitle">제목</div>
-					<div>
+					<div class="inp">
 						<input type="text" name="fsubject" autofocus="autofocus"
 							class="ipt_title" required="required"
 							value='${not empty fsubject? "[답]" : "" }'>
 					</div>
 
+
+					<div class="formtitle">내용</div>
+					<div class="editor">
+						<textarea name="fcontent" id="fcontent"
+							style="width: 80%; height: 300px; min-width: 50%;"></textarea>
+						<script id="smartEditor" type="text/javascript">
+							var oEditors = [];
+							nhn.husky.EZCreator
+									.createInIFrame({
+										oAppRef : oEditors,
+										elPlaceHolder : "fcontent",
+										sSkinURI : "${conPath }/se2/SmartEditor2Skin.html",
+										fCreator : "createSEditor2",
+										htParams : {
+											// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
+											bUseToolbar : true,
+											// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
+											bUseVerticalResizer : false,
+											// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
+											bUseModeChanger : false
+										}
+									});
+						</script>
+
+
+					</div>
 					<div class="formtitle">첨부파일</div>
 					<div>
 						<input type="file" name="ffilename" class="ipt_file"> <br>
@@ -96,14 +87,8 @@
 						<input type="file" name="ffilename3" class="ipt_file">
 
 					</div>
-					<div class="formtitle">내용</div>
-					<div class="editor">
-						<textarea id="summernote" name="fcontent"></textarea>
-							<!-- summernote script -->
-					 	
-		 
-					</div>
-					
+
+
 					<div class="btn_s">
 						<input type="submit" value="글쓰기" class="btn_style"> <input
 							type="button" value="글목록"

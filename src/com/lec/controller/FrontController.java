@@ -46,6 +46,11 @@ import com.lec.service.hBookmarkInService;
 import com.lec.service.hBookmarkOutService;
 import com.lec.service.hCommentAppendService;
 import com.lec.service.myFboardListService;
+import com.lec.service.qListAppendService;
+import com.lec.service.qWriteService;
+import com.lec.service.qWriteViewService;
+import com.lec.service.qaWriteService;
+import com.lec.service.qnaListService;
 
 /**
  * Servlet implementation class FrontController
@@ -237,9 +242,30 @@ public class FrontController extends HttpServlet {
 			service = new MwithdrawalService();
 			service.execute(request, response);
 			viewPage = "main.do";
+		}else if (comm.equals("/qWriteView.do")) {
+			viewPage = "QnABoard/qnaBoardWrite.jsp";
+		}else if (comm.equals("/qWrite.do")) {// Q작성
+			service = new qWriteService();
+			service.execute(request, response);
+			viewPage = "qnaList.do";
+		}else if (comm.equals("/aWrite.do")) {// A작성
+			service = new qaWriteService();
+			service.execute(request, response);
+			viewPage = "qnaList.do";
+		}else if (comm.equals("/qnaList.do")) {// qna리스트
+			service = new qnaListService();
+			service.execute(request, response);
+			viewPage = "QnABoard/qnaBoardView2.jsp";
 		}
 
 
+		
+		
+//		else if (comm.equals("/AnswerAppend.do")) {// qna리스트
+//			service = new qListAppendService();
+//			service.execute(request, response);
+//			viewPage = "QnABoard/qnaContent.jsp";
+//		}
 		/*
 		  else if (comm.equals("/fbCommentModifyView.do")) {
 			service = new fBaordCommentModifyViewService();

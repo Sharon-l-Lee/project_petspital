@@ -25,25 +25,23 @@ public class MwithdrawalService implements Service {
 			RhospitalDao rDao = RhospitalDao.getInstance();
 			HreplyDao hDao = HreplyDao.getInstance();
 			BookmarkDao bDao = BookmarkDao.getInstance();
-			int fboard = fDao.withdrawfb(mid);
-			int freply = frDao.withdrawfr(mid);
-			int hboard = rDao.withdrawho(mid);
-			int hreply = hDao.withdrawhr(mid);
-			int bmark = bDao.withdrawbm(mid);
+			fDao.withdrawfb(mid);
+			frDao.withdrawfr(mid);
+			rDao.withdrawho(mid);
+			hDao.withdrawhr(mid);
+			bDao.withdrawbm(mid);
 
-			if ((fboard == FileboardDao.SUCCESS) && (freply == FreplyDao.SUCCESS) && (hboard == RhospitalDao.SUCCESS)
-					&& (hreply == HreplyDao.SUCCESS) && (bmark == BookmarkDao.SUCCESS)) {
-				MemberDao mDao = MemberDao.getInstance();
-				int withdrawal = mDao.deleteMember(mid);
-				if (withdrawal == MemberDao.SUCCESS) {
-					request.setAttribute("result", "회원 탈퇴 성공, 지워진 글은 복원할 수 없습니다");
-				} else {
-					request.setAttribute("result", "회원 탈퇴 실패");
+			MemberDao mDao = MemberDao.getInstance();
+			int result = mDao.deleteMember(mid);
+			if (result == MemberDao.SUCCESS) {
+				request.setAttribute("result", "회원 탈퇴 성공, 지워진 글은 복원할 수 없습니다");
+			} else {
+				request.setAttribute("result", "회원 탈퇴 실패");
 
-				}
 			}
-		}else {
-			
+
+		} else {
+
 			request.setAttribute("result", "로그인 된 회원이 아닙니다");
 		}
 		session.invalidate();

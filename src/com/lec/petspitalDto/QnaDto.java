@@ -6,50 +6,64 @@ public class QnaDto {
 	private int qnum;
 	private String mid;
 	private String mname;
-	private String qsubejct;
+	private String qsubject;
 	private String qcontent;
 	private String qfilename;
 	private Date qrdate;
+	private int qgroup;
+	private int qstep;
+	private int qindent;
 	private int qhit;
-	private String qrip;
-	
+	private String qip;
+
 	public QnaDto() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public QnaDto(int qnum, String mid, String mname, String qsubejct, String qcontent, String qfilename, Date qrdate,
-			int qhit, String qrip) {
-		super();
+	public QnaDto(int qnum, String mid, String mname, String qsubject, String qcontent, String qfilename, Date qrdate,
+			int qgroup, int qstep, int qindent, int qhit, String qip) {
 		this.qnum = qnum;
 		this.mid = mid;
 		this.mname = mname;
-		this.qsubejct = qsubejct;
+		this.qsubject = qsubject;
 		this.qcontent = qcontent;
 		this.qfilename = qfilename;
 		this.qrdate = qrdate;
+		this.qgroup = qgroup;
+		this.qstep = qstep;
+		this.qindent = qindent;
 		this.qhit = qhit;
-		this.qrip = qrip;
-	}
-
-	public QnaDto(int qnum, String mid, String qsubejct, String qcontent, String qfilename, Date qrdate, int qhit,
-			String qrip) {
-		super();
-		this.qnum = qnum;
-		this.mid = mid;
-		this.qsubejct = qsubejct;
-		this.qcontent = qcontent;
-		this.qfilename = qfilename;
-		this.qrdate = qrdate;
-		this.qhit = qhit;
-		this.qrip = qrip;
+		this.qip = qip;
 	}
 
 	@Override
 	public String toString() {
-		return "QnaDto [qnum=" + qnum + ", mid=" + mid + ", mname=" + mname + ", qsubejct=" + qsubejct + ", qcontent="
-				+ qcontent + ", qfilename=" + qfilename + ", qrdate=" + qrdate + ", qhit=" + qhit + ", qrip=" + qrip
-				+ "]";
+		return "QnaDto [qnum=" + qnum + ", mid=" + mid + ", mname=" + mname + ", qsubject=" + qsubject + ", qcontent="
+				+ qcontent + ", qfilename=" + qfilename + ", qrdate=" + qrdate + ", qgroup=" + qgroup + ", qstep="
+				+ qstep + ", qindent=" + qindent + ", qhit=" + qhit + ", qip=" + qip + "]";
+	}
+
+	public int getQgroup() {
+		return qgroup;
+	}
+
+	public void setQgroup(int qgroup) {
+		this.qgroup = qgroup;
+	}
+
+	public int getQstep() {
+		return qstep;
+	}
+
+	public void setQstep(int qstep) {
+		this.qstep = qstep;
+	}
+
+	public int getQindent() {
+		return qindent;
+	}
+
+	public void setQindent(int qindent) {
+		this.qindent = qindent;
 	}
 
 	public int getQnum() {
@@ -76,12 +90,12 @@ public class QnaDto {
 		this.mname = mname;
 	}
 
-	public String getQsubejct() {
-		return qsubejct;
+	public String getQsubject() {
+		return qsubject;
 	}
 
-	public void setQsubejct(String qsubejct) {
-		this.qsubejct = qsubejct;
+	public void setQsubject(String qsubject) {
+		this.qsubject = qsubject;
 	}
 
 	public String getQcontent() {
@@ -116,16 +130,12 @@ public class QnaDto {
 		this.qhit = qhit;
 	}
 
-	public String getQrip() {
-		return qrip;
+	public String getQip() {
+		return qip;
 	}
 
-	public void setQrip(String qrip) {
-		this.qrip = qrip;
+	public void setQrip(String qip) {
+		this.qip = qip;
 	}
-	
-	
-	
-	
 
 }

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url("css/reset.css");
 @font-face {
 	font-family: 'GmarketSansMedium';
 	src:
@@ -15,6 +15,7 @@
     font-style: normal;
 }
 
+
 * {
 	padding: 0;
 	margin: 0;
@@ -29,7 +30,7 @@
 #wrap #content {
 	width: 70%;
 	margin: 0 auto;
-	height: 800px;
+	height: 900px;
 	display: block;
 	position: relative;
 	left: 180px;
@@ -40,11 +41,23 @@
 	margin: 20px auto;
 	
 }
-#wrap #content #boardcontent #rcategoryid {
-	width:500px;
-	height:200px;
-}
+
 #rcategoryid .rcategoryid{
+	width:150px;
+	height:25px;
+	position: relative;
+	left:125px;
+	
+}
+#scategoryid > .scategoryid{
+	width:150px;
+	height:25px;
+	position: relative;
+	left:125px;
+	
+}
+
+#wrap #content #scategoryid select .scategoryid {
 	width:150px;
 	height:25px;
 	position: relative;
