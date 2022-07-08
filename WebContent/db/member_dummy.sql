@@ -33,8 +33,21 @@ SELECT * FROM ADMIN WHERE aID = 'admin1';
 SELECT * FROM ADMIN;
 commit;
 --공지사항
+INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'admin1', '공지사항입니다', '글1입니다', 'noImg.png', '127.10.26');
+INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'admin2', '공지사항은 꼭 지켜주세요', '글1입니다', 'noImg.png', '127.10.26');
+INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'admin3', '공지사항합니다', '글1입니다', 'noImg.png', '127.10.26');
+INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'admin3', '수정된 공지입니다', '글1입니다', 'noImg.png', '127.10.26');
+INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'admin4', '멤버 등업 관련 공지', '글1입니다', 'noImg.png', '127.10.26');
+INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
+    VALUES(NOTICE_SEQ.NEXTVAL, 'admin4', '공지사항 (4차)', '글1입니다', 'noImg.png', '127.10.26');
+select * from admin;
 
-
+--증상 글
 --병원
 
 --병원 댓글
@@ -126,4 +139,4 @@ INSERT INTO QNA (qNUM, mID, qSUBJECT, qCONTENT, qFILENAME, qRDATE, qGROUP, qSTEP
     );
 
 
---
+--QnA답글 (test 8 9 10 )

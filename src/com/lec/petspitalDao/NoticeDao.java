@@ -50,7 +50,7 @@ public class NoticeDao {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM " + 
 				"        (SELECT ROWNUM RN, B.* FROM " + 
-				"            (SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE N.AID = A.AID ORDER BY NRDATE DESC)B)" + 
+				"            (SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE N.AID = A.AID ORDER BY NRDATE DESC, Nnum DESC)B)" + 
 				"    WHERE RN BETWEEN ? AND ?";
 
 		try {
