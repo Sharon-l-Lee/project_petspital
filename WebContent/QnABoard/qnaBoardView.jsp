@@ -8,28 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${conPath }/css/qnaview.css" rel="stylesheet">
 <link href="${conPath }/js/jqueryui/jquery-ui.css" rel="stylesheet">
-<link href="${conPath }/css/freeboard.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="${conPath }/js/jqueryui/jquery-ui.js"></script>
 <script>
-	$(document).ready(function() {
-/* 
-		$(".detail").click(function() {
-
-			if ($("#box").hasClass("hide") === true) {
-
-				$(this).next().removeClass('hide');
-				$(this).next().addClass('view');
-
-			} else if ($("#box").hasClass("view") === true) {
-
-				$(this).next().addClass('hide');
-				$(this).next().removeClass('view');
-
-			}
-
-		}); */
+	$(function() {
+		$("#accordion").accordion();
+		var header = $("#accordion").accordion("option", "header");
+		$("#accordion").accordion("option", "header", ".subj");
 
 	});
 </script>
@@ -56,46 +47,32 @@
 								onclick="location.href='${conPath }/qWriteView.do?pageNum=${pageNum }'">글쓰기</button>
 						</c:if>
 						<div class="freeboard">
-							<table>
-								<thead>
-									<tr id="tabletitle">
-										<th class="num">No</th>
-										<th class="th_title"><span>제목</span></th>
-										<th class="th_name">작성자</th>
-										<th class="th_date">작성일</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:if test="${qnaList.size() != 0  }">
-										<c:forEach var="qna" items="${qnaList }">
-											<tr class="detail">
-												<td class="boardcontent">
-													<div class="boardnum">
-														<div>${qna.qnum }</div>
-													</div>
-												</td>
-												<td class="boardcontent">
-													<div class="boardtitle">
-														<div>${qna.qsubject }</div>
-													</div>
-												</td>
-												<td class="boardcontent">
-													<div class="boardwriter">
-														<div>${qna.mname }</div>
-													</div>
-												</td>
-												<td class="boardcontent">${qna.qrdate }</td>
 
-											</tr>
-											<tr id="box" class="hide">
-												<td>${qna.qcontent }</td>
+							<div id="accordion">
+								<c:if test="${qnaList.size() != 0  }">
+									<c:forEach var="qna" items="${qnaList }">
 
-											</tr>
-										</c:forEach>
-									</c:if>
-									<!-- <div id="append"></div> -->
-								</tbody>
-							</table>
+										<div class="subj">Q: ${qna.qsubject }</div>
+										<div>
+											<p>질문 내용 : ${qna.qcontent }</p>
+
+											<c:if test="${not empty member || not empty admin }">
+												<div class="re_btn">
+													<button
+														onclick="location.href='${conPath}/qWriteView.do?qgroup=${qna.qgroup }&qstep=${qna.qstep }&qindent=${qna.qindent }'"
+														class="rebtn_style">답변하기</button>
+													<button
+														onclick="location.href='${conPath}/answerView.do?qgroup=${qna.qgroup }&qnum=${qna.qnum }'"
+														class="rebtn_style">답변보기</button>
+
+												</div>
+											</c:if>
+										</div>
+
+									</c:forEach>
+								</c:if>
+							</div>
+							<!-- <div id="append"></div> -->
 
 
 
@@ -112,9 +89,20 @@
  --%>
 
 								<div class="pagenum">
+									<div class="move">
+										<c:if test="${startPage > BLOCKSIZE }">
+											<div class="prev">
+												<a href="${conPath }/qnaList.do?pageNum=${startPage-1}">
+													prev </a>
+											</div>
+										</c:if>
+										<c:if test="${startPage <= BLOCKSIZE}">
+											<div class="prev">prev</div>
+										</c:if>
+									</div>
 									<c:if test="${pageNum > 1}">
 										<div class="number">
-											<a href="${conPath }/freeBoardList.do?pageNum=${pageNum-1 }"><</a>
+											<a href="${conPath }/qnaList.do?pageNum=${pageNum-1 }"><</a>
 										</div>
 									</c:if>
 									<c:if test="${pageNum <= 1}">
@@ -122,14 +110,25 @@
 									</c:if>
 
 									<c:forEach var="i" begin="${startPage }" end="${endPage }">
-										<div class="number">
-											<a href="${conPath }/freeBoardList.do?pageNum=${i }">${i }</a>
-										</div>
+
+										<c:if test="${i == pageNum }">
+											<div class="number">
+												<b> ${i } </b>
+											</div>
+										</c:if>
+
+
+										<c:if test="${i != pageNum }">
+											<div class="number">
+												<a href="${conPath }/qnaList.do?pageNum=${i }">${i }</a>
+											</div>
+										</c:if>
+
 									</c:forEach>
 
 									<c:if test="${pageNum < endPage}">
 										<div class="number">
-											<a href="${conPath }/freeBoardList.do?pageNum=${pageNum+1 }">></a>
+											<a href="${conPath }/qnaList.do?pageNum=${pageNum+1 }">></a>
 										</div>
 									</c:if>
 									<c:if test="${pageNum >= endPage}">
@@ -137,14 +136,20 @@
 									</c:if>
 
 								</div>
-								<%-- <div class="move">
-								<c:if test="${pageCnt > endPage }">
-										<div class="next"><a href="${conPath }/freeBoardList.do?pageNum=${endPage+1}">next</a></div>
-								</c:if>
-								<c:if test="${pageCnt <= endPage}">
-										<div class="next">next</div>
-								</c:if>
-							</div> --%>
+								<div class="move">
+
+									<c:if test="${endPage<pageCnt }">
+										<div class="next">
+											<a href="${conPath }/qnaList.do?pageNum=${endPage+1}">next</a>
+										</div>
+									</c:if>
+									<c:if test="${endPage>=pageCnt }">
+										<div class="next">
+											next
+										</div>
+									</c:if>
+
+								</div>
 							</div>
 						</div>
 					</div>

@@ -221,13 +221,17 @@ a {
 #wrap #content #search_area .sbtn {
 	font-family: 'GmarketSansMedium';
 }
+#paging{
+	height:160px;
+	line-height: 160px;
+}
 .prev {
 	width:80px;
 	position:relative;
 	display: inline-block;
 	  font-family: HanSans;
 	  top :64px;
-	  left :230px;
+	  right:250px;
     margin: 0;
     padding: 0;
     font-size: 18px;
@@ -247,7 +251,7 @@ a {
 	position:relative;
 	display: inline-block;
 	  font-family: HanSans;
-	 bottom:64px;
+	 bottom:120px;
 	  left :750px;
     margin: 0;
     padding: 0;

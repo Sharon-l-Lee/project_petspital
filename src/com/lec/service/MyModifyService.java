@@ -33,10 +33,10 @@ public class MyModifyService implements Service {
 		  if(result == MemberDao.SUCCESS) {
 			  HttpSession session = request.getSession();
 			  session.setAttribute("member", member);
-			  request.setAttribute("modify_result", "È¸¿ø¼öÁ¤ ¼º°ø");
+			  request.setAttribute("modify_result", "ìˆ˜ì •ì„±ê³µ");
 		  }else {
 			  
-			  request.setAttribute("modifyErrorMsg", "È¸¿ø¼öÁ¤ ½ÇÆÐ");
+			  request.setAttribute("modifyErrorMsg", "ìˆ˜ì •ì‹¤íŒ¨");
 		  }
 
 	}

@@ -183,7 +183,6 @@ public class MemberDao {
 						mrdate);
 
 			}
-			System.out.println("id占쏙옙 占쏙옙占쏙옙占쏙옙 dto : " + dto);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {

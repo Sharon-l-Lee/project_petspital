@@ -118,8 +118,6 @@ public class FrontController extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "loginView.do";
 		} else if (comm.equals("/myView.do")) {
-			// service = new MyViewService();
-			// service.execute(request, response);
 			viewPage = "member/myView.jsp";
 		} else if (comm.equals("/myModifyView.do")) {
 			viewPage = "member/myModifyView.jsp";
@@ -127,7 +125,7 @@ public class FrontController extends HttpServlet {
 			service = new MyModifyService();
 			service.execute(request, response);
 			viewPage = "myView.do";
-		} else if (comm.equals("/freeBoardWriteView.do")) {
+		} else if (comm.equals("/freeBoardWriteView.do")) {//자유게시판
 			viewPage = "freeBoard/freeBoardWrite.jsp";
 		} else if (comm.equals("/freeBoardWrite.do")) {
 			service = new FreeBoardWriteService();
@@ -153,7 +151,7 @@ public class FrontController extends HttpServlet {
 			service = new FreeBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardList.do";
-		} else if (comm.equals("/freeBoardReplyView.do")) {
+		} else if (comm.equals("/freeBoardReplyView.do")) { //자유게시판 댓글
 			service = new FreeBoardReplyViewService();
 			service.execute(request, response);
 			viewPage = "freeBoard/freeBoardReply.jsp";
@@ -181,7 +179,7 @@ public class FrontController extends HttpServlet {
 			service = new fBoardCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "freeBoardContent.do";
-		} else if (comm.equals("/hBoardWriteView.do")) {// 
+		} else if (comm.equals("/hBoardWriteView.do")) {// 병원 게시판
 			service = new hBoardWriteViewService();
 			service.execute(request, response);
 			viewPage = "hsearchBoard/hSearchBoardWrite.jsp";
@@ -258,7 +256,7 @@ public class FrontController extends HttpServlet {
 		}else if (comm.equals("/qnaList.do")) {// qna리스트
 			service = new qnaListService();
 			service.execute(request, response);
-			viewPage = "QnABoard/qnaBoardView2.jsp";
+			viewPage = "QnABoard/qnaBoardView.jsp";
 		}else if (comm.equals("/answerView.do")) {// 답변보기
 			service = new answerViewService();
 			service.execute(request, response);

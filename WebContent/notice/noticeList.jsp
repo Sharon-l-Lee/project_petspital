@@ -10,10 +10,10 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/freeboard.css" rel="stylesheet">
 <script type="text/javascript">
-function access() {
-	alert('로그인 후 이용해주세요');
-	location.href = "${conPath}/loginView.do";
-}
+	function access() {
+		alert('로그인 후 이용해주세요');
+		location.href = "${conPath}/loginView.do";
+	}
 </script>
 </head>
 <body>
@@ -37,8 +37,7 @@ function access() {
 								onclick="location.href='${conPath }/noticeWriteView.let?pageNum=${pageNum }'">글쓰기</button>
 						</c:if>
 						<c:if test="${empty admin }">
-							<button class="w_btn"
-								onclick="access();">글쓰기</button>
+							<button class="w_btn" onclick="access();">글쓰기</button>
 						</c:if>
 						<div class="freeboard">
 							<table>
@@ -52,11 +51,11 @@ function access() {
 									</tr>
 								</thead>
 								<tbody>
-								<c:if test="${noticeView.size() eq 0 }">
-									<tr>
-										<td colspan="6" class="none">공지사항이 없습니다</td>
-									</tr>
-								</c:if>
+									<c:if test="${noticeView.size() eq 0 }">
+										<tr>
+											<td colspan="6" class="none">공지사항이 없습니다</td>
+										</tr>
+									</c:if>
 									<c:if test="${noticeView.size() != 0  }">
 										<c:forEach var="notice" items="${noticeView }">
 											<tr>
@@ -92,15 +91,17 @@ function access() {
 
 
 							<div id="paging">
-								<%-- 	<div class="move">
-								<c:if test="${startPage > BLOCKSIZE}">
-										<div class="prev"><a href="${conPath }/freeBoardList.do?pageNum=${startPage-1}">prev</a></div>
-								</c:if>
-								<c:if test="${startPage <= BLOCKSIZE}">
+								<div class="move">
+									<c:if test="${startPage > BLOCKSIZE}">
+										<div class="prev">
+											<a href="${conPath }/freeBoardList.do?pageNum=${startPage-1}">prev</a>
+										</div>
+									</c:if>
+									<c:if test="${startPage <= BLOCKSIZE}">
 										<div class="prev">prev</div>
-								</c:if>
-							</div>
- --%>
+									</c:if>
+								</div>
+
 
 								<div class="pagenum">
 									<c:if test="${pageNum > 1}">
@@ -128,22 +129,24 @@ function access() {
 									</c:if>
 
 								</div>
-								<%-- <div class="move">
-								<c:if test="${pageCnt > endPage }">
-										<div class="next"><a href="${conPath }/freeBoardList.do?pageNum=${endPage+1}">next</a></div>
-								</c:if>
-								<c:if test="${pageCnt <= endPage}">
+								<div class="move">
+									<c:if test="${pageCnt > endPage }">
+										<div class="next">
+											<a href="${conPath }/freeBoardList.do?pageNum=${endPage+1}">next</a>
+										</div>
+									</c:if>
+									<c:if test="${pageCnt <= endPage}">
 										<div class="next">next</div>
-								</c:if>
-							</div> --%>
+									</c:if>
+								</div>
 							</div>
 						</div>
+					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 	</div>
-</div>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

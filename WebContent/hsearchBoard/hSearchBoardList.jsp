@@ -130,7 +130,7 @@
 
 
 							<div id="paging">
-								<%-- 	<div class="move">
+								<	<div class="move">
 								<c:if test="${startPage > BLOCKSIZE}">
 										<div class="prev"><a href="${conPath }/freeBoardList.do?pageNum=${startPage-1}">prev</a></div>
 								</c:if>
@@ -138,7 +138,7 @@
 										<div class="prev">prev</div>
 								</c:if>
 							</div>
- --%>
+
 
 								<div class="pagenum">
 									<c:if test="${pageNum > 1}">
@@ -166,14 +166,14 @@
 									</c:if>
 
 								</div>
-								<%-- <div class="move">
+								<div class="move">
 								<c:if test="${pageCnt > endPage }">
 										<div class="next"><a href="${conPath }/freeBoardList.do?pageNum=${endPage+1}">next</a></div>
 								</c:if>
 								<c:if test="${pageCnt <= endPage}">
 										<div class="next">next</div>
 								</c:if>
-							</div> --%>
+							</div> 
 							</div>
 						</div>
 					</div>

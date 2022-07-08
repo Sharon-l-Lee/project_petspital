@@ -13,7 +13,7 @@ public class AmGradeUpService implements Service {
 		MemberDao mDao = MemberDao.getInstance();
 		int result = mDao.gradeUp(mid);
 		if(result == MemberDao.SUCCESS) {
-			request.setAttribute("mgradeup", "µî±Þ ¾÷ ¿Ï·á");
+			request.setAttribute("mgradeup", "ë“±ê¸‰ì—…");
 		}
 		
 

@@ -13,7 +13,7 @@ public class AmGradeDownService implements Service {
 		MemberDao mDao = MemberDao.getInstance();
 		int result = mDao.gradeDown(mid);
 		if(result == MemberDao.SUCCESS) {
-			request.setAttribute("mgradedown", "µî±Þ ´Ù¿î ¿Ï·á");
+			request.setAttribute("mgradedown", "ë“±ê¸‰ ë‹¤ìš´");
 		}
 	}
 

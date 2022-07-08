@@ -116,7 +116,7 @@ public class FrontControllerAdmin extends HttpServlet {
 		}else if(comm.equals("/noticeWrite.let")) {//
 			service = new ANoticeWriteService();
 			service.execute(request, response);
-			viewPage = "main/main.jsp";
+			viewPage = "main.do";
 		}else if(comm.equals("/noticeList.let")) {//
 			service = new ANoticeListService();
 			service.execute(request, response);
