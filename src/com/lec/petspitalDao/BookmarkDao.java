@@ -51,7 +51,7 @@ public class BookmarkDao {
 		
 		String sql = "INSERT INTO BOOKMARK (bNUM, rNUM, mID, aID) VALUES (BMARK_SEQ.NEXTVAL, ?, ?, ?)";
 		
-		try { //���۾���� step�� ���� ��� 0����
+		try { //
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rnum);

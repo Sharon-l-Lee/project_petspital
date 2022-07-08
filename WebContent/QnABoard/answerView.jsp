@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/freeboard.css" rel="stylesheet">
+<link href="${conPath }/css/qnaboard.css" rel="stylesheet">
 <link href="${conPath }/js/jqueryui/jquery-ui.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link rel="stylesheet"
@@ -29,23 +29,30 @@
 
 					<div class="title_area">
 						<div class="info_title">
-							<h2 class="tit">${qnum }번글 답변</h2>
+							<h2 class="tit">${qnum }번글답변</h2>
 						</div>
 					</div>
 					<!-- 게시판 -->
-					
+					<div class="freeboard_wrap">
+						
+							<button class="w_btn"
+								onclick="location.href='${conPath }/qnaList.do?pageNum=${pageNum }'">QnA목록</button>
+						
 						<div class="freeboard">
 
 							<div id="accordion">
+								<c:if test="${answerView.size() eq 0 }">
+									<div id="none">아직 답변이 달리지 않았습니다</div>
+								</c:if>
 								<c:if test="${answerView.size() != 0  }">
 									<c:forEach var="answer" items="${answerView }">
 
-										<div>
+										<div id="box">
 											<h4>A : ${answer.qsubject }</h4>
 											<div>${answer.qcontent }</div>
-											
-											
-										
+
+
+
 										</div>
 
 									</c:forEach>
@@ -83,15 +90,15 @@
 									</c:if>
 
 								</div>
-							
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
-	
+	</div>
+
 
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>

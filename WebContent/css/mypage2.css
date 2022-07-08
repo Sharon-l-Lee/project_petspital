@@ -5,6 +5,13 @@
 	src: url('../fonts/NanumSquareL.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -70,31 +77,34 @@
 	overflow: hidden;
 }
 
-.row {
+.mypage_content .row {
 	display: flex;
 	flex-direction: row;
 }
 
-.my_title {
+.mypage_content .my_title {
 	height: 10%;
 	display: block;
 	position: relative;
 	text-align: right;
 	border-bottom: 3px solid lightgray;
+	font-family:'GmarketSansMedium';
 }
 
-.group {
+.mypage_content .group {
 	padding-top: 20px;
 }
 
-.row_title {
+.mypage_content .row_title {
 	width: 30%;
 	height: 60px;
 	line-height: 60px;
 	font-size: 1.3em;
 	padding-left: 20px;
-	border-left: 2px solid lightblue;
+	border-left: 2px solid #00A19D;
 	border-bottom: 1px solid lightgray;
+	font-family:'level';
+	font-weight:bold;
 }
 
 .row_cont {
@@ -111,10 +121,15 @@
 	position: relative;
 	text-align: center;
 	margin: 20px auto;
-	padding: 30px 20px;
 	width: 200px;
+	height:50px;
+	line-height:20px;
 	outline: none;
 	border: 0;
 	border-radius: 80px;
-	background-color: lightblue;
+	background-color: #1F2024;
+	color:#F9F7F7;
+	font-family:'level';
+	font-weight:bold;
+	font-size:1.1em;
 }

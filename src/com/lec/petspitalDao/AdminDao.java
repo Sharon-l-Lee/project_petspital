@@ -33,7 +33,7 @@ public class AdminDao {
 		return instance;
 	}
 	
-	//°ü¸®ÀÚ ·Î±×ÀÎ SELECT * FROM ADMIN WHERE aID ='admin1' AND aPW ='111';
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ SELECT * FROM ADMIN WHERE aID ='admin1' AND aPW ='111';
 	
 	public int adminLogin(String aid, String apw) {
 		int result = FAIL;
@@ -57,7 +57,7 @@ public class AdminDao {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			System.out.println("¿Ö¾ÈµÅ");
+			
 		} finally {
 
 			try {
@@ -95,7 +95,7 @@ public class AdminDao {
 				dto = new AdminDto(aid, apw, aname);
 
 			}
-			System.out.println("id·Î °¡Á®¿Â dto : " + dto);
+		
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {

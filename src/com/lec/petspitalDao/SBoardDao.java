@@ -40,7 +40,6 @@ public class SBoardDao {
 	}
 	
 //	
-//	증상 검색
 //	SELECT * FROM SYBOARD WHERE sCATEGORYNAME='1';
 	
 	public ArrayList<SBoardDto> listSboard() {
@@ -64,7 +63,7 @@ public class SBoardDao {
 				dtos.add(new SBoardDto(snum, aid, scategoryid, scategoryname, ssubject, scontent));
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"리스트 에러");
+			System.out.println(e.getMessage());
 		} finally {
 
 			try {
@@ -84,10 +83,9 @@ public class SBoardDao {
 	}
 //
 // sCATEGORYNAME FROM SCATEGORY;
-//	--증상 글 등록(ADMIN)
 ////
 //	INSERT INTO SYBOARD (sNUM, sCATEGORYID, aID, sSUBJECT, sCONTENT)
-//    VALUES (SYB_SEQ.NEXTVAL, 1,'admin1','눈꺼풀이 벌겋게 붓는다','눈꺼풀에 이상이 있다');
+//    VALUES (SYB_SEQ.NEXTVAL, 1,'admin1','');
 //	    
 
 	public int writeSboard(int scategoryid, String aid, String ssubject, String scontent ) {
@@ -98,7 +96,7 @@ public class SBoardDao {
 		String sql = "INSERT INTO SYBOARD (sNUM, sCATEGORYID, aID, sSUBJECT, sCONTENT)" + 
 				"    VALUES (SYB_SEQ.NEXTVAL, ?, ?, ?, ?)";
 		
-		try { //원글쓰기는 step과 레벨 모두 0고정
+		try { 
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, scategoryid);
@@ -106,9 +104,8 @@ public class SBoardDao {
 			pstmt.setString(3, ssubject);
 			pstmt.setString(4, scontent);
 			result = pstmt.executeUpdate();
-			System.out.println("증상 글쓰기 성공");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"증상 글쓰기 실패");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -125,7 +122,6 @@ public class SBoardDao {
 	}
 	
 //	
-//	--증상 글 삭제(ADMIN)
 //	DELETE FROM SYBOARD WHERE sNUM ='1';
 //
 	
@@ -141,9 +137,8 @@ public class SBoardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, snum);
 			result = pstmt.executeUpdate();
-			System.out.println("삭제 성공");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"삭제실패");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -159,10 +154,9 @@ public class SBoardDao {
 		return result;
 		
 	}
-//	--증상 글 수정 (ADMIN)
 //	UPDATE SYBOARD SET sCATEGORYID = 2,
-//	                sSUBJECT ='콧물을 많이 흘린다',
-//	                sCONTENT='코에 문제가 있다'
+//	                sSUBJECT ='',
+//	                sCONTENT=''
 //	                WHERE sNUM = '1';
 	
 
@@ -183,7 +177,6 @@ public class SBoardDao {
 			pstmt.setString(3, scontent);
 			pstmt.setInt(4, snum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "수정 성공" : "수정실패");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -204,7 +197,6 @@ public class SBoardDao {
 	
 	}
 	
-	//snum으로 dto가져오기
 	
 	public SBoardDto numDto(int snum) {
 		SBoardDto dto = null;
@@ -228,7 +220,6 @@ public class SBoardDao {
 				dto = new SBoardDto(snum, aid, scategoryid, scategoryname, ssubject, scontent);
 
 			}
-			System.out.println("id로 가져온 dto : " + dto);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {

@@ -102,7 +102,7 @@ public class FrontController extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
 		} else if (comm.equals("/loginView.do")) {
-			viewPage = "member/login2.jsp";
+			viewPage = "member/login.jsp";
 		} else if (comm.equals("/login.do")) {
 			service = new MLoginService();
 			service.execute(request, response);
@@ -120,13 +120,13 @@ public class FrontController extends HttpServlet {
 		} else if (comm.equals("/myView.do")) {
 			// service = new MyViewService();
 			// service.execute(request, response);
-			viewPage = "member/myView2.jsp";
+			viewPage = "member/myView.jsp";
 		} else if (comm.equals("/myModifyView.do")) {
 			viewPage = "member/myModifyView.jsp";
 		} else if (comm.equals("/myModify.do")) {
 			service = new MyModifyService();
 			service.execute(request, response);
-			viewPage = "member/myView.jsp";
+			viewPage = "myView.do";
 		} else if (comm.equals("/freeBoardWriteView.do")) {
 			viewPage = "freeBoard/freeBoardWrite.jsp";
 		} else if (comm.equals("/freeBoardWrite.do")) {
@@ -259,7 +259,7 @@ public class FrontController extends HttpServlet {
 			service = new qnaListService();
 			service.execute(request, response);
 			viewPage = "QnABoard/qnaBoardView2.jsp";
-		}else if (comm.equals("/answerView.do")) {// qna리스트
+		}else if (comm.equals("/answerView.do")) {// 답변보기
 			service = new answerViewService();
 			service.execute(request, response);
 			viewPage = "QnABoard/answerView.jsp";
@@ -269,7 +269,7 @@ public class FrontController extends HttpServlet {
 			service = new idViewService();
 			service.execute(request, response);
 			viewPage = "idpwfindView.do";
-		}else if (comm.equals("/pwfind.do")) {// id찾기
+		}else if (comm.equals("/pwfind.do")) {// pw찾기
 			service = new pwViewService();
 			service.execute(request, response);
 			viewPage = "idpwfindView.do";

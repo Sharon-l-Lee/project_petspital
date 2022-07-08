@@ -37,7 +37,7 @@ public class NoticeDao {
 	
 	
 //	
-//	--�������� �Խ��� ����Ʈ
+//	
 //	SELECT * FROM 
 //	        (SELECT ROWNUM RN, B.* FROM 
 //	            (SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE N.AID = A.AID ORDER BY NRDATE DESC)B)
@@ -142,9 +142,9 @@ public class NoticeDao {
 		return dtos;
 
 	}
-//	--�������� �Խ��� �۾���
+//	
 //	INSERT INTO NOTICE (nNUM, aID, nSUBJECT, nCONTENT, nFILENAME, nIP)
-//	    VALUES(NOTICE_SEQ.NEXTVAL, 'admin1', '��1', '��1�Դϴ�', 'noImg.png', '127.10.26');
+//	    VALUES(NOTICE_SEQ.NEXTVAL, 'admin1', '', '', 'noImg.png', '127.10.26');
 //
 	public int writeNboard(String aid, String nsubject, String ncontent, String nfilename, String nip ) {
 		int result = FAIL;
@@ -163,9 +163,8 @@ public class NoticeDao {
 			pstmt.setString(4, nfilename);
 			pstmt.setString(5, nip);
 			result = pstmt.executeUpdate();
-			System.out.println("���� �۾��� ����");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"���� �۾������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -181,9 +180,8 @@ public class NoticeDao {
 		return result;
 	}
 	
-//	--�������� �Խ��� ����
-//	UPDATE NOTICE SET nSUBJECT ='��1(����)',
-//	                nCONTENT='��1(����)�Դϴ�',
+//	UPDATE NOTICE SET nSUBJECT ='',
+//	                nCONTENT='',
 //	                nFILENAME='noImg.png'
 //	                WHERE nNUM ='1';
 	public int modifyNBoard(String nsubject, String ncontent, String nfilename, int nnum){
@@ -203,7 +201,7 @@ public class NoticeDao {
 			pstmt.setString(3, nfilename);
 			pstmt.setInt(4, nnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "���� ���� ����" : "���� ��������");
+			System.out.println(result ==SUCCESS ? "공지 수정 성공" : "공지 수정 실패");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -224,7 +222,7 @@ public class NoticeDao {
 	
 	}
 	
-//	--�������� ��ȸ�� �ø���
+//	
 //	UPDATE NOTICE SET nHIT = nHIT+1
 //	                WHERE nNUM='1';
 	
@@ -256,7 +254,7 @@ public class NoticeDao {
 		}
 	}
 //	                
-//	--�������� �� �����
+//	
 //	DELETE FROM NOTICE WHERE nNUM='1';
 //
 	public int deleteNBoard(int nnum){
@@ -270,9 +268,9 @@ public class NoticeDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, nnum);
 			result = pstmt.executeUpdate();
-			System.out.println("���� ���� ����");
+			System.out.println("공지 삭제 성공");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"���� ��������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -289,7 +287,7 @@ public class NoticeDao {
 		
 	}
 	
-	//�� ����
+	//
 	
 
 	public int countNboard() {
@@ -325,7 +323,7 @@ public class NoticeDao {
 		return cnt;
 	}
 	
-//	--�� ��ȣ�� dto�������� (��ȸ�� up)
+//	
 //	SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE A.AID = N.AID AND NNUM=1;
 	public NoticeDto getnBoard(int nnum){
 		hitUp(nnum);
@@ -371,7 +369,6 @@ public class NoticeDao {
 		
 	}
 	
-//	--�� ��ȣ�� dto �������� (������)
 //	SELECT N.*, ANAME FROM NOTICE N, ADMIN A WHERE A.AID = N.AID AND NNUM=1;
 	public NoticeDto getnBoardModify(int nnum){
 		NoticeDto dto = null;

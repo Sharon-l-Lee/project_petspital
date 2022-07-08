@@ -59,10 +59,10 @@
 											<c:if test="${not empty member || not empty admin }">
 												<div class="re_btn">
 													<button
-														onclick="location.href='${conPath}/qWriteView.do?qgroup=${qna.qgroup }&qstep=${qna.qstep }&qindent=${qna.qindent }'">답변</button>
+														onclick="location.href='${conPath}/qWriteView.do?qgroup=${qna.qgroup }&qstep=${qna.qstep }&qindent=${qna.qindent }'" class="rebtn_style">답변하기</button>
 													<button
-														onclick="location.href='${conPath}/answerView.do?qgroup=${qna.qgroup }&qnum=${qna.qnum }'">답변보기</button>
-													<a href="">답변 갯수 : </a>
+														onclick="location.href='${conPath}/answerView.do?qgroup=${qna.qgroup }&qnum=${qna.qnum }'" class="rebtn_style">답변보기</button>
+													
 												</div>
 											</c:if>
 										</div>

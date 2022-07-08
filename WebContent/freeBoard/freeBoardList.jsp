@@ -70,8 +70,8 @@
 			<div class="title_area">
 				<div class="info_title">
 					<h2 class="tit">자유게시판</h2>
+					<p class="tcol">자유롭게 글을 작성할 수 있습니다</p>
 				</div>
-				<p class="tcol">자유롭게 글을 작성할 수 있습니다</p>
 			</div>
 			<!-- 게시판 -->
 			<div class="freeboard_wrap">

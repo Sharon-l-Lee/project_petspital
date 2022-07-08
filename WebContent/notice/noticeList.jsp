@@ -31,7 +31,7 @@ function access() {
 						<p class="tcol">공지글이 올라오는 곳입니다.</p>
 					</div>
 					<!-- 게시판 -->
-					
+					<div class="freeboard_wrap">
 						<c:if test="${not empty admin }">
 							<button class="w_btn"
 								onclick="location.href='${conPath }/noticeWriteView.let?pageNum=${pageNum }'">글쓰기</button>
@@ -143,7 +143,7 @@ function access() {
 
 		</div>
 	</div>
-
+</div>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

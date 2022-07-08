@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/mypage.css" rel="stylesheet">
+<link href="${conPath }/css/mypage2.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -16,22 +16,24 @@
 		<div id="content">
 			<div class="container">
 				<div class="mypage">
+					<!-- 서브메뉴 -->
 					<div class="mypage_nav">
 						<ul class="subnav">
-							<li><a href="${conPath }/myModifyView.do" class="menu"><span>내 정보</span></a></li>
-							<li><a href="#" class="menu"><span>게시글 관리</span></a>
+							<li><a href="${conPath }/myModifyView.do" class="menu">내
+									정보</a></li>
+							<li><a href="#" class="menu">게시글 관리</a>
 								<ul class="subm">
 									<li><a href="${conPath }/myFboardList.do" class="submenu">자유게시판</a></li>
 									<li><a href="#" class="submenu">QNA</a></li>
 								</ul></li>
-							<li><a href="${conPath }/myBmarkList.do" class="menu"><span>북마크 보기</span></a></li>
-							<li><a href="${conPath }/mWithdrawal.do" class="menu"><span>회원 탈퇴</span></a></li>
+							<li><a href="${conPath }/myBmarkList.do" class="menu">북마크
+									보기</a></li>
+							<li><a href="${conPath }/mWithdrawal.do" class="menu">회원
+									탈퇴</a></li>
 						</ul>
 					</div>
 					<!-- 내 정보 보기 -->
 					<div class="mypage_content">
-
-
 						<div class="my_title">
 							<h2>내 정보 보기</h2>
 						</div>
@@ -54,17 +56,19 @@
 							</div>
 							<div class="row">
 								<div class="row_title">주소</div>
-								<div class="row_cont">${member.maddress  } ${member.maddress2 }</div>
+								<div class="row_cont">${member.maddress  }
+									${member.maddress2 }</div>
 							</div>
 
 						</div>
 						<div class="content_btn">
-							<button class="my_btn" onclick="location.href='${conPath }/myModifyView.do'">정보 수정</button>
+							<button class="my_btn"
+								onclick="location.href='${conPath }/myModifyView.do'">정보 수정</button>
 						</div>
 
 					</div>
 
-					
+
 				</div>
 
 			</div>

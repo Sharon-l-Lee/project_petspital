@@ -104,9 +104,9 @@ public class FreplyDao {
 			pstmt.setString(4, frcontent);
 			pstmt.setString(5, frip);
 			result = pstmt.executeUpdate();
-			System.out.println(result==SUCCESS ? "��� ���� ����" : "��۾������");
+			System.out.println(result==SUCCESS ? "댓글 쓰기 성공" : "댓글쓰기 실패");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"��۾������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -124,8 +124,8 @@ public class FreplyDao {
 
 	
 	
-	//	--��� ����
-//	UPDATE FREPLY SET fRCONTENT= '���Ȯ�μ���' WHERE fRNUM=1;
+	//
+//	UPDATE FREPLY SET fRCONTENT=  WHERE fRNUM=1;
 	public int modifyComment(String frcontent, int frnum){
 		int result = FAIL;
 		Connection conn = null;
@@ -138,7 +138,7 @@ public class FreplyDao {
 			pstmt.setString(1, frcontent);
 			pstmt.setInt(2, frnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "��� ���� ����" : "��� ��������");
+			System.out.println(result ==SUCCESS ? "댓글 수정 성공" : "댓글 수정 실패");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -158,7 +158,7 @@ public class FreplyDao {
 		
 	
 	}
-//	--��� ����
+//	
 //	DELETE FROM FREPLY WHERE fRNUM='2';
 	
 	public int deleteComment(int frnum){
@@ -172,9 +172,8 @@ public class FreplyDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, frnum);
 			result = pstmt.executeUpdate();
-			System.out.println("��� ���� ����");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"��� ��������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -191,7 +190,7 @@ public class FreplyDao {
 		
 	}
 
-//	--��� ��
+//	
 	//SELECT COUNT(*)CNT FROM FREPLY;
 	
 	public int countComment() {
@@ -228,7 +227,7 @@ public class FreplyDao {
 	}
 	
 	
-	//��� ��ü ��������
+	//
 	
 	public FreplyDto getComment(int frnum){
 		FreplyDto dto = null;

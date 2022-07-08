@@ -38,7 +38,6 @@ public class RhospitalDao {
 		return instance;
 	}
 	
-//	--���� �� ���
 //	SELECT * FROM
 //	    (SELECT ROWNUM RN, A.*
 //	    FROM(SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.mID=M.mID)A)
@@ -134,9 +133,8 @@ public class RhospitalDao {
 
 	
 	
-//	--���� �� �Է� (grade2�� �����)
 //	INSERT INTO RHOSPITAL ( rNUM,rCATEGORYID, mID, rSUBJECT, rCONTENT,rFILENAME, rFILENAME2, rFILENAME3, rRDATE,rIP  )
-//	    VALUES(RHOS_SEQ.NEXTVAL, 1, 'aaa','���� ��������', '������ �ִ� ���������Դϴ�', 'noImg.png', NULL, NULL, SYSDATE, '123.10.52');
+//	    VALUES(RHOS_SEQ.NEXTVAL, 1, 'aaa','', '', 'noImg.png', NULL, NULL, SYSDATE, '123.10.52');
 
 	public int writeHboard(int rcategoryid, String mid, String rsubject, String rcontent, String rfilename, String rfilename2,String rfilename3, String rip ) {
 		int result = FAIL;
@@ -146,7 +144,7 @@ public class RhospitalDao {
 		String sql = "INSERT INTO RHOSPITAL (rNUM,rCATEGORYID, mID, rSUBJECT, rCONTENT,rFILENAME, rFILENAME2, rFILENAME3, rRDATE, rIP  )" + 
 				"	    VALUES(RHOS_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ?)";
 		
-		try { //���۾���� step�� ���� ��� 0����
+		try { 
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rcategoryid);
@@ -158,9 +156,8 @@ public class RhospitalDao {
 			pstmt.setString(7, rfilename3);
 			pstmt.setString(8, rip);
 			result = pstmt.executeUpdate();
-			System.out.println("���� ���۾��� ����");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"���� ���۾������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -175,7 +172,6 @@ public class RhospitalDao {
 		}
 		return result;
 	}
-//	--���� �� ���� (�� �� �����)
 //	DELETE FROM RHOSPITAL WHERE rNUM=1;
 	
 	
@@ -190,9 +186,8 @@ public class RhospitalDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rnum);
 			result = pstmt.executeUpdate();
-			System.out.println("���� ����");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"��������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
@@ -208,10 +203,9 @@ public class RhospitalDao {
 		return result;
 		
 	}
-//	--���� �� ���� (�� �� �����)
 //	UPDATE RHOSPITAL SET rCATEGORYID=2,
-//	                    rSUBJECT='�д� ��������',
-//	                    rCONTENT='�д翡 �ִ� ���������Դϴ�',
+//	                    rSUBJECT='',
+//	                    rCONTENT='',
 //	                    rFILENAME='noImg.png',
 //	                    rFILENAME2=NULL,
 //	                    rFILENAME3=NULL
@@ -241,7 +235,6 @@ public class RhospitalDao {
 			pstmt.setString(7, rip);
 			pstmt.setInt(8, rnum);
 			result = pstmt.executeUpdate();
-			System.out.println(result ==SUCCESS ? "���� ����" : "��������");
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
@@ -264,7 +257,6 @@ public class RhospitalDao {
 	
 	
 	
-//	--��ȸ�� �ø���
 //	UPDATE RHOSPITAL SET rHIT = rHIT+1 WHERE rNUM=1;
 	
 
@@ -294,7 +286,6 @@ public class RhospitalDao {
 				}
 		}
 	}
-//	--�� ����
 //	SELECT COUNT(*) FROM RHOSPITAL;
 //	
 	
@@ -331,7 +322,6 @@ public class RhospitalDao {
 		return cnt;
 	}
 	
-//	--���� �� �󼼺���(��ȸ�� up)
 //	SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.MID = M.MID AND rNUM=2;
 	
 	
@@ -383,7 +373,6 @@ public class RhospitalDao {
 		
 	}
 
-//	--������ �󼼺���
 //	SELECT R.*, MNAME FROM RHOSPITAL R, MEMBER M WHERE R.MID = M.MID AND rNUM=2;
 	
 	public RhospitalDto modifyView(int rnum){
@@ -434,7 +423,6 @@ public class RhospitalDao {
 	}
 
 	
-//	--���� ����
 //	DELETE FROM RHOSPITAL WHERE MID =?
 	public void withdrawDeleteHboard(int mid){
 		Connection conn = null;
@@ -446,9 +434,8 @@ public class RhospitalDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mid);
 			pstmt.executeUpdate();
-			System.out.println("���� �� ���� ���� ����");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"���� �� ���� ��������");
+			System.out.println(e.getMessage());
 		} finally {
 			
 				try {
