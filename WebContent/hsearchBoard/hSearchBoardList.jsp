@@ -130,7 +130,7 @@
 
 
 							<div id="paging">
-								<	<div class="move">
+									<div class="move">
 								<c:if test="${startPage > BLOCKSIZE}">
 										<div class="prev"><a href="${conPath }/freeBoardList.do?pageNum=${startPage-1}">prev</a></div>
 								</c:if>

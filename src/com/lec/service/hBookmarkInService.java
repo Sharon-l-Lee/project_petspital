@@ -14,20 +14,21 @@ public class hBookmarkInService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int rnum = Integer.parseInt(request.getParameter("rnum"));
 		HttpSession session = request.getSession();
-		AdminDto admin = (AdminDto)session.getAttribute("admin");
 		MemberDto member = (MemberDto) session.getAttribute("member");
+//		AdminDto admin = (AdminDto)session.getAttribute("admin");
 		String mid = null;
 		String aid= null;
 		if(member !=null) {
 			mid = member.getMid();
-		}else if(admin != null) {
-			aid = admin.getAid();
 		}
+//		if(admin != null) {
+//			aid = admin.getAid();
+//		}
 		
 		BookmarkDao bDao = BookmarkDao.getInstance();
 		int result = bDao.bookMarkIn(rnum, mid, aid);
 		if(result == BookmarkDao.SUCCESS) {
-			request.setAttribute("bookmarkin", "Î∂ÅÎßàÌÅ¨ ÏÑ±Í≥µ");
+			request.setAttribute("bookmarkin", "∫œ∏∂≈© º∫∞¯");
 		}
 
 	}

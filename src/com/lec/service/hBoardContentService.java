@@ -41,17 +41,15 @@ public class hBoardContentService implements Service {
 		request.setAttribute("repageNum", currentPage); 
 		request.setAttribute("pageCnt", pageCnt);
 		request.setAttribute("totCnt", totalComment);
-		
 		HttpSession session =request.getSession();
 		MemberDto member = (MemberDto) session.getAttribute("member");
 		AdminDto admin = (AdminDto)session.getAttribute("admin");
-		String mid=null;
+		String mid =null;
 		String aid = null;
 		if(member !=null) {
 			
 			 mid = member.getMid();
-		}
-		if(admin !=null) {
+		}else if(admin !=null) {
 			 aid = admin.getAid();
 		}
 		BookmarkDao bDao = BookmarkDao.getInstance();
@@ -63,7 +61,7 @@ public class hBoardContentService implements Service {
 		final int PAGESIZE= 5;
 		int startRow = (recurrentPage-1) * PAGESIZE +1;
 		int endRow = startRow + PAGESIZE -1;
-		��� �κ�
+		占쏙옙占� 占싸븝옙
 		 * FreplyDao frDao = FreplyDao.getInstance(); int totalComment =
 		 * frDao.countComment(); request.setAttribute("freplyList",
 		 * frDao.listComment(fnum, startRow, endRow));

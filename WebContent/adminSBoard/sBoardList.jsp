@@ -46,7 +46,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 2 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -60,7 +60,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 3 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -74,7 +74,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 4 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -88,7 +88,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 5 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -102,7 +102,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 6 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -116,7 +116,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 7 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -130,7 +130,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 8 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -144,7 +144,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 9 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -158,7 +158,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 10 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>
@@ -172,7 +172,7 @@
 						<c:forEach var="i" items="${sblist }">
 							<c:if test="${i.scategoryid eq 11 }">
 								<dd class="name">
-									<a href="#">${i.ssubject}</a> <a href="#"></a>
+									<a href="${conPath }/sBoardContent.let?snum=${i.snum } ">${i.ssubject}</a>
 								</dd>
 							</c:if>
 						</c:forEach>

@@ -40,7 +40,7 @@ public class BookmarkDao {
 	
 	
 	
-//	--북마크 넣기
+//	--遺곷쭏�겕 �꽔湲�
 //	INSERT INTO BOOKMARK (bNUM, rNUM, mID) VALUES (BMARK_SEQ.NEXTVAL, 4, 'aaa');
 //
 	
@@ -57,10 +57,12 @@ public class BookmarkDao {
 			pstmt.setInt(1, rnum);
 			pstmt.setString(2, mid);
 			pstmt.setString(3, aid);
+			System.out.println(1);
 			result = pstmt.executeUpdate();
-			System.out.println("북마크 완료");
+			System.out.println("북마크성공");
+		
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"북마킹 실패");
+			System.out.println(e.getMessage()+"북마크 실패");
 		} finally {
 			
 				try {
@@ -75,7 +77,7 @@ public class BookmarkDao {
 		}
 		return result;
 	}
-//	--북마크 지우기
+//	--遺곷쭏�겕 吏��슦湲�
 //	DELETE BOOKMARK WHERE rNUM= 1 AND mID = 'aaa';
 //
 	
@@ -91,9 +93,9 @@ public class BookmarkDao {
 			pstmt.setInt(1, rnum);
 			pstmt.setString(2, mid);
 			result = pstmt.executeUpdate();
-			System.out.println("북마크 지우기 성공");
+			System.out.println("遺곷쭏�겕 吏��슦湲� �꽦怨�");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"북마킹 해제 실패");
+			System.out.println(e.getMessage()+"遺곷쭏�궧 �빐�젣 �떎�뙣");
 		} finally {
 			
 				try {
@@ -109,7 +111,7 @@ public class BookmarkDao {
 		return result;
 		
 	}
-//	--북마크 보기
+//	--遺곷쭏�겕 蹂닿린
 //	SELECT * FROM BOOKMARK WHERE rnum=4 and mID='aaa';
 	
 	public BookmarkDto getBookmark(String mid){
@@ -149,7 +151,7 @@ public class BookmarkDao {
 		
 	}
 //
-//	--북마크 갯수
+//	--遺곷쭏�겕 媛��닔
 //	SELECT  COUNT(*) FROM BOOKMARK WHERE rNUM=4 AND mID='aaa';
 	public int countBookmark(String mid) {
 		int cnt = 0;
@@ -186,7 +188,7 @@ public class BookmarkDao {
 		return cnt;
 	}
 	
-	//북마크 여부
+	//遺곷쭏�겕 �뿬遺�
 	
 	public int doBookmark(int rnum, String mid) {
 		int cnt = 0;
@@ -224,12 +226,12 @@ public class BookmarkDao {
 		return cnt;
 	}
 	
-	//북마크 리스트
+	//遺곷쭏�겕 由ъ뒪�듃
 	
 	
-	//탈퇴용 북마크 삭제
+	//�깉�눜�슜 遺곷쭏�겕 �궘�젣
 	
-	//탈퇴용 글삭제
+	//�깉�눜�슜 湲��궘�젣
 	public void withdrawbm(String mid){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -240,9 +242,9 @@ public class BookmarkDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);;
 			pstmt.executeUpdate();
-			System.out.println("북마크 강제 삭제 성공");
+			System.out.println("遺곷쭏�겕 媛뺤젣 �궘�젣 �꽦怨�");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage()+"북마크 글 강제 삭제 실패");
+			System.out.println(e.getMessage()+"遺곷쭏�겕 湲� 媛뺤젣 �궘�젣 �떎�뙣");
 		} finally {
 			
 				try {

@@ -123,9 +123,7 @@
 									height=40px onclick="bmark()">
 
 
-							</c:if> 
-							
-							<c:if test="${bookmarking eq 0}">
+							</c:if> <c:if test="${bookmarking eq 0}">
 								<img src="${conPath }/boardImg/bookmark.png" onclick="bmark()"
 									width=60px height=40px>
 
@@ -253,8 +251,7 @@
 										</c:if> --%>
 									</div>
 									<div class="list_content">${hcomlist.hcontent }</div>
-									<div class="list_date">${hcomlist.hrdate }
-										${hcomlist.hnum }</div>
+									<div class="list_date">${hcomlist.hrdate }</div>
 									<div class="list_button">
 										<c:if test="${hcomlist.mid eq member.mid }">
 											<button id="modify" class="rlist_btn"
